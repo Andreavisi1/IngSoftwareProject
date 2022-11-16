@@ -20,13 +20,13 @@ class VistaLogin(QWidget):
         super().__init__()
         self.setWindowTitle('Login')
         self.resize(400, 120)
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
         v_layout = QVBoxLayout()
         layout = QGridLayout()
 
         label_logo = QLabel(self)
-        pixmap = QPixmap('logos/logo with text.png')
+        pixmap = QPixmap('logos/logo A.S.D.F..png')
         label_logo.setPixmap(pixmap)
         label_logo.setAlignment(Qt.AlignCenter)
         v_layout.addWidget(label_logo)
@@ -57,7 +57,7 @@ class VistaLogin(QWidget):
     def check_password(self):
         msg = QMessageBox()
         msg.setWindowTitle('Login')
-        msg.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        msg.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         lista = ListaDipendenti()
 
         if lista.verifica_id_dipendente(self.lineEdit_username.text(), self.lineEdit_password.text()):
