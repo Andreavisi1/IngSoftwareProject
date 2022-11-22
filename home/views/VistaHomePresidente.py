@@ -13,10 +13,10 @@ La classe VistaHomeDirettore si occupa di mostrare a schermo al direttore la hom
 la funzione da svolgere con il software.
 """
 
-class VistaHomeDirettore(QWidget):
+class VistaHomePresidente(QWidget):
 
     def __init__(self, parent=None):
-        super(VistaHomeDirettore, self).__init__(parent)
+        super(VistaHomePresidente, self).__init__(parent)
 
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()

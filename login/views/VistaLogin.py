@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QLineEdit, QMessageBox
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import Qt
 from home.views.VistaHome import VistaHome
-from home.views.VistaHomeDirettore import VistaHomeDirettore
+from home.views.VistaHomePresidente import VistaHomePresidente
 from listadipendenti.model.ListaDipendenti import ListaDipendenti
 import credenziali
 
@@ -62,14 +62,14 @@ class VistaLogin(QWidget):
 
         if lista.verifica_id_dipendente(self.lineEdit_username.text(), self.lineEdit_password.text()):
             self.dialog = VistaHome()
-            msg.setText('Accesso alla pagina dei dipendenti')
+            msg.setText('Accesso alla pagina degli amministratori')
             msg.exec_()
             self.dialog.show()
             self.close()
 
         elif self.lineEdit_username.text() == credenziali.username and self.lineEdit_password.text() == credenziali.password:
-            self.dialog = VistaHomeDirettore()
-            msg.setText('Accesso alla pagina del direttore')
+            self.dialog = VistaHomePresidente()
+            msg.setText('Accesso alla pagina del presidente')
             msg.exec_()
             self.dialog.show()
             self.close()

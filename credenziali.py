@@ -1,3 +1,3 @@
 
-username = "admin"
-password = "admin"
+username = "pres"
+password = "pres"
