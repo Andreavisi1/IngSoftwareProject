@@ -9,7 +9,7 @@ from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
 
 """
-La classe VistaHomeDirettore si occupa di mostrare a schermo al direttore la home dove poter selezionare
+La classe VistaHomePresidente si occupa di mostrare a schermo al direttore la home dove poter selezionare
 la funzione da svolgere con il software.
 """
 
@@ -21,11 +21,11 @@ class VistaHomePresidente(QWidget):
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
 
-        grid_layout.addWidget(self.get_icon('logos/home logos/magazzino.png'), 0, 0)
-        grid_layout.addWidget(self.get_icon('logos/home logos/clienti.png'), 0, 1)
-        grid_layout.addWidget(self.get_icon('logos/home logos/dipendenti.png'), 0, 2)
-        grid_layout.addWidget(self.get_icon('logos/home logos/carrello.png'), 0, 3)
-        grid_layout.addWidget(self.get_icon('logos/home logos/statistiche.png'), 0, 4)
+        grid_layout.addWidget(self.get_icon('logos/home logos/cyber-security-gdfdee01b4_1280.png'), 0, 0)
+        grid_layout.addWidget(self.get_icon('logos/home logos/atleti.png'), 0, 1)
+        grid_layout.addWidget(self.get_icon('logos/home logos/assembly-gaa8fdd99d_1280.png'), 0, 2)
+        grid_layout.addWidget(self.get_icon('logos/home logos/calendario.jpg'), 0, 3)
+        grid_layout.addWidget(self.get_icon('logos/home logos/stats.png'), 0, 4)
 
         grid_layout.addWidget(self.get_generic_button("Magazzino Prodotti", self.go_lista_prodotti), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Clienti", self.go_lista_clienti), 1, 1)
