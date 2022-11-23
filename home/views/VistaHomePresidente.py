@@ -36,8 +36,8 @@ class VistaHomePresidente(QWidget):
 
         self.setLayout(grid_layout)
         self.setFixedSize(700, 200)
-        self.setWindowTitle("Negozio di Elettronica")
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.setWindowTitle("A. S. D. Filottrano")
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
     #Questa funzione restituisce un bottone generico dato il titolo
     def get_generic_button(self, titolo, on_click):
