@@ -1,18 +1,18 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
-from cliente.model.Cliente import Cliente
+from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
 
 """
-La classe VistaInserisciCliente si occupa di mostrare all'utente il form per registrare i dati del cliente
+La classe VistaInserisciTesserato si occupa di mostrare all'utente il form per registrare i dati del tesserato
 """
 
-class VistaInserisciCliente(QWidget):
+class VistaInserisciTesserato(QWidget):
     def __init__(self, controller, callback):
-        super(VistaInserisciCliente, self).__init__()
+        super(VistaInserisciTesserato, self).__init__()
         self.controller = controller
         self.callback = callback
         self.info = {}
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         self.v_layout = QVBoxLayout()
         self.resize(300, 200)
 
@@ -27,11 +27,11 @@ class VistaInserisciCliente(QWidget):
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
-        btn_ok.clicked.connect(self.add_cliente)
+        btn_ok.clicked.connect(self.add_tesserato)
         self.v_layout.addWidget(btn_ok)
 
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Nuovo Cliente")
+        self.setWindowTitle("Nuovo Tesserato")
 
     #Metodo per titolare i parametri da inserire
     def get_form_entry(self, tipo):
@@ -42,8 +42,8 @@ class VistaInserisciCliente(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    #Metodo che genera un nuovo cliente sfruttando le informazioni inserite dall'utente
-    def add_cliente(self):
+    #Metodo che genera un nuovo tesserato sfruttando le informazioni inserite dall'utente
+    def add_tesserato(self):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
         cf = self.info["Codice Fiscale"].text()
@@ -55,6 +55,6 @@ class VistaInserisciCliente(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()
-            self.controller.aggiungi_cliente(Cliente(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta))
+            self.controller.aggiungi_tesserato(Tesserato(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta))
             self.callback()
             self.close()

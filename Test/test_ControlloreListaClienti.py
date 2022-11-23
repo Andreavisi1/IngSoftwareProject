@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from cliente.model.Cliente import Cliente
-from listaclienti.controller.ControlloreListaClienti import ControlloreListaClienti
+from tesserato.model.Tesserato import Cliente
+from listatesserati.controller.ControlloreListaTesserati import ControlloreListaClienti
 
 
 class TestControlloreListaClienti(TestCase):

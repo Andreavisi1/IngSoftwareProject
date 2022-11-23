@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
 from carrello.views.VistaListaCarrello import VistaListaCarrello
-from listaclienti.views.VistaListaClienti import VistaListaClienti
+from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listadipendenti.views.VistaListaDipendenti import VistaListaDipendenti
 from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
 from PyQt5 import QtGui
@@ -28,7 +28,7 @@ class VistaHomePresidente(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/stats.png'), 0, 4)
 
         grid_layout.addWidget(self.get_generic_button("Magazzino Prodotti", self.go_lista_prodotti), 1, 0)
-        grid_layout.addWidget(self.get_generic_button("Gestione Clienti", self.go_lista_clienti), 1, 1)
+        grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Dipendenti", self.go_lista_dipendenti), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Carrello", self.go_carrello), 1, 3)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 4)
@@ -62,10 +62,10 @@ class VistaHomePresidente(QWidget):
         self.vista_lista_prodotti = VistaListaProdotti()
         self.vista_lista_prodotti.show()
 
-    #Metodo che si occupa di aprire la VistaListaClienti
-    def go_lista_clienti(self):
-        self.vista_lista_clienti = VistaListaClienti()
-        self.vista_lista_clienti.show()
+    #Metodo che si occupa di aprire la VistaListaTesserati
+    def go_lista_tesserati(self):
+        self.vista_lista_tesserati = VistaListaTesserati()
+        self.vista_lista_tesserati.show()
 
     #Metodo che si occupa di aprire la VistaListaCarrello
     def go_carrello(self):

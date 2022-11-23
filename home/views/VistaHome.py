@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMainWindow
 from carrello.views.VistaListaCarrello import VistaListaCarrello
-from listaclienti.views.VistaListaClienti import VistaListaClienti
+from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
@@ -60,7 +60,7 @@ class VistaHome(QWidget):
 
     #Metodo che si occupa di aprire la VistaListaClienti
     def go_lista_clienti(self):
-        self.vista_lista_clienti = VistaListaClienti()
+        self.vista_lista_clienti = VistaListaTesserati()
         self.vista_lista_clienti.show()
 
     #Metodo che si occupa di aprire la VistaListaCarrello

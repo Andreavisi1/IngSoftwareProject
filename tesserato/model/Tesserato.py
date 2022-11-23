@@ -1,10 +1,10 @@
 """
-Gestisce i dati e le operazioni relative al cliente
+Gestisce i dati e le operazioni relative al tesserato
 """
 
-class Cliente:
+class Tesserato:
        def __init__(self,id, nome, cognome, cf, indirizzo, email, telefono, eta):
-        super(Cliente, self).__init__()
+        super(Tesserato, self).__init__()
         self.id = id
         self.nome = nome
         self.cognome = cognome

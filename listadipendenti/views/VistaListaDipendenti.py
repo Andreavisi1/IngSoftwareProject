@@ -48,7 +48,7 @@ class VistaListaDipendenti(QWidget):
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un dipendente', QMessageBox.Ok, QMessageBox.Ok)
 
-    #Metodo aprire la vista di inserimento del nuovo cliente
+    #Metodo aprire la vista di inserimento del nuovo tesserato
     def show_new_dipendente(self):
         self.vista_inserisci_dipendente = VistaInserisciDipendente(self.controller, self.update_ui)
         self.vista_inserisci_dipendente.show()
