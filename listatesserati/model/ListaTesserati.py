@@ -2,7 +2,7 @@ import os
 import pickle
 
 """
-La classe ListaTesserati gestisce i dati e le operazioni relative alla lista clienti
+La classe ListaTesserati gestisce i dati e le operazioni relative alla lista tesserati
 """
 
 class ListaTesserati():

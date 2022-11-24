@@ -56,7 +56,7 @@ class VistaTesserato(QWidget):
         return current_label
 
     #Metodo che si occupa di eliminare il tesserato
-    def elimina_cliente_click(self):
-        self.elimina_cliente(self.controller.get_id_tesserato())
+    def elimina_tesserato_click(self):
+        self.elimina_tesserato(self.controller.get_id_tesserato())
         self.elimina_callback()
         self.close()

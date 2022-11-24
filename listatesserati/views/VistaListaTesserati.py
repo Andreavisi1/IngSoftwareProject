@@ -6,7 +6,7 @@ from listatesserati.controller.ControlloreListaTesserati import ControlloreLista
 from listatesserati.views.VistaInserisciTesserato import VistaInserisciTesserato
 from PyQt5 import QtGui
 """
-La VistaListaTesserati si occupa di mostrare a schermo la lista dei clienti
+La VistaListaTesserati si occupa di mostrare a schermo la lista dei tesserati
 """
 
 class VistaListaTesserati(QWidget):
