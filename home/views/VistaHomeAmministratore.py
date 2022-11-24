@@ -8,15 +8,15 @@ from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
 
 """
-La classe VistaHome si occupa di mostrare a schermo al amministratore la home dove poter selezionare
+La classe VistaHomeAmministratore si occupa di mostrare a schermo all'amministratore la home dove poter selezionare
 la funzione da svolgere con il software.
 """
 
 
-class VistaHome(QWidget):
+class VistaHomeAmministratore(QWidget):
 
     def __init__(self, parent=None):
-        super(VistaHome, self).__init__(parent)
+        super(VistaHomeAmministratore, self).__init__(parent)
 
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
@@ -24,15 +24,17 @@ class VistaHome(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/magazzino.png'), 0, 0)
         grid_layout.addWidget(self.get_icon('logos/home logos/clienti.png'), 0, 1)
         grid_layout.addWidget(self.get_icon('logos/home logos/carrello.png'), 0, 2)
+        grid_layout.addWidget(self.get_icon('logos/home logos/stats.png'), 0, 3)
 
         grid_layout.addWidget(self.get_generic_button("Lista Prodotti", self.go_lista_prodotti), 1, 0)
-        grid_layout.addWidget(self.get_generic_button("Lista Clienti", self.go_lista_clienti), 1, 1)
+        grid_layout.addWidget(self.get_generic_button("Lista Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Carrello", self.go_carrello), 1, 2)
+        grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 3)
 
         self.setLayout(grid_layout)
-        self.setFixedSize(400, 200)
+        self.setFixedSize(600, 200)
         self.setWindowTitle("Negozio di Elettronica")
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
 
     #Questa funzione restituisce un bottone generico dato il titolo
@@ -58,15 +60,20 @@ class VistaHome(QWidget):
         self.vista_lista_prodotti = VistaListaProdotti()
         self.vista_lista_prodotti.show()
 
-    #Metodo che si occupa di aprire la VistaListaClienti
-    def go_lista_clienti(self):
-        self.vista_lista_clienti = VistaListaTesserati()
-        self.vista_lista_clienti.show()
+    #Metodo che si occupa di aprire la VistaListaTesserati
+    def go_lista_tesserati(self):
+        self.vista_lista_tesserati = VistaListaTesserati()
+        self.vista_lista_tesserati.show()
 
     #Metodo che si occupa di aprire la VistaListaCarrello
     def go_carrello(self):
         self.vistacarrello = VistaListaCarrello()
         self.vistacarrello.show()
+
+    #Metodo che si occupa di aprire la VistaSceltaStats
+    def go_statistiche(self):
+        self.vista_statistiche = VistaSceltaStats()
+        self.vista_statistiche.show()
 
 
 
