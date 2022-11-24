@@ -7,7 +7,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import Qt
 from home.views.VistaHome import VistaHome
 from home.views.VistaHomePresidente import VistaHomePresidente
-from listadipendenti.model.ListaDipendenti import ListaDipendenti
+from listaamministratori.model.ListaAmministratori import ListaAmministratori
 import credenziali
 
 """
@@ -58,9 +58,9 @@ class VistaLogin(QWidget):
         msg = QMessageBox()
         msg.setWindowTitle('Login')
         msg.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
-        lista = ListaDipendenti()
+        lista = ListaAmministratori()
 
-        if lista.verifica_id_dipendente(self.lineEdit_username.text(), self.lineEdit_password.text()):
+        if lista.verifica_id_amministratore(self.lineEdit_username.text(), self.lineEdit_password.text()):
             self.dialog = VistaHome()
             msg.setText('Accesso alla pagina degli amministratori')
             msg.exec_()

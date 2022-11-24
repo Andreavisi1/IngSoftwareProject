@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from dipendente.model.Dipendente import Dipendente
-from listadipendenti.controller.ControlloreListaDipendenti import ControlloreListaDipendenti
+from amministratore.model.Amministratore import Dipendente
+from listaamministratori.controller.ControlloreListaAmministratori import ControlloreListaDipendenti
 
 
 class TestControlloreListaDipendenti(TestCase):

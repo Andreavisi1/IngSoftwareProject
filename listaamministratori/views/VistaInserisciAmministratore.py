@@ -1,18 +1,18 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
-from dipendente.model.Dipendente import Dipendente
+from amministratore.model.Amministratore import Amministratore
 from PyQt5 import QtGui
 
 """
-La classe VistaInserisciDipendente si occupa di mostrare all'utente il form per registrare i dati del dipendente
+La classe VistaInserisciAmministratore si occupa di mostrare all'utente il form per registrare i dati dell'amministratore
 """
 
-class VistaInserisciDipendente(QWidget):
+class VistaInserisciAmministratore(QWidget):
     def __init__(self, controller, callback):
-        super(VistaInserisciDipendente, self).__init__()
+        super(VistaInserisciAmministratore, self).__init__()
         self.controller = controller
         self.callback = callback
         self.info = {}
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         self.resize(300, 200)
 
         self.v_layout = QVBoxLayout()
@@ -29,11 +29,11 @@ class VistaInserisciDipendente(QWidget):
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
-        btn_ok.clicked.connect(self.add_dipendente)
+        btn_ok.clicked.connect(self.add_amministratore)
         self.v_layout.addWidget(btn_ok)
 
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Nuovo Dipendente")
+        self.setWindowTitle("Nuovo Amministratore")
 
     #Metodo per titolare i parametri da inserire
     def get_form_entry(self, tipo):
@@ -44,8 +44,8 @@ class VistaInserisciDipendente(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    #Metodo che genera un nuovo dipendente sfruttando le informazioni inserite dall'utente
-    def add_dipendente(self):
+    #Metodo che genera un nuovo amministratore sfruttando le informazioni inserite dall'utente
+    def add_amministratore(self):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
         cf = self.info["Codice Fiscale"].text()
@@ -58,6 +58,6 @@ class VistaInserisciDipendente(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()
-            self.controller.aggiungi_dipendente(Dipendente(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta,password))
+            self.controller.aggiungi_amministratore(Amministratore(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta,password))
             self.callback()
             self.close()

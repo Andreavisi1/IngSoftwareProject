@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
 
 """
-La classe VistaHome si occupa di mostrare a schermo al dipendente la home dove poter selezionare
+La classe VistaHome si occupa di mostrare a schermo al amministratore la home dove poter selezionare
 la funzione da svolgere con il software.
 """
 
