@@ -58,6 +58,6 @@ class VistaInserisciAmministratore(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()
-            self.controller.aggiungi_amministratore(Amministratore(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta,password))
+            self.controller.aggiungi_amministratore(Amministratore(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta, password))
             self.callback()
             self.close()

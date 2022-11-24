@@ -3,7 +3,7 @@ Gestisce i dati e le operazioni relative al tesserato
 """
 
 class Tesserato:
-       def __init__(self,id, nome, cognome, cf, indirizzo, email, telefono, eta):
+       def __init__(self,id, nome, cognome, cf, indirizzo, email, telefono, eta, password):
         super(Tesserato, self).__init__()
         self.id = id
         self.nome = nome
@@ -13,6 +13,7 @@ class Tesserato:
         self.email = email
         self.telefono = telefono
         self.eta = eta
+        self.password = password
 
 
 

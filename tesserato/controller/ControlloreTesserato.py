@@ -28,3 +28,6 @@ class ControlloreTesserato:
 
     def get_eta_tesserato(self):
         return self.model.eta
+
+    def get_password_tesserato(self):
+        return self.model.password
