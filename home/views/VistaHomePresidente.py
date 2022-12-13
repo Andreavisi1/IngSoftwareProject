@@ -21,28 +21,28 @@ class VistaHomePresidente(QWidget):
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
 
-        grid_layout.addWidget(self.get_icon('logos/home logos/cyber-security-gdfdee01b4_1280.png'), 0, 0)
-        grid_layout.addWidget(self.get_icon('logos/home logos/atleti.png'), 0, 1)
-        grid_layout.addWidget(self.get_icon('logos/home logos/assembly-gaa8fdd99d_1280.png'), 0, 2)
-        grid_layout.addWidget(self.get_icon('logos/home logos/calendario.jpg'), 0, 3)
-        grid_layout.addWidget(self.get_icon('logos/home logos/stats.png'), 0, 4)
+        grid_layout.addWidget(self.get_icon('logos/home logos/personal-data.png'), 0, 0)
+        grid_layout.addWidget(self.get_icon('logos/home logos/team.png'), 0, 1)
+        grid_layout.addWidget(self.get_icon('logos/home logos/management.png'), 0, 2)
+        grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 3)
+        grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 4)
 
-        grid_layout.addWidget(self.get_generic_button("Magazzino Prodotti", self.go_lista_prodotti), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Amministratori", self.go_lista_amministratori), 1, 2)
-        grid_layout.addWidget(self.get_generic_button("Carrello", self.go_carrello), 1, 3)
+        grid_layout.addWidget(self.get_generic_button("Calendario eventi", self.go_carrello), 1, 3)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 4)
 
 
         self.setLayout(grid_layout)
-        self.setFixedSize(700, 200)
+        self.setFixedSize(1000, 200)
         self.setWindowTitle("A. S. D. Filottrano")
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
     #Questa funzione restituisce un bottone generico dato il titolo
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo)
-        button.setFixedWidth(120)
+        button.setFixedWidth(160)
         button.clicked.connect(on_click)
         return button
 
@@ -53,7 +53,7 @@ class VistaHomePresidente(QWidget):
         pixmap = pixmap.scaledToWidth(120)
         pixmap = pixmap.scaledToHeight(120)
         label_logo.setPixmap(pixmap)
-        label_logo.setFixedSize(120, 120)
+        label_logo.setFixedSize(150, 120)
         label_logo.setAlignment(Qt.AlignCenter)
         return label_logo
 
