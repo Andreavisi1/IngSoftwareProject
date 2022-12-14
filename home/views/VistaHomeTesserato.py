@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
-from eventi.views.VistaListaEventi import VistaListaCarrello
+from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
 from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
@@ -26,7 +26,7 @@ class VistaHomeTesserato(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 2)
 
         grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
-        grid_layout.addWidget(self.get_generic_button("Calendario Eventi", self.go_carrello), 1, 1)
+        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Statistiche Personali", self.go_statistiche), 1, 2)
 
 
@@ -59,9 +59,9 @@ class VistaHomeTesserato(QWidget):
         self.vista_lista_prodotti.show()
 
     #Metodo che si occupa di aprire la VistaListaCarrello
-    def go_carrello(self):
-        self.vistacarrello = VistaListaCarrello()
-        self.vistacarrello.show()
+    def go_attivita(self):
+        self.vistaattivita = VistaListaAttivita()
+        self.vistaattivita.show()
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):

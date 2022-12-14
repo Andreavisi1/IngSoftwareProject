@@ -3,19 +3,19 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePoli
 
 from prodotto.controller.ControlloreProdotto import ControlloreProdotto
 from listaprodotti.controller.ControlloreListaProdotti import ControlloreListaProdotti
-from eventi.controller.ControlloreEventi import ControlloreCarrello
+from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from prodotto.views.VistaModificaProdotto import VistaModificaProdotto
 from PyQt5 import QtGui
 
-class VistaAcquistoCarrello(QWidget):
+class VistaAcquistoAttivita(QWidget):
     def __init__(self, prodotto, elimina_prodotto, elimina_callback, parent=None):
-        super(VistaAcquistoCarrello, self).__init__(parent)
+        super(VistaAcquistoAttivita, self).__init__(parent)
         self.controller = ControlloreProdotto(prodotto)
         self.elimina_prodotto = elimina_prodotto
         self.elimina_callback = elimina_callback
         self.prodotto = prodotto
         self.controlloremagazzino = ControlloreListaProdotti()
-        self.carrello = ControlloreCarrello()
+        self.attivita = ControlloreAttivita()
 
 
         v_layout = QVBoxLayout()
@@ -34,14 +34,14 @@ class VistaAcquistoCarrello(QWidget):
         #Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
         v_layout.addWidget(self.get_label_info("Categoria", self.controller.get_categoria_prodotto()))
         self.label_prezzo = self.get_label_info("Prezzo", self.controller.get_prezzo_prodotto() + " €")
-        self.label_quantita = self.get_label_info("Quantità", self.controller.get_quantita_carrello())
+        self.label_quantita = self.get_label_info("Quantità", self.controller.get_quantita_attivita())
         v_layout.addWidget(self.label_prezzo)
         v_layout.addWidget(self.label_quantita)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-        #Genera un bottone per rimuovere il prodotto dal eventi
-        btn_elimina = QPushButton(" RIMUOVI DAL CARRELLO ")
+        #Genera un bottone per rimuovere il prodotto dal attivita
+        btn_elimina = QPushButton(" RIMUOVI DALLE ATTIVITA' ")
         btn_elimina.clicked.connect(self.elimina_acquisto_click)
         h_layout.addWidget(btn_elimina)
 
@@ -58,14 +58,14 @@ class VistaAcquistoCarrello(QWidget):
         current_label.setFont(current_font)
         return current_label
 
-    #Metodo richiamato dal bottone che elimina l' acquisto dal eventi
+    #Metodo richiamato dal bottone che elimina l' acquisto dal attivita
     def elimina_acquisto_click(self):
-        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare il prodotto dal eventi?", QMessageBox.Yes, QMessageBox.No)
+        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare il prodotto dalle attivita", QMessageBox.Yes, QMessageBox.No)
 
         if reply == QMessageBox.Yes:
             self.elimina_prodotto(self.controller.get_id_prodotto())
-            self.controlloremagazzino.ritorna_quantita(self.prodotto.id, self.prodotto.quantita_carrello)
-            self.carrello.save_data()
+            self.controlloremagazzino.ritorna_quantita(self.prodotto.id, self.prodotto.quantita_attivita)
+            self.attivita.save_data()
             self.elimina_callback()
             self.close()
         else:

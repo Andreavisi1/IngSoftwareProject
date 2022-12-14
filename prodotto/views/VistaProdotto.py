@@ -47,10 +47,10 @@ class VistaProdotto(QWidget):
         btn_elimina.clicked.connect(self.elimina_prodotto_click)
         h_layout.addWidget(btn_elimina)
 
-        #Bottone per aggiugnere un prodotto al eventi
-        btn_carrello = QPushButton("Aggiungi al Carrello")
-        btn_carrello.clicked.connect(self.aggiungi_al_carrello)
-        h_layout.addWidget(btn_carrello)
+        #Bottone per aggiugnere un prodotto al attivita
+        btn_attivita = QPushButton("Aggiungi alle attivita")
+        btn_attivita.clicked.connect(self.aggiungi_alle_attivita)
+        h_layout.addWidget(btn_attivita)
 
         #Bottone per modificare quantià e prezzo di un prodotto
         btn_modify = QPushButton("Modifica Quantità e Prezzo")
@@ -87,8 +87,8 @@ class VistaProdotto(QWidget):
         self.vista_modifica_prodotto.show()
 
     #Metodo che si occupa di aprire la VistaAggiungiQuantità
-    def aggiungi_al_carrello(self):
-        self.vista_aggiungi_quantita = VistaAggiungiQuantita(self.prodotto, self.carrello)
+    def aggiungi_alle_attivita(self):
+        self.vista_aggiungi_quantita = VistaAggiungiQuantita(self.prodotto, self.attivita)
         self.vista_aggiungi_quantita.show()
         self.close()
 

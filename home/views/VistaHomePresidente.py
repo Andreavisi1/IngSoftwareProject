@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
-from eventi.views.VistaListaEventi import VistaListaCarrello
+from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
 from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
@@ -30,7 +30,7 @@ class VistaHomePresidente(QWidget):
         grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Amministratori", self.go_lista_amministratori), 1, 2)
-        grid_layout.addWidget(self.get_generic_button("Calendario Eventi", self.go_carrello), 1, 3)
+        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 3)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 4)
 
 
@@ -67,10 +67,10 @@ class VistaHomePresidente(QWidget):
         self.vista_lista_tesserati = VistaListaTesserati()
         self.vista_lista_tesserati.show()
 
-    #Metodo che si occupa di aprire la VistaListaCarrello
-    def go_carrello(self):
-        self.vistacarrello = VistaListaCarrello()
-        self.vistacarrello.show()
+    #Metodo che si occupa di aprire la VistaListaAttivita
+    def go_attivita(self):
+        self.vistaattivita = VistaListaAttivita()
+        self.vistaattivita.show()
 
     #Metodo che si occupa di aprire la VistaListaAmministratori
     def go_lista_amministratori(self):

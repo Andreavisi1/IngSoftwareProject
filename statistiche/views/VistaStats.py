@@ -55,11 +55,11 @@ class VistaStats(QWidget):
                 j = 0
                 for i in range(len(self.categoria)):
                     if self.categoria[i] == prodotto.categoria:
-                        self.quantita_categoria[i] += prodotto.quantita_carrello
+                        self.quantita_categoria[i] += prodotto.quantita_attivita
                         j = 1
                 if j == 0:
                     self.categoria.append(prodotto.categoria)
-                    self.quantita_categoria.append(prodotto.quantita_carrello)
+                    self.quantita_categoria.append(prodotto.quantita_attivita)
 
     #popola array con le informazioni dal file pickle
     def build_table(self, datascelta):
@@ -68,7 +68,7 @@ class VistaStats(QWidget):
                 j = 0
                 for product in self.prodotti:
                     if product.id == prodotto.id:
-                        product.quantita_carrello += prodotto.quantita_carrello
+                        product.quantita_attivita += prodotto.quantita_attivita
                         j = 1
                 if j == 0:
                     self.prodotti.append(prodotto)
@@ -140,14 +140,14 @@ class VistaStats(QWidget):
         for prodotto in self.prodotti:
 
             self.table_widget.insertRow(row)
-            self.inserisci_elemento_in_tabella(prodotto.quantita_carrello, row, 0)
+            self.inserisci_elemento_in_tabella(prodotto.quantita_attivita, row, 0)
             self.inserisci_elemento_in_tabella(prodotto.marca, row, 1)
             self.inserisci_elemento_in_tabella(prodotto.nome, row, 2)
             self.inserisci_elemento_in_tabella(prodotto.categoria, row, 3)
 
-            acquistototale = float(prodotto.quantita_carrello) * float(prodotto.prezzo)
+            acquistototale = float(prodotto.quantita_attivita) * float(prodotto.prezzo)
             row = row + 1
-            prezzofinalecarrello += float(acquistototale)
+            prezzofinaleattivita += float(acquistototale)
 
         self.table_total_model = QStandardItemModel(self.table_total)
         item = QStandardItem()

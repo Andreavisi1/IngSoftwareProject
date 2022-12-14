@@ -1,15 +1,15 @@
-from eventi.model.Eventi import Eventi
+from attivita.model.Attivita import Attivita
 
 """
-Classe che si occupa di interagire tra il model e le viste del eventi
+Classe che si occupa di interagire tra il model e le viste dell'attività
 """
-class ControlloreEventi():
+class ControlloreAttivita():
     def __init__(self):
-        super(ControlloreEventi, self).__init__()
-        self.model = Carrello()
+        super(ControlloreAttivita, self).__init__()
+        self.model = Attivita()
 
-    def aggiungi_agli_eventi(self, evento):
-        return self.model.aggiungi_al_carrello(evento)
+    def aggiungi_alle_attivita(self, attivita):
+        return self.model.aggiungi_alle_attivita(attivita)
 
     def rimuovi_acquisto_by_id(self, id):
         return self.model.rimuovi_acquisto_by_id(id)
@@ -17,8 +17,8 @@ class ControlloreEventi():
     def get_acquisto_by_index(self, index):
         return self.model.get_acquisto_by_index(index)
 
-    def get_lista_carrello(self):
-        return self.model.get_lista_carrello()
+    def get_lista_attivita(self):
+        return self.model.get_lista_attivita()
 
     def save_data(self):
         self.model.save_data()

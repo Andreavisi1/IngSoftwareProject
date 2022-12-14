@@ -28,14 +28,14 @@ class VistaAggiungiQuantita(QWidget):
         self.spin.setSizeIncrement(1, 1)
         self.v_layout.addWidget(self.spin)
 
-        #Bottone per per confermare il passaggio del prodotto dal magazzino al eventi
+        #Bottone per per confermare il passaggio del prodotto dal magazzino al attivita
         btn_conferma = QPushButton("Conferma")
         self.v_layout.addWidget(btn_conferma)
         btn_conferma.clicked.connect(self.aggiungi_al_carrello)
         self.setLayout(self.v_layout)
         self.close()
     """
-    Metodo che aggiunge il prodotto al eventi.
+    Metodo che aggiunge il prodotto al attivita.
     Al metodo verifica_quantita_prodotto viene passato il prodotto e la quantità, e se risulta True aggiunge
     il prodotto al carrelo.
     """

@@ -2,7 +2,7 @@ from PyQt5.QtCore import QSortFilterProxyModel, Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QLineEdit, QSpacerItem, \
     QMessageBox
-from eventi.controller.ControlloreEventi import ControlloreCarrello
+from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from listaprodotti.controller.ControlloreListaProdotti import ControlloreListaProdotti
 from listaprodotti.views.VistaInserisciProdotto import VistaInserisciProdotto
 from prodotto.views.VistaProdotto import VistaProdotto
@@ -16,7 +16,7 @@ La VistaListaProdotti si occupa di mostrare a schermo la lista dei prodotti
 class VistaListaProdotti(QWidget):
     def __init__(self, parent=None):
         super(VistaListaProdotti, self).__init__(parent)
-        self.carrello = ControlloreCarrello()
+        self.attivita = ControlloreAttivita()
         self.controller = ControlloreListaProdotti()
         self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
         main_layout = QHBoxLayout()
@@ -69,7 +69,7 @@ class VistaListaProdotti(QWidget):
         try:
             sourceindex = self.list_view.selectedIndexes()[0].row()
             prodotto_selezionato = self.controller.get_prodotto_by_index(sourceindex)
-            self.vista_prodotto = VistaProdotto(prodotto_selezionato, self.controller.elimina_prodotto_by_id, self.update_ui, self.carrello)
+            self.vista_prodotto = VistaProdotto(prodotto_selezionato, self.controller.elimina_prodotto_by_id, self.update_ui, self.attivita)
             self.vista_prodotto.show()
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un prodotto', QMessageBox.Ok, QMessageBox.Ok)

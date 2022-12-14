@@ -10,13 +10,13 @@ from statistiche.controller.ControlloreStats import ControlloreStats
 from math import ceil
 
 
-class VistaListaCarrello(QWidget):
+class VistaListaAttivita(QWidget):
     def __init__(self,  parent=None):
-        super(VistaListaCarrello, self).__init__(parent)
+        super(VistaListaAttivita, self).__init__(parent)
 
         self.setFixedSize(702, 300)
 
-        self.controller = ControlloreCarrello()
+        self.controller = ControlloreAttivita()
         self.controllerstats = ControlloreStats()
         self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
 
@@ -40,7 +40,7 @@ class VistaListaCarrello(QWidget):
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
-        #genera un bottone per effettuare il checkout degli acquisti nel eventi
+        #genera un bottone per effettuare il checkout degli acquisti nel attivita
         new_button = QPushButton("Checkout")
         new_button.clicked.connect(self.checkout)
         buttons_layout.addWidget(new_button)
@@ -49,29 +49,29 @@ class VistaListaCarrello(QWidget):
         self.main_layout.addWidget(new_button)
 
         self.setLayout(self.main_layout)
-        self.setWindowTitle("Carrello")
+        self.setWindowTitle("Attività")
 
-    #metodo richiamato dal bottone che mostra le informazioni del prodotto scelto
+    #metodo richiamato dal bottone che mostra le informazioni dell'attivita scelta
     def show_selected_info(self):
         try:
             selected = self.table_widget.selectedIndexes()[0].row()
             acquisto_selezionato = self.controller.get_acquisto_by_index(selected)
-            self.vista_prodotto = VistaAcquistoCarrello(acquisto_selezionato, self.controller.elimina_acquisto_by_id, self.update_ui)
+            self.vista_prodotto = VistaAcquistoAttivita(acquisto_selezionato, self.controller.elimina_acquisto_by_id, self.update_ui)
             self.vista_prodotto.show()
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un prodotto', QMessageBox.Ok, QMessageBox.Ok)
 
-    #metodo che esegue il checkout dei prodotti nel eventi
+    #metodo che esegue il checkout dei prodotti nel attivita
     def checkout(self):
         msg = QMessageBox()
 
-        if self.controller.get_lista_carrello():
+        if self.controller.get_lista_attivita():
 
             reply = QMessageBox.question(self, "Conferma", "Vuoi confermare l'acquisto?",
                                      QMessageBox.Yes, QMessageBox.No)
 
             if reply == QMessageBox.Yes:
-                for prodotto in self.controller.get_lista_carrello():
+                for prodotto in self.controller.get_lista_attivita():
                     prodotto.data_acquisto = datetime.date.today()
                     self.controllerstats.aggiungi_stat(prodotto)
                 self.controller.clearall()
@@ -85,7 +85,7 @@ class VistaListaCarrello(QWidget):
             else:
                 return
         else:
-            QMessageBox.critical(self, 'Errore', 'Il eventi non contiene alcun prodotto', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Il attivita non contiene alcun prodotto', QMessageBox.Ok, QMessageBox.Ok)
 
     #crea/aggiorna l' intera view
     def update_ui(self):
@@ -97,18 +97,18 @@ class VistaListaCarrello(QWidget):
         self.create_table(3, "Categoria")
         self.create_table(4, "Prezzo")
 
-        prezzofinalecarrello = 0
+        prezzofinaleattivita = 0
         row = 0
-        for prodotto in self.controller.get_lista_carrello():
+        for prodotto in self.controller.get_lista_attivita():
             self.table_widget.insertRow(row)
-            self.inserisci_elemento_in_tabella(prodotto.quantita_carrello, row, 0)
+            self.inserisci_elemento_in_tabella(prodotto.quantita_attivita, row, 0)
             self.inserisci_elemento_in_tabella(prodotto.marca, row, 1)
             self.inserisci_elemento_in_tabella(prodotto.nome, row, 2)
             self.inserisci_elemento_in_tabella(prodotto.categoria, row, 3)
 
-            acquistototale = prodotto.quantita_carrello * float(prodotto.prezzo)
-            prezzofinalecarrello += float(acquistototale)
-            prezzofinalecarrello = ceil(prezzofinalecarrello * 100) / 100.0
+            acquistototale = prodotto.quantita_attivita * float(prodotto.prezzo)
+            prezzofinaleattivita += float(acquistototale)
+            prezzofinaleattivita = ceil(prezzofinaleattivita * 100) / 100.0
             acquistototale = str(acquistototale) + " €"
             self.inserisci_elemento_in_tabella(acquistototale, row, 4)
             row = row + 1
@@ -116,7 +116,7 @@ class VistaListaCarrello(QWidget):
 
         self.table_total_model = QStandardItemModel(self.table_total)
         item = QStandardItem()
-        item.setText("Totale: " + str(prezzofinalecarrello) + "€")
+        item.setText("Totale: " + str(prezzofinaleattivita) + "€")
         item.setEditable(False)
         font = item.font()
         font.setPointSize(14)
@@ -136,7 +136,7 @@ class VistaListaCarrello(QWidget):
         self.table_widget.setHorizontalHeaderItem(index, item)
         self.table_widget.setColumnWidth(index, 100)
 
-    #sulla chiusura della view salva i dati del eventi
+    #sulla chiusura della view salva i dati del attivita
     def closeEvent(self, event):
         self.controller.save_data()
 
