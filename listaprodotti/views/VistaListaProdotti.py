@@ -2,7 +2,7 @@ from PyQt5.QtCore import QSortFilterProxyModel, Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QLineEdit, QSpacerItem, \
     QMessageBox
-from carrello.controller.ControlloreCarrello import ControlloreCarrello
+from eventi.controller.ControlloreEventi import ControlloreCarrello
 from listaprodotti.controller.ControlloreListaProdotti import ControlloreListaProdotti
 from listaprodotti.views.VistaInserisciProdotto import VistaInserisciProdotto
 from prodotto.views.VistaProdotto import VistaProdotto

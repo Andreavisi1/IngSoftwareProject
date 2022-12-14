@@ -2,7 +2,7 @@ import os
 import pickle
 
 """
-Gestisce i dati e le operazioni relative al carrello
+Gestisce i dati e le operazioni relative al eventi
 """
 
 class Carrello():
@@ -11,8 +11,8 @@ class Carrello():
 
         self.carrello = []
 
-        if os.path.isfile('carrello/data/carrello_salvato.pickle'):
-            with open('carrello/data/carrello_salvato.pickle', 'rb') as f:
+        if os.path.isfile('eventi/data/evento_salvato.pickle'):
+            with open('eventi/data/evento_salvato.pickle', 'rb') as f:
                 self.carrello = pickle.load(f)
 
     def aggiungi_al_carrello(self, prodotto):
@@ -37,7 +37,7 @@ class Carrello():
         return self.carrello
 
     def save_data(self):
-        with open('carrello/data/carrello_salvato.pickle', 'wb') as handle:
+        with open('eventi/data/evento_salvato.pickle', 'wb') as handle:
             pickle.dump(self.carrello, handle, pickle.HIGHEST_PROTOCOL)
 
     def verifica_quantita_prodotto(self, prodotto, quantita):

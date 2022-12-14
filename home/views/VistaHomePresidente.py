@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
-from carrello.views.VistaListaCarrello import VistaListaCarrello
+from eventi.views.VistaListaEventi import VistaListaCarrello
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
 from listaprodotti.views.VistaListaProdotti import VistaListaProdotti

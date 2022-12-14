@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from carrello.controller.ControlloreCarrello import ControlloreCarrello
+from eventi.controller.ControlloreEventi import ControlloreCarrello
 from prodotto.model.Prodotto import Prodotto
 
 

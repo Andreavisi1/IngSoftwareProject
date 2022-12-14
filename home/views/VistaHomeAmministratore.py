@@ -21,26 +21,26 @@ class VistaHomeAmministratore(QWidget):
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
 
-        grid_layout.addWidget(self.get_icon('logos/home logos/personal-data.png'), 0, 0)
-        grid_layout.addWidget(self.get_icon('logos/home logos/team.png'), 0, 1)
-        grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 2)
-        grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 3)
+        grid_layout.addWidget(self.get_icon('logos/home logos/magazzino.png'), 0, 0)
+        grid_layout.addWidget(self.get_icon('logos/home logos/clienti.png'), 0, 1)
+        grid_layout.addWidget(self.get_icon('logos/home logos/carrello.png'), 0, 2)
+        grid_layout.addWidget(self.get_icon('logos/home logos/stats.png'), 0, 3)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Lista Prodotti", self.go_lista_prodotti), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Lista Tesserati", self.go_lista_tesserati), 1, 1)
-        grid_layout.addWidget(self.get_generic_button("Calendario Eventi", self.go_carrello), 1, 2)
+        grid_layout.addWidget(self.get_generic_button("Carrello", self.go_carrello), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 3)
 
         self.setLayout(grid_layout)
-        self.setFixedSize(800, 200)
-        self.setWindowTitle("A. S. D. Filottrano - Sezione Amministratore")
+        self.setFixedSize(600, 200)
+        self.setWindowTitle("Negozio di Elettronica")
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
 
     #Questa funzione restituisce un bottone generico dato il titolo
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo)
-        button.setFixedWidth(170)
+        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.clicked.connect(on_click)
         return button
 
@@ -51,7 +51,7 @@ class VistaHomeAmministratore(QWidget):
         pixmap = pixmap.scaledToWidth(120)
         pixmap = pixmap.scaledToHeight(120)
         label_logo.setPixmap(pixmap)
-        label_logo.setFixedSize(150, 120)
+        label_logo.setFixedSize(120, 120)
         label_logo.setAlignment(Qt.AlignCenter)
         return label_logo
 

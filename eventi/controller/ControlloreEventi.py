@@ -1,15 +1,15 @@
-from carrello.model.Carrello import Carrello
+from eventi.model.Eventi import Eventi
 
 """
-Classe che si occupa di interagire tra il model e le viste del carrello
+Classe che si occupa di interagire tra il model e le viste del eventi
 """
-class ControlloreCarrello():
+class ControlloreEventi():
     def __init__(self):
-        super(ControlloreCarrello, self).__init__()
+        super(ControlloreEventi, self).__init__()
         self.model = Carrello()
 
-    def aggiungi_al_carrello(self, prodotto):
-        return self.model.aggiungi_al_carrello(prodotto)
+    def aggiungi_agli_eventi(self, evento):
+        return self.model.aggiungi_al_carrello(evento)
 
     def rimuovi_acquisto_by_id(self, id):
         return self.model.rimuovi_acquisto_by_id(id)

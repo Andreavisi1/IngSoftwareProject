@@ -2,8 +2,8 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, \
     QWidgetItem, QHeaderView, QMessageBox
 from PyQt5 import QtGui, QtCore
-from carrello.controller.ControlloreCarrello import ControlloreCarrello
-from carrello.views.VistaAcquistoCarrello import VistaAcquistoCarrello
+from eventi.controller.ControlloreEventi import ControlloreCarrello
+from eventi.views.VistaAcquistoCarrello import VistaAcquistoCarrello
 import datetime
 
 from statistiche.controller.ControlloreStats import ControlloreStats
@@ -40,7 +40,7 @@ class VistaListaCarrello(QWidget):
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
-        #genera un bottone per effettuare il checkout degli acquisti nel carrello
+        #genera un bottone per effettuare il checkout degli acquisti nel eventi
         new_button = QPushButton("Checkout")
         new_button.clicked.connect(self.checkout)
         buttons_layout.addWidget(new_button)
@@ -61,7 +61,7 @@ class VistaListaCarrello(QWidget):
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un prodotto', QMessageBox.Ok, QMessageBox.Ok)
 
-    #metodo che esegue il checkout dei prodotti nel carrello
+    #metodo che esegue il checkout dei prodotti nel eventi
     def checkout(self):
         msg = QMessageBox()
 
@@ -85,7 +85,7 @@ class VistaListaCarrello(QWidget):
             else:
                 return
         else:
-            QMessageBox.critical(self, 'Errore', 'Il carrello non contiene alcun prodotto', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Il eventi non contiene alcun prodotto', QMessageBox.Ok, QMessageBox.Ok)
 
     #crea/aggiorna l' intera view
     def update_ui(self):
@@ -136,7 +136,7 @@ class VistaListaCarrello(QWidget):
         self.table_widget.setHorizontalHeaderItem(index, item)
         self.table_widget.setColumnWidth(index, 100)
 
-    #sulla chiusura della view salva i dati del carrello
+    #sulla chiusura della view salva i dati del eventi
     def closeEvent(self, event):
         self.controller.save_data()
 

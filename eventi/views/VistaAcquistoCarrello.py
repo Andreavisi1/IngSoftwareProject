@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePoli
 
 from prodotto.controller.ControlloreProdotto import ControlloreProdotto
 from listaprodotti.controller.ControlloreListaProdotti import ControlloreListaProdotti
-from carrello.controller.ControlloreCarrello import ControlloreCarrello
+from eventi.controller.ControlloreEventi import ControlloreCarrello
 from prodotto.views.VistaModificaProdotto import VistaModificaProdotto
 from PyQt5 import QtGui
 
@@ -40,7 +40,7 @@ class VistaAcquistoCarrello(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-        #Genera un bottone per rimuovere il prodotto dal carrello
+        #Genera un bottone per rimuovere il prodotto dal eventi
         btn_elimina = QPushButton(" RIMUOVI DAL CARRELLO ")
         btn_elimina.clicked.connect(self.elimina_acquisto_click)
         h_layout.addWidget(btn_elimina)
@@ -58,9 +58,9 @@ class VistaAcquistoCarrello(QWidget):
         current_label.setFont(current_font)
         return current_label
 
-    #Metodo richiamato dal bottone che elimina l' acquisto dal carrello
+    #Metodo richiamato dal bottone che elimina l' acquisto dal eventi
     def elimina_acquisto_click(self):
-        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare il prodotto dal carrello?", QMessageBox.Yes, QMessageBox.No)
+        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare il prodotto dal eventi?", QMessageBox.Yes, QMessageBox.No)
 
         if reply == QMessageBox.Yes:
             self.elimina_prodotto(self.controller.get_id_prodotto())

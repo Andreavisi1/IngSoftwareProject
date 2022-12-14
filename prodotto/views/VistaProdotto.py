@@ -47,7 +47,7 @@ class VistaProdotto(QWidget):
         btn_elimina.clicked.connect(self.elimina_prodotto_click)
         h_layout.addWidget(btn_elimina)
 
-        #Bottone per aggiugnere un prodotto al carrello
+        #Bottone per aggiugnere un prodotto al eventi
         btn_carrello = QPushButton("Aggiungi al Carrello")
         btn_carrello.clicked.connect(self.aggiungi_al_carrello)
         h_layout.addWidget(btn_carrello)
