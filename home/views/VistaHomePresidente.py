@@ -9,7 +9,7 @@ from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
 
 """
-La classe VistaHomePresidente si occupa di mostrare a schermo al direttore la home dove poter selezionare
+La classe VistaHomePresidente si occupa di mostrare a schermo al presidente la home dove poter selezionare
 la funzione da svolgere con il software.
 """
 
@@ -30,19 +30,19 @@ class VistaHomePresidente(QWidget):
         grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Amministratori", self.go_lista_amministratori), 1, 2)
-        grid_layout.addWidget(self.get_generic_button("Calendario eventi", self.go_carrello), 1, 3)
+        grid_layout.addWidget(self.get_generic_button("Calendario Eventi", self.go_carrello), 1, 3)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 4)
 
 
         self.setLayout(grid_layout)
         self.setFixedSize(1000, 200)
-        self.setWindowTitle("A. S. D. Filottrano")
+        self.setWindowTitle("A. S. D. Filottrano - Sezione Presidente")
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
     #Questa funzione restituisce un bottone generico dato il titolo
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo)
-        button.setFixedWidth(160)
+        button.setFixedWidth(170)
         button.clicked.connect(on_click)
         return button
 
