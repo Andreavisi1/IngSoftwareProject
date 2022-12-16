@@ -23,6 +23,7 @@ class VistaAmministratore(QWidget):
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         # Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
+        v_layout.addWidget(self.get_label_info("Ruolo", self.controller.get_ruolo_amministratore()))
         v_layout.addWidget(self.get_label_info("Codice Fiscale", self.controller.get_cf_amministratore()))
         v_layout.addWidget(self.get_label_info("Indirizzo", self.controller.get_indirizzo_amministratore()))
         v_layout.addWidget(self.get_label_info("Email", self.controller.get_email_amministratore()))

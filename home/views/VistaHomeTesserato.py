@@ -1,5 +1,5 @@
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMessageBox
 from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
@@ -7,6 +7,7 @@ from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
+from tesserato.views.VistaTesserato import VistaTesserato
 
 """
 La classe VistaHomeTesserato si occupa di mostrare a schermo al tesserato la home dove poter selezionare
@@ -25,7 +26,7 @@ class VistaHomeTesserato(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 1)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 2)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.show_personal_info), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Statistiche Personali", self.go_statistiche), 1, 2)
 
@@ -68,3 +69,14 @@ class VistaHomeTesserato(QWidget):
         self.vista_statistiche = VistaSceltaStats()
         self.vista_statistiche.show()
 
+
+       # Metodo che mostra a schermo le informazioni del tesserato selezionato
+
+    def show_personal_info(self):
+        try:
+            sourceindex = self.list_view.selectedIndexes()[0].row()
+            tesserato_selezionato = self.controller.get_tesserato_by_index(sourceindex)
+            self.vista_tesserato = VistaTesserato(tesserato_selezionato, self.controller.rimuovi_tesserato_by_id, self.update_ui)
+            self.vista_tesserato.show()
+        except IndexError:
+            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un tesserato', QMessageBox.Ok, QMessageBox.Ok)

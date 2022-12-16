@@ -19,6 +19,7 @@ class VistaInserisciAmministratore(QWidget):
 
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
+        self.get_form_entry("Ruolo")
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Indirizzo")
         self.get_form_entry("Email")
@@ -48,16 +49,17 @@ class VistaInserisciAmministratore(QWidget):
     def add_amministratore(self):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
+        ruolo = self.info["Ruolo"].text()
         cf = self.info["Codice Fiscale"].text()
         indirizzo = self.info["Indirizzo"].text()
         email = self.info["Email"].text()
         telefono = self.info["Telefono"].text()
         eta = self.info["Età"].text()
         password = self.info["Password"].text()
-        if nome == "" or cognome == "" or cf == "" or indirizzo == "" or email == "" or telefono == "" or eta == "" or password == "":
+        if nome == "" or cognome == "" or ruolo == "" or cf == "" or indirizzo == "" or email == "" or telefono == "" or eta == "" or password == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()
-            self.controller.aggiungi_amministratore(Amministratore(prova.replace(" ", ""), nome, cognome, cf, indirizzo, email, telefono, eta, password))
+            self.controller.aggiungi_amministratore(Amministratore(prova.replace(" ", ""), nome, cognome, ruolo, cf, indirizzo, email, telefono, eta, password))
             self.callback()
             self.close()

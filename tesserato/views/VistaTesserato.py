@@ -21,7 +21,7 @@ class VistaTesserato(QWidget):
         #Vengono recuperate le informazioni da mostrare a schermo
         label_nome = QLabel(self.controller.get_nome_tesserato() + " " + self.controller.get_cognome_tesserato())
 
-        #impostazioni per il font
+        #Impostazioni per il font
         font_nome = label_nome.font()
         font_nome.setPointSize(30)
         label_nome.setFont(font_nome)
@@ -32,12 +32,14 @@ class VistaTesserato(QWidget):
         #Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
         v_layout.addWidget(self.get_label_info("Codice ID", self.controller.get_id_tesserato()))
         v_layout.addWidget(self.get_label_info("Codice Fiscale", self.controller.get_cf_tesserato()))
-        v_layout.addWidget(self.get_label_info("Indirizzo", self.controller.get_indirizzo_tesserato()))
         v_layout.addWidget(self.get_label_info("Email", self.controller.get_email_tesserato()))
         v_layout.addWidget(self.get_label_info("Telefono", self.controller.get_telefono_tesserato()))
+        v_layout.addWidget(self.get_label_info("Luogo di nascita", self.controller.get_luogo_nascita_tesserato()))
         v_layout.addWidget(self.get_label_info("Età", self.controller.get_eta_tesserato()))
         v_layout.addWidget(self.get_label_info("Username", self.controller.get_id_tesserato()))
         v_layout.addWidget(self.get_label_info("Password", self.controller.get_password_tesserato()))
+        v_layout.addWidget(self.get_label_info("Certificato medico sportivo valido da", self.controller.get_inizio_certificato_tesserato()))
+        v_layout.addWidget(self.get_label_info("Certificato medico sportivo valido fino a", self.controller.get_scadenza_certificato_tesserato()))
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 

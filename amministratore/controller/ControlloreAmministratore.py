@@ -14,6 +14,9 @@ class ControlloreAmministratore:
     def get_cognome_amministratore(self):
         return self.model.cognome
 
+    def get_ruolo_amministratore(self):
+        return self.model.ruolo
+
     def get_cf_amministratore(self):
         return self.model.cf
 

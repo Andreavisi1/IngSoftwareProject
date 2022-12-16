@@ -17,17 +17,23 @@ class ControlloreTesserato:
     def get_cf_tesserato(self):
         return self.model.cf
 
-    def get_indirizzo_tesserato(self):
-        return self.model.indirizzo
-
     def get_email_tesserato(self):
         return self.model.email
 
     def get_telefono_tesserato(self):
         return self.model.telefono
 
+    def get_luogo_nascita_tesserato(self):
+        return self.model.luogo_nascita
+
     def get_eta_tesserato(self):
         return self.model.eta
 
     def get_password_tesserato(self):
         return self.model.password
+
+    def get_inizio_certificato_tesserato(self):
+        return self.model.inizio_certificato
+
+    def get_scadenza_certificato_tesserato(self):
+        return self.model.scadenza_certificato
