@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QSpinBox
+    QSpinBox, QDateEdit, QCalendarWidget
+from PyQt5.uic.properties import QtWidgets
 
 from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
@@ -27,9 +28,8 @@ class VistaInserisciTesserato(QWidget):
         self.get_form_entry("Luogo di nascita")
         self.get_spin_box("Età")
         self.get_form_entry("Password")
-
-        self.get_form_entry("Inizio validità certificato")
-        self.get_form_entry("Scadenza validità certificato")
+        self.get_spin_box("Inizio validità certificato")
+        self.get_spin_box("Scadenza validità certificato")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -49,13 +49,15 @@ class VistaInserisciTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-        # Metodo che crea uno spinbox per poter inserire correttamente l'età
+    # Metodo che crea uno spinbox per poter inserire correttamente l'età
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Età":
             current_text_edit = QSpinBox()
             current_text_edit.setRange(0, 113)
+        if tipo == "Inizio validità certificato" or tipo == "Scadenza validità certificato":
+            current_text_edit = QCalendarWidget()
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
