@@ -2,8 +2,8 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, \
     QWidgetItem, QHeaderView, QMessageBox
 from PyQt5 import QtGui, QtCore
-from eventi.controller.ControlloreEventi import ControlloreCarrello
-from eventi.views.VistaAcquistoCarrello import VistaAcquistoCarrello
+from attivita.controller.ControlloreAttivita import ControlloreAttivita
+from attivita.views.VistaAcquistoAttivita import VistaAcquistoAttivita
 import datetime
 
 from statistiche.controller.ControlloreStats import ControlloreStats

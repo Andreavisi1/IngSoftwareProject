@@ -40,10 +40,10 @@ class Attivita():
         with open('attivita/data/attivita_salvata.pickle', 'wb') as handle:
             pickle.dump(self.attivita, handle, pickle.HIGHEST_PROTOCOL)
 
-    def verifica_quantita_prodotto(self, prodotto, quantita):
-        if quantita <= int(prodotto.quantita_magazzino):
-            prodotto.quantita_carrello = quantita
-            prodotto.quantita_magazzino = int(prodotto.quantita_magazzino) - prodotto.quantita_carrello
+    def verifica_quantita_evento(self, evento, quantita):
+        if quantita <= int(evento.quantita_magazzino):
+            evento.quantita_attivita = quantita
+            evento.quantita_magazzino = int(evento.quantita_magazzino) - evento.quantita_attivita
             return True
         return False
 
