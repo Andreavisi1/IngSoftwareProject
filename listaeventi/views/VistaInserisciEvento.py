@@ -22,13 +22,11 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(QLabel("Categoria"))
         self.combo_categoria = QComboBox()
         self.combo_categoria_model = QStandardItemModel(self.combo_categoria)
-
         self.add_combobox_item("Telefonia")
         self.add_combobox_item("Informatica")
         self.add_combobox_item("Piccoli Elettrodomestici")
         self.add_combobox_item("Elettrodomestici")
         self.add_combobox_item("TV e Hi-Fi")
-
         self.combo_categoria.setModel(self.combo_categoria_model)
         self.v_layout.addWidget(self.combo_categoria)
 

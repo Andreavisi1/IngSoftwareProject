@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
+    QSpinBox
 
 from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
@@ -24,7 +25,7 @@ class VistaInserisciTesserato(QWidget):
         self.get_form_entry("Email")
         self.get_form_entry("Telefono")
         self.get_form_entry("Luogo di nascita")
-        self.get_form_entry("Età")
+        self.get_spin_box("Età")
         self.get_form_entry("Password")
 
         self.get_form_entry("Inizio validità certificato")
@@ -45,6 +46,16 @@ class VistaInserisciTesserato(QWidget):
         current_text_edit = QLineEdit(self)
         if tipo == "Telefono" or tipo == "Età":
             current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit
+
+        # Metodo che crea uno spinbox per poter inserire correttamente l'età
+    def get_spin_box(self, tipo):
+        global current_text_edit
+        self.v_layout.addWidget(QLabel(tipo))
+        if tipo == "Età":
+            current_text_edit = QSpinBox()
+            current_text_edit.setRange(0, 113)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 

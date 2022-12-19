@@ -1,5 +1,6 @@
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QComboBox
+    QComboBox, QSpinBox
 from amministratore.model.Amministratore import Amministratore
 from PyQt5 import QtGui
 
@@ -20,13 +21,21 @@ class VistaInserisciAmministratore(QWidget):
 
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
-        self.get_form_entry("Ruolo")
+
+        self.v_layout.addWidget(QLabel("Ruolo"))
+        self.combo_ruolo = QComboBox()
+        self.combo_ruolo_model = QStandardItemModel(self.combo_ruolo)
+        self.add_combobox_item("Dirigente")
+        self.add_combobox_item("Allenatore")
+        self.add_combobox_item("Segretario/a")
+        self.combo_ruolo.setModel(self.combo_ruolo_model)
+        self.v_layout.addWidget(self.combo_ruolo)
 
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Indirizzo")
         self.get_form_entry("Email")
         self.get_form_entry("Telefono")
-        self.get_form_entry("Età")
+        self.get_spin_box("Età")
         self.get_form_entry("Password")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
@@ -44,6 +53,23 @@ class VistaInserisciAmministratore(QWidget):
         current_text_edit = QLineEdit(self)
         if tipo == "Telefono" or tipo == "Età":
             current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit
+
+    #Metodo che crea un menù a tendina dove selezionare il ruolo dell'amministratore tra quelli possibili
+    def add_combobox_item(self, tipo):
+        item = QStandardItem()
+        item.setText(tipo)
+        item.setEditable(False)
+        self.combo_ruolo_model.appendRow(item)
+
+    #Metodo che crea uno spinbox per poter inserire correttamente l'età
+    def get_spin_box(self, tipo):
+        global current_text_edit
+        self.v_layout.addWidget(QLabel(tipo))
+        if tipo == "Età":
+            current_text_edit = QSpinBox()
+            current_text_edit.setRange(0, 113)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
