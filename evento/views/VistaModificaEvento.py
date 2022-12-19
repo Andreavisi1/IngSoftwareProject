@@ -3,23 +3,21 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem
 from PyQt5 import QtGui, QtCore
 
 """
-La classe VistaModificaProdotto apre una finestra a schermo dove l'utente può cambiare i valori di prezzo è quantità
+La classe VistaModificaEvento apre una finestra a schermo dove l'utente può cambiare i valori di prezzo e quantità
 """
 
-class VistaModificaProdotto(QWidget):
-    def __init__(self, prodotto, update, parent=None):
-        super(VistaModificaProdotto, self).__init__(parent)
-        self.prodotto = prodotto
+class VistaModificaEvento(QWidget):
+    def __init__(self, evento, update, parent=None):
+        super(VistaModificaEvento, self).__init__(parent)
+        self.evento = evento
         self.info = {}
         self.update = update
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
-        self.setWindowTitle('Modifica Prodotto')
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
+        self.setWindowTitle('Modifica Evento')
         self.v_layout = QVBoxLayout()
         self.resize(300, 200)
 
 
-
-        self.get_form_entry("Nuovo Prezzo")
         self.get_form_entry("Nuova Quantità")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
@@ -27,7 +25,7 @@ class VistaModificaProdotto(QWidget):
         #Bottone per confermare i cambiamenti
         btn_conferma = QPushButton("Conferma")
         self.v_layout.addWidget(btn_conferma)
-        btn_conferma.clicked.connect(self.modifica_prodotto)
+        btn_conferma.clicked.connect(self.modifica_evento)
         self.setLayout(self.v_layout)
 
     #Metodo per titolare i parametri da inserire
@@ -43,19 +41,15 @@ class VistaModificaProdotto(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    #Metodo per modificare i parametri di prezzo e quantità del prodotto
-    def modifica_prodotto(self):
+    #Metodo per modificare i parametri di prezzo e quantità del evento
+    def modifica_evento(self):
 
-
-        nuovoprezzo = self.info["Nuovo Prezzo"].text()
-        nuovoprezzo = nuovoprezzo.replace(",", ".")
         nuovaquantita = self.info["Nuova Quantità"].text()
 
-        if nuovoprezzo == "" or nuovaquantita == "":
+        if nuovaquantita == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
 
         else:
-            self.prodotto.prezzo = nuovoprezzo
-            self.prodotto.quantita_magazzino = nuovaquantita
+            self.evento.quantita_magazzino = nuovaquantita
             self.update()
             self.close()

@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
+    QComboBox
 from amministratore.model.Amministratore import Amministratore
 from PyQt5 import QtGui
 
@@ -20,6 +21,7 @@ class VistaInserisciAmministratore(QWidget):
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
         self.get_form_entry("Ruolo")
+
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Indirizzo")
         self.get_form_entry("Email")

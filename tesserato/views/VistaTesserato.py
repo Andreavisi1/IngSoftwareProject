@@ -38,6 +38,9 @@ class VistaTesserato(QWidget):
         v_layout.addWidget(self.get_label_info("Età", self.controller.get_eta_tesserato()))
         v_layout.addWidget(self.get_label_info("Username", self.controller.get_id_tesserato()))
         v_layout.addWidget(self.get_label_info("Password", self.controller.get_password_tesserato()))
+
+        v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
         v_layout.addWidget(self.get_label_info("Certificato medico sportivo valido da", self.controller.get_inizio_certificato_tesserato()))
         v_layout.addWidget(self.get_label_info("Certificato medico sportivo valido fino a", self.controller.get_scadenza_certificato_tesserato()))
 

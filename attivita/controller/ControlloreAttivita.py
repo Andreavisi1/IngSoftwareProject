@@ -26,11 +26,11 @@ class ControlloreAttivita():
     def elimina_acquisto_by_id(self, id):
         self.model.rimuovi_acquisto_by_id(id)
 
-    def verifica_quantita_prodotto(self, prodotto, quantita):
-        return self.model.verifica_quantita_prodotto(prodotto, quantita)
+    def verifica_quantita_evento(self, evento, quantita):
+        return self.model.verifica_quantita_evento(evento, quantita)
 
-    def verifica_presenza_prodotto_by_id(self, prodottoscelto):
-        return self.model.verifica_presenza_prodotto_by_id(prodottoscelto)
+    def verifica_presenza_evento_by_id(self, eventoscelto):
+        return self.model.verifica_presenza_evento_by_id(eventoscelto)
 
     def clearall(self):
         self.model.clearall()

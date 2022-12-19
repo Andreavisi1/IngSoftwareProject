@@ -15,9 +15,9 @@ class Attivita():
             with open('attivita/data/attivita_salvata.pickle', 'rb') as f:
                 self.attivita = pickle.load(f)
 
-    def aggiungi_alle_attivita(self, prodotto):
-        if self.verifica_presenza_prodotto_by_id(prodotto) is False:
-            self.attivita.append(prodotto)
+    def aggiungi_alle_attivita(self, evento):
+        if self.verifica_presenza_evento_by_id(evento) is False:
+            self.attivita.append(evento)
 
 
     def rimuovi_acquisto_by_id(self, id):
@@ -47,10 +47,10 @@ class Attivita():
             return True
         return False
 
-    def verifica_presenza_prodotto_by_id(self, prodottoscelto):
-        for(i, prodotto) in enumerate(self.attivita):
-            if prodotto.id == prodottoscelto.id:
-                self.attivita[i].quantita_attivita = prodottoscelto.quantita_attivita + self.attivita[i].quantita_attivita
+    def verifica_presenza_evento_by_id(self, eventoscelto):
+        for(i, evento) in enumerate(self.attivita):
+            if evento.id == eventoscelto.id:
+                self.attivita[i].quantita_attivita = eventoscelto.quantita_attivita + self.attivita[i].quantita_attivita
                 return True
         return False
 

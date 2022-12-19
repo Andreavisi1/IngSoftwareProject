@@ -56,12 +56,12 @@ class VistaListaAttivita(QWidget):
         try:
             selected = self.table_widget.selectedIndexes()[0].row()
             acquisto_selezionato = self.controller.get_acquisto_by_index(selected)
-            self.vista_prodotto = VistaAcquistoAttivita(acquisto_selezionato, self.controller.elimina_acquisto_by_id, self.update_ui)
-            self.vista_prodotto.show()
+            self.vista_evento = VistaAcquistoAttivita(acquisto_selezionato, self.controller.elimina_acquisto_by_id, self.update_ui)
+            self.vista_evento.show()
         except IndexError:
-            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un prodotto', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)
 
-    #metodo che esegue il checkout dei prodotti nel attivita
+    #metodo che esegue il checkout degli eventi nelle attivita
     def checkout(self):
         msg = QMessageBox()
 
@@ -71,9 +71,9 @@ class VistaListaAttivita(QWidget):
                                      QMessageBox.Yes, QMessageBox.No)
 
             if reply == QMessageBox.Yes:
-                for prodotto in self.controller.get_lista_attivita():
-                    prodotto.data_acquisto = datetime.date.today()
-                    self.controllerstats.aggiungi_stat(prodotto)
+                for evento in self.controller.get_lista_attivita():
+                    evento.data_acquisto = datetime.date.today()
+                    self.controllerstats.aggiungi_stat(evento)
                 self.controller.clearall()
                 self.controller.save_data()
                 self.controllerstats.save_data()
@@ -85,7 +85,7 @@ class VistaListaAttivita(QWidget):
             else:
                 return
         else:
-            QMessageBox.critical(self, 'Errore', 'Il attivita non contiene alcun prodotto', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Il attivita non contiene alcun evento', QMessageBox.Ok, QMessageBox.Ok)
 
     #crea/aggiorna l' intera view
     def update_ui(self):
@@ -93,20 +93,20 @@ class VistaListaAttivita(QWidget):
         self.table_widget.setColumnCount(5)
         self.create_table(0, "Quantità")
         self.create_table(1, "Marca")
-        self.create_table(2, "Nome Prodotto")
+        self.create_table(2, "Nome Evento")
         self.create_table(3, "Categoria")
         self.create_table(4, "Prezzo")
 
         prezzofinaleattivita = 0
         row = 0
-        for prodotto in self.controller.get_lista_attivita():
+        for evento in self.controller.get_lista_attivita():
             self.table_widget.insertRow(row)
-            self.inserisci_elemento_in_tabella(prodotto.quantita_attivita, row, 0)
-            self.inserisci_elemento_in_tabella(prodotto.marca, row, 1)
-            self.inserisci_elemento_in_tabella(prodotto.nome, row, 2)
-            self.inserisci_elemento_in_tabella(prodotto.categoria, row, 3)
+            self.inserisci_elemento_in_tabella(evento.quantita_attivita, row, 0)
+            self.inserisci_elemento_in_tabella(evento.marca, row, 1)
+            self.inserisci_elemento_in_tabella(evento.nome, row, 2)
+            self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
 
-            acquistototale = prodotto.quantita_attivita * float(prodotto.prezzo)
+            acquistototale = evento.quantita_attivita * float(evento.prezzo)
             prezzofinaleattivita += float(acquistototale)
             prezzofinaleattivita = ceil(prezzofinaleattivita * 100) / 100.0
             acquistototale = str(acquistototale) + " €"
@@ -125,7 +125,7 @@ class VistaListaAttivita(QWidget):
         self.table_total_model.appendRow(item)
         self.table_total.setModel(self.table_total_model)
 
-    #genera l' header della tabella dei prodotti
+    #genera l' header della tabella degli eventi
     def create_table(self, index, label):
 
         item = QTableWidgetItem()

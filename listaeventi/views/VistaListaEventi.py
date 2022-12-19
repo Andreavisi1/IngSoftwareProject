@@ -3,22 +3,22 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QLineEdit, QSpacerItem, \
     QMessageBox
 from attivita.controller.ControlloreAttivita import ControlloreAttivita
-from listaprodotti.controller.ControlloreListaProdotti import ControlloreListaProdotti
-from listaprodotti.views.VistaInserisciProdotto import VistaInserisciProdotto
-from prodotto.views.VistaProdotto import VistaProdotto
+from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
+from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
+from evento.views.VistaEvento import VistaEvento
 from PyQt5 import QtGui
 
 """
-La VistaListaProdotti si occupa di mostrare a schermo la lista dei prodotti
+La VistaListaEventi si occupa di mostrare a schermo la lista degli eventi
 """
 
 
-class VistaListaProdotti(QWidget):
+class VistaListaEventi(QWidget):
     def __init__(self, parent=None):
-        super(VistaListaProdotti, self).__init__(parent)
+        super(VistaListaEventi, self).__init__(parent)
         self.attivita = ControlloreAttivita()
-        self.controller = ControlloreListaProdotti()
-        self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
+        self.controller = ControlloreListaEventi()
+        self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         main_layout = QHBoxLayout()
 
         v_layout = QVBoxLayout()
@@ -48,43 +48,43 @@ class VistaListaProdotti(QWidget):
 
         buttons_layout.addItem(QSpacerItem(40, 40))
 
-        #Bottone per aprire un prodotto
+        #Bottone per aprire un evento
         open_button = QPushButton("Apri")
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
-        #Bottone per creare un nuovo prodotto
+        #Bottone per creare un nuovo evento
         new_button = QPushButton("Nuovo")
-        new_button.clicked.connect(self.show_new_prodotto)
+        new_button.clicked.connect(self.show_new_evento)
         buttons_layout.addWidget(new_button)
         buttons_layout.addStretch()
         main_layout.addLayout(buttons_layout)
 
         self.setLayout(main_layout)
         self.resize(600,300)
-        self.setWindowTitle("Lista Prodotti")
+        self.setWindowTitle("Lista Eventi")
 
-    #Metodo che mostra a schermo le informazioni del prodotto selezionato
+    #Metodo che mostra a schermo le informazioni dell'evento selezionato
     def show_selected_info(self):
         try:
             sourceindex = self.list_view.selectedIndexes()[0].row()
-            prodotto_selezionato = self.controller.get_prodotto_by_index(sourceindex)
-            self.vista_prodotto = VistaProdotto(prodotto_selezionato, self.controller.elimina_prodotto_by_id, self.update_ui, self.attivita)
-            self.vista_prodotto.show()
+            evento_selezionato = self.controller.get_evento_by_index(sourceindex)
+            self.vista_evento = VistaEvento(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui, self.attivita)
+            self.vista_evento.show()
         except IndexError:
-            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un prodotto', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)
 
-    #Metodo aprire la vista di inserimento del nuovo prodotto
-    def show_new_prodotto(self):
-        self.vista_inserisci_prodotto = VistaInserisciProdotto(self.controller, self.update_ui)
-        self.vista_inserisci_prodotto.show()
+    #Metodo aprire la vista di inserimento del nuovo evento
+    def show_new_evento(self):
+        self.vista_inserisci_evento = VistaInserisciEvento(self.controller, self.update_ui)
+        self.vista_inserisci_evento.show()
 
     #Metodo che serve per generare e/o aggiornare la vista
     def update_ui(self):
         self.listview_model = QStandardItemModel(self.list_view)
-        for prodotto in self.controller.get_lista_dei_prodotti():
+        for evento in self.controller.get_lista_degli_eventi():
             item = QStandardItem()
-            item.setText(prodotto.marca + " " + prodotto.nome)
+            item.setText(evento.tipo + " " + evento.data)
             item.setEditable(False)
             font = item.font()
             font.setPointSize(18)

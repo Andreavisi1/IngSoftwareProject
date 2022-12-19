@@ -1,14 +1,14 @@
 from unittest import TestCase
 
 from attivita.controller.ControlloreAttivita import ControlloreAttivita
-from prodotto.model.Prodotto import Prodotto
+from evento.model.Evento import Evento
 
 
 class TestControlloreAttivita(TestCase):
     def test_aggiungi_alle_attivita(self):
         self.controller = ControlloreAttivita()
-        self.prodotto = Prodotto("appleiphone", "Apple", "iPhone", "Telefonia", "699.99", "100", "01/01/2021")
-        self.controller.aggiungi_alle_attivita(self.prodotto)
+        self.evento = Evento("appleiphone", "Apple", "iPhone", "Telefonia", "699.99", "100", "01/01/2021")
+        self.controller.aggiungi_alle_attivita(self.evento)
 
     def test_get_lista_attivita(self):
         self.test_aggiungi_alle_attivita()

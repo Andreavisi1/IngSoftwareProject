@@ -2,7 +2,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMainWindow
 from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
-from listaprodotti.views.VistaListaProdotti import VistaListaProdotti
+from listaeventi.views.VistaListaEventi import VistaListaEventi
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
@@ -26,7 +26,7 @@ class VistaHomeAmministratore(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 2)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 3)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_prodotti), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_eventi), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 3)
@@ -55,10 +55,10 @@ class VistaHomeAmministratore(QWidget):
         label_logo.setAlignment(Qt.AlignCenter)
         return label_logo
 
-    #Metodo che si occupa di aprire la VistaListaProdotti
-    def go_lista_prodotti(self):
-        self.vista_lista_prodotti = VistaListaProdotti()
-        self.vista_lista_prodotti.show()
+    #Metodo che si occupa di aprire la VistaListaEventi
+    def go_lista_eventi(self):
+        self.vista_lista_eventi = VistaListaEventi()
+        self.vista_lista_eventi.show()
 
     #Metodo che si occupa di aprire la VistaListaTesserati
     def go_lista_tesserati(self):

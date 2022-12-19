@@ -18,7 +18,7 @@ class VistaStats(QWidget):
         #genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
         self.quantita_categoria = []
-        self.prodotti = []
+        self.eventi = []
 
         self.chartview = QChartView()
 
@@ -48,30 +48,30 @@ class VistaStats(QWidget):
         self.setWindowTitle(self.set_title(datascelta))
         self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
 
-    #popola array con le informazioni dal file pickle e raggruppa i prodotti per categoria
+    #popola array con le informazioni dal file pickle e raggruppa gli eventi per categoria
     def build_pie(self, datascelta):
-        for prodotto in self.controllerstats.get_lista_delle_stats():
-            if prodotto.data_acquisto >= datascelta:
+        for evento in self.controllerstats.get_lista_delle_stats():
+            if evento.data_acquisto >= datascelta:
                 j = 0
                 for i in range(len(self.categoria)):
-                    if self.categoria[i] == prodotto.categoria:
-                        self.quantita_categoria[i] += prodotto.quantita_attivita
+                    if self.categoria[i] == evento.categoria:
+                        self.quantita_categoria[i] += evento.quantita_attivita
                         j = 1
                 if j == 0:
-                    self.categoria.append(prodotto.categoria)
-                    self.quantita_categoria.append(prodotto.quantita_attivita)
+                    self.categoria.append(evento.categoria)
+                    self.quantita_categoria.append(evento.quantita_attivita)
 
     #popola array con le informazioni dal file pickle
     def build_table(self, datascelta):
-        for prodotto in self.controllerstats.get_lista_delle_stats():
-            if prodotto.data_acquisto >= datascelta:
+        for evento in self.controllerstats.get_lista_delle_stats():
+            if evento.data_acquisto >= datascelta:
                 j = 0
-                for product in self.prodotti:
-                    if product.id == prodotto.id:
-                        product.quantita_attivita += prodotto.quantita_attivita
+                for product in self.eventi:
+                    if product.id == evento.id:
+                        product.quantita_attivita += evento.quantita_attivita
                         j = 1
                 if j == 0:
-                    self.prodotti.append(prodotto)
+                    self.eventi.append(evento)
 
     #genera il grafico a torta e lo popola utilizzando i dati dell' array
     def create_pie(self, data):
@@ -123,7 +123,7 @@ class VistaStats(QWidget):
 
         return "Vendite Mensili"
 
-    #crea tabella contenente tutti i prodotti venduti registrati e la popola con i dati contenuti nell' array
+    #crea tabella contenente tutti gli eventi venduti registrati e la popola con i dati contenuti nell' array
     def populate_table(self, datascelta):
 
         self.build_table(datascelta)
@@ -132,20 +132,20 @@ class VistaStats(QWidget):
         self.table_widget.setColumnCount(4)
         self.create_table(0, "Quantità")
         self.create_table(1, "Marca")
-        self.create_table(2, "Nome Prodotto")
+        self.create_table(2, "Nome Evento")
         self.create_table(3, "Categoria")
 
         prezzofinalecarrello = 0
         row = 0
-        for prodotto in self.prodotti:
+        for evento in self.eventi:
 
             self.table_widget.insertRow(row)
-            self.inserisci_elemento_in_tabella(prodotto.quantita_attivita, row, 0)
-            self.inserisci_elemento_in_tabella(prodotto.marca, row, 1)
-            self.inserisci_elemento_in_tabella(prodotto.nome, row, 2)
-            self.inserisci_elemento_in_tabella(prodotto.categoria, row, 3)
+            self.inserisci_elemento_in_tabella(evento.quantita_attivita, row, 0)
+            self.inserisci_elemento_in_tabella(evento.marca, row, 1)
+            self.inserisci_elemento_in_tabella(evento.nome, row, 2)
+            self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
 
-            acquistototale = float(prodotto.quantita_attivita) * float(prodotto.prezzo)
+            acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
             row = row + 1
             prezzofinaleattivita += float(acquistototale)
 
@@ -161,7 +161,7 @@ class VistaStats(QWidget):
         self.table_total_model.appendRow(item)
         self.table_total.setModel(self.table_total_model)
 
-    #genera gli header della tabella contenenti i prodotti
+    #genera gli header della tabella contenenti gli eventi
     def create_table(self, index, label):
 
         item = QTableWidgetItem()
