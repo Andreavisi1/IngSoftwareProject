@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
     QSpinBox, QDateEdit, QCalendarWidget
-from PyQt5.uic.properties import QtWidgets
 
 from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
@@ -46,6 +47,8 @@ class VistaInserisciTesserato(QWidget):
         current_text_edit = QLineEdit(self)
         if tipo == "Telefono" or tipo == "Età":
             current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
+        if tipo == "Password":
+            current_text_edit.setEchoMode(QLineEdit.Password)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
@@ -57,7 +60,9 @@ class VistaInserisciTesserato(QWidget):
             current_text_edit = QSpinBox()
             current_text_edit.setRange(0, 113)
         if tipo == "Inizio validità certificato" or tipo == "Scadenza validità certificato":
-            current_text_edit = QCalendarWidget()
+            current_text_edit = QDateEdit()
+            current_text_edit.setDate(datetime.now().date())
+            current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 

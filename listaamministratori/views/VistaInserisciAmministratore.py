@@ -53,6 +53,8 @@ class VistaInserisciAmministratore(QWidget):
         current_text_edit = QLineEdit(self)
         if tipo == "Telefono" or tipo == "Età":
             current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
+        if tipo == "Password":
+            current_text_edit.setEchoMode(QLineEdit.Password)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 

@@ -27,10 +27,10 @@ class VistaHomePresidente(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 3)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 4)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_lista_eventi), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_attivita), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Amministratori", self.go_lista_amministratori), 1, 2)
-        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 3)
+        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 3)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 4)
 
 

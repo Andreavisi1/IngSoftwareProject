@@ -27,7 +27,7 @@ class VistaHomeTesserato(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 2)
 
         grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.show_personal_info), 1, 0)
-        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_attivita), 1, 1)
+        grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Statistiche Personali", self.go_statistiche), 1, 2)
 
 
@@ -71,7 +71,6 @@ class VistaHomeTesserato(QWidget):
 
 
        # Metodo che mostra a schermo le informazioni del tesserato selezionato
-
     def show_personal_info(self):
         try:
             sourceindex = self.list_view.selectedIndexes()[0].row()

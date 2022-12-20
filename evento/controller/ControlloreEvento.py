@@ -17,16 +17,8 @@ class ControlloreEvento:
     def get_categoria_evento(self):
         return self.model.categoria
 
-    def get_data_evento(self):
-        return self.model.data
-
     def get_luogo_evento(self):
         return self.model.luogo
 
-
-
-    def get_quantita_disp(self):
-        return self.model.quantita_attivita
-
-    def get_quantita_attivita(self):
-        return self.model.quantita_attivita
+    def get_data_evento(self):
+        return self.model.data
