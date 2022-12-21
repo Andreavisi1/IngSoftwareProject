@@ -1,6 +1,6 @@
-from PyQt5.QtGui import QStandardItemModel, QStandardItem, QRegExpValidator
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QComboBox, QDoubleSpinBox, QSpinBox, QRadioButton, QCalendarWidget
+    QComboBox, QRadioButton, QCalendarWidget
 from evento.model.Evento import Evento
 from PyQt5 import QtGui
 
@@ -20,8 +20,13 @@ class VistaInserisciEvento(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.v_layout.addWidget(QLabel("Stai inserendo:"))
-        self.add_radio_button("Allenamento")
-        self.add_radio_button("Gara")
+
+        self.AButton = QRadioButton("Allenamento")
+        self.AButton.setChecked(True)
+        self.v_layout.addWidget(self.AButton)
+        self.GButton = QRadioButton("Gara")
+        self.v_layout.addWidget(self.GButton)
+
 
         self.get_form_entry("Titolo (opzionale)")
 
@@ -62,9 +67,9 @@ class VistaInserisciEvento(QWidget):
     def get_calendar(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
-        current_text_edit = QCalendarWidget()
+        current_text_edit = QCalendarWidget(gridVisible=True)
         self.v_layout.addWidget(current_text_edit)
-        self.info[tipo] = current_text_edit
+        self.info[tipo] = current_text_edit.selectedDate()
 
     #Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
@@ -73,37 +78,32 @@ class VistaInserisciEvento(QWidget):
         item.setEditable(False)
         self.combo_categoria_model.appendRow(item)
 
-    def add_radio_button(self, tipo):
-        item = QRadioButton()
-        item.setText(tipo)
-        if tipo == "Allenamento":
-            item.setChecked(True)
-        item.toggled.connect(self.update)
-        self.v_layout.addWidget(item)
+    def rb_on_selected(self):
+        if self.AButton.isChecked():
+            return "Allenamento"
+        elif self.GButton.isChecked():
+            return "Gara"
 
-    def on_selected(self):
-        radio_button = self.sender()
-        if radio_button.isChecked():
-            if radio_button.text() == "Allenamento":
-                return "Allenamento"
-            else:
-                return "Gara"
-
-    #Metodo che genera un nuovo evento sfruttando le informazioni inserite dall'utente
+    # Metodo che genera un nuovo evento sfruttando le informazioni inserite dall'utente
     def add_evento(self):
-        tipo = self.info["Stai inserendo:"].text()
+        tipo = self.rb_on_selected()
         titolo = self.info["Titolo (opzionale)"].text()
         categoria = self.combo_categoria.currentText()
         luogo = self.info["Luogo"].text()
-        data = self.info["Data"].text()
+        data = self.info["Data"].toString("dd/MM/yyyy")
+
+
+
+        print(data)
+
+
+
 
         if tipo == "" or categoria == "" or luogo == "" or data == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-
 
         else:
             self.controller.aggiungi_evento(Evento((tipo + data).lower(), tipo, titolo, categoria, luogo, data))
             self.controller.save_data()
             self.callback()
             self.close()
-

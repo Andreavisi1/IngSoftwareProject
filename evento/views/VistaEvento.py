@@ -36,10 +36,6 @@ class VistaEvento(QWidget):
         v_layout.addWidget(self.get_label_info("Categoria", self.controller.get_categoria_evento()))
         v_layout.addWidget(self.get_label_info("Luogo", self.controller.get_luogo_evento()))
 
-        self.label_quantita = self.get_label_info("Quantità", self.controller.get_quantita_disp())
-
-        v_layout.addWidget(self.label_quantita)
-
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         #Bottone per eliminare un evento dal calendario
@@ -53,7 +49,7 @@ class VistaEvento(QWidget):
         h_layout.addWidget(btn_attivita)
 
         #Bottone per modificare quantià e prezzo di un evento
-        btn_modify = QPushButton("Modifica Quantità e Prezzo")
+        btn_modify = QPushButton("Modifica Evento")
         btn_modify.clicked.connect(self.show_modifica_evento)
         h_layout.addWidget(btn_modify)
 

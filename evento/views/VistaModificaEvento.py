@@ -1,5 +1,7 @@
+from PyQt5.QtCore import QDate
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QDoubleSpinBox, QSpinBox
+    QDoubleSpinBox, QSpinBox, QButtonGroup, QRadioButton, QComboBox, QCalendarWidget
 from PyQt5 import QtGui, QtCore
 
 """
@@ -17,8 +19,32 @@ class VistaModificaEvento(QWidget):
         self.v_layout = QVBoxLayout()
         self.resize(300, 200)
 
+        self.AButton = QRadioButton("Allenamento")
+        self.v_layout.addWidget(self.AButton)
+        self.GButton = QRadioButton("Gara")
+        self.v_layout.addWidget(self.GButton)
+        """if self.evento.Abutton.isChecked():
+            self.AButton.setChecked(True)
+        elif self.evento.Gbutton.isChecked():
+            self.GButton.setChecked(True)"""
 
-        self.get_form_entry("Nuova Quantità")
+        self.get_form_entry("Titolo (opzionale)")
+
+        self.v_layout.addWidget(QLabel("Categoria"))
+        self.combo_categoria = QComboBox()
+        self.combo_categoria_model = QStandardItemModel(self.combo_categoria)
+        self.add_combobox_item("Piccoli amici")
+        self.add_combobox_item("Pulcini")
+        self.add_combobox_item("Esordienti")
+        self.add_combobox_item("Allievi")
+        self.add_combobox_item("Juniores")
+        self.add_combobox_item("Promesse")
+        self.add_combobox_item("Seniores")
+        self.combo_categoria.setModel(self.combo_categoria_model)
+        self.v_layout.addWidget(self.combo_categoria)
+
+        self.get_form_entry("Luogo")
+        self.get_calendar("Data")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -30,26 +56,55 @@ class VistaModificaEvento(QWidget):
 
     #Metodo per titolare i parametri da inserire
     def get_form_entry(self, tipo):
-        global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
-        if tipo == "Nuovo Prezzo":
-            current_text_edit = QDoubleSpinBox()
-            current_text_edit.setRange(0, 1000000)
-        if tipo == "Nuova Quantità":
-            current_text_edit = QSpinBox()
-            current_text_edit.setRange(0, 100)
+        current_text_edit = QLineEdit(self)
+        if tipo == "Titolo (opzionale)":
+            current_text_edit.setText(self.evento.titolo)
+        if tipo == "Luogo":
+            current_text_edit.setText(self.evento.luogo)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
+
+    def get_calendar(self, tipo):
+        global current_text_edit
+        self.v_layout.addWidget(QLabel(tipo))
+        current_text_edit = QCalendarWidget(gridVisible=True)
+        date = QDate()
+        date.fromString(self.evento.data, "dd/MM/yyyy")
+        current_text_edit.setSelectedDate(date)
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit.selectedDate()
+
+        # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+    def add_combobox_item(self, tipo):
+        item = QStandardItem()
+        item.setText(tipo)
+        item.setEditable(False)
+        self.combo_categoria_model.appendRow(item)
+
+    def rb_on_selected(self):
+        if self.AButton.isChecked():
+            return "Allenamento"
+        elif self.GButton.isChecked():
+            return "Gara"
 
     #Metodo per modificare i parametri di prezzo e quantità del evento
     def modifica_evento(self):
 
-        nuovaquantita = self.info["Nuova Quantità"].text()
+        nuovotipo = self.rb_on_selected()
+        nuovotitolo = self.info["Titolo (opzionale)"].text()
+        nuovacategoria = self.combo_categoria.currentText()
+        nuovoluogo = self.info["Luogo"].text()
+        nuovadata = self.info["Data"].toString("dd/MM/yyyy")
 
-        if nuovaquantita == "":
+        if nuovotipo == "" or nuovacategoria == "" or nuovoluogo == "" or nuovadata == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
 
         else:
-            self.evento.quantita_magazzino = nuovaquantita
+            self.evento.tipo = nuovotipo
+            self.evento.titolo = nuovotitolo
+            self.evento.categoria = nuovacategoria
+            self.evento.luogo = nuovoluogo
+            self.evento.data = nuovadata
             self.update()
             self.close()
