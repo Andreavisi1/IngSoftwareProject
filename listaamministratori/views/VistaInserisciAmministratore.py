@@ -79,7 +79,7 @@ class VistaInserisciAmministratore(QWidget):
     def add_amministratore(self):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
-        ruolo = self.info["Ruolo"].text()
+        ruolo = self.combo_ruolo.currentText()
         cf = self.info["Codice Fiscale"].text()
         indirizzo = self.info["Indirizzo"].text()
         email = self.info["Email"].text()
