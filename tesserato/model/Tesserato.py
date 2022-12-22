@@ -16,10 +16,3 @@ class Tesserato:
         self.password = password
         self.inizio_certificato = inizio_certificato
         self.scadenza_certificato = scadenza_certificato
-
-
-
-
-
-
-

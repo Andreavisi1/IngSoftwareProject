@@ -14,8 +14,7 @@ class VistaStats(QWidget):
         super(VistaStats, self).__init__()
         self.datascelta = datascelta
 
-
-        #genera array vuoti da popolare con le informazioni del file pickle
+#genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
         self.quantita_categoria = []
         self.eventi = []

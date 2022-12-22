@@ -25,7 +25,7 @@ class VistaSceltaStats(QWidget):
 
         self.setLayout(grid_layout)
         self.setFixedSize(400, 100)
-        self.setWindowTitle("Statistiche")
+        self.setWindowTitle("Vincere non è importante... È l'unica cosa che conta!")
         self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
 
         #Questa funzione restituisce un bottone generico dato il titolo
