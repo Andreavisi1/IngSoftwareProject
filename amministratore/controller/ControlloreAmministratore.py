@@ -8,6 +8,9 @@ class ControlloreAmministratore:
     def get_id_amministratore(self):
         return self.model.id
 
+    def get_amministratore_by_index(self, index):
+        return self.model.get_amministratore_by_index(index)
+
     def get_nome_amministratore(self):
         return self.model.nome
 

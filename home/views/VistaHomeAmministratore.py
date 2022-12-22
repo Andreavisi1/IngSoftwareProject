@@ -1,5 +1,8 @@
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMainWindow
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMainWindow, QMessageBox
+
+from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
+from amministratore.views.VistaAmministratore import VistaAmministratore
 from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaeventi.views.VistaListaEventi import VistaListaEventi
@@ -26,7 +29,7 @@ class VistaHomeAmministratore(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 2)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 3)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_attivita), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_personal_data), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 3)
@@ -69,6 +72,32 @@ class VistaHomeAmministratore(QWidget):
     def go_attivita(self):
         self.vistaattivita = VistaListaAttivita()
         self.vistaattivita.show()
+
+
+
+
+    def verifica_id_amministratore(self, id):
+        for amministratore in self.lista_amministratori:
+            if amministratore.id == id:
+                return amministratore.id
+        return False
+
+
+    def go_personal_data(self):
+        controller = ControlloreAmministratore(self)
+        sourceindex = controller.get_id_amministratore()
+        amministratore_selezionato = controller.get_amministratore_by_index(sourceindex)
+
+        self.vistadatipersonali = VistaAmministratore(amministratore_selezionato)
+        self.vistadatipersonali.show()
+
+
+
+
+
+
+
+
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):

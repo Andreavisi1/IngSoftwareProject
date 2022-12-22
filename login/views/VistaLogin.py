@@ -63,7 +63,6 @@ class VistaLogin(QWidget):
         lista_amm = ListaAmministratori()
         lista_tess = ListaTesserati()
 
-
         if lista_amm.verifica_id_amministratore(self.lineEdit_username.text(), self.lineEdit_password.text()):
             self.dialog = VistaHomeAmministratore()
             msg.setText('Accesso alla pagina degli amministratori')

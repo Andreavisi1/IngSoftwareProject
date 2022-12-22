@@ -39,7 +39,7 @@ class ListaAmministratori():
             pickle.dump(self.lista_amministratori, handle, pickle.HIGHEST_PROTOCOL)
 
     #Metodo che serve per verificare se id e password che vengono passati alla funzione siano identici
-    def verifica_id_amministratore(self, id,password):
+    def verifica_id_amministratore(self, id, password):
         for amministratore in self.lista_amministratori:
             if amministratore.id == id and amministratore.password == password:
                 return True
