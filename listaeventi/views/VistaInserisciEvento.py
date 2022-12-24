@@ -1,6 +1,7 @@
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QComboBox, QRadioButton, QCalendarWidget
+    QComboBox, QRadioButton, QCalendarWidget, QDateEdit
+from datetime import datetime
 from evento.model.Evento import Evento
 from PyQt5 import QtGui
 
@@ -44,7 +45,7 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(self.combo_categoria)
 
         self.get_form_entry("Luogo")
-        self.get_calendar("Data")
+        self.get_spin_box("Data")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -61,6 +62,16 @@ class VistaInserisciEvento(QWidget):
         current_text_edit = QLineEdit(self)
         if tipo == "Luogo":
             current_text_edit.setText("Palestra comunale Filottrano")
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit
+
+    def get_spin_box(self, tipo):
+        global current_text_edit
+        self.v_layout.addWidget(QLabel(tipo))
+        if tipo == "Data":
+            current_text_edit = QDateEdit()
+            current_text_edit.setDate(datetime.now().date())
+            current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
@@ -90,7 +101,7 @@ class VistaInserisciEvento(QWidget):
         titolo = self.info["Titolo (opzionale)"].text()
         categoria = self.combo_categoria.currentText()
         luogo = self.info["Luogo"].text()
-        data = self.info["Data"].toString("dd/MM/yyyy")
+        data = self.info["Data"].text()
 
 
 

@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QRadioButton, QComboBox, QCalendarWidget
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
+    QRadioButton, QComboBox, QCalendarWidget, QDateEdit
 from PyQt5 import QtGui, QtCore
 
 """
@@ -44,7 +47,7 @@ class VistaModificaEvento(QWidget):
         self.v_layout.addWidget(self.combo_categoria)
 
         self.get_form_entry("Luogo")
-        self.get_calendar("Data")
+        self.get_spin_box("Data")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -75,6 +78,16 @@ class VistaModificaEvento(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit.selectedDate()
 
+    def get_spin_box(self, tipo):
+        global current_text_edit
+        self.v_layout.addWidget(QLabel(tipo))
+        if tipo == "Data":
+            current_text_edit = QDateEdit()
+            current_text_edit.setDate(datetime.strptime(self.evento.data, '%d/%m/%y'))
+            current_text_edit.setCalendarPopup(True)
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit
+
         # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
         item = QStandardItem()
@@ -95,7 +108,7 @@ class VistaModificaEvento(QWidget):
         nuovotitolo = self.info["Titolo (opzionale)"].text()
         nuovacategoria = self.combo_categoria.currentText()
         nuovoluogo = self.info["Luogo"].text()
-        nuovadata = self.info["Data"].toString("dd/MM/yyyy")
+        nuovadata = self.info["Data"].text()
 
         if nuovotipo == "" or nuovacategoria == "" or nuovoluogo == "" or nuovadata == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)

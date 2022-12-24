@@ -52,7 +52,7 @@ class VistaInserisciTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    # Metodo che crea uno spinbox per poter inserire correttamente l'età
+    # Metodo che crea uno spinbox per poter inserire correttamente l'età e i dati del certificato
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
