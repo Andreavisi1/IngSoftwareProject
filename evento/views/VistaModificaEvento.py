@@ -1,7 +1,6 @@
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QDoubleSpinBox, QSpinBox, QButtonGroup, QRadioButton, QComboBox, QCalendarWidget
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QRadioButton, QComboBox, QCalendarWidget
 from PyQt5 import QtGui, QtCore
 
 """
@@ -23,10 +22,10 @@ class VistaModificaEvento(QWidget):
         self.v_layout.addWidget(self.AButton)
         self.GButton = QRadioButton("Gara")
         self.v_layout.addWidget(self.GButton)
-        """if self.evento.Abutton.isChecked():
+        if self.evento.tipo == "Allenamento":
             self.AButton.setChecked(True)
-        elif self.evento.Gbutton.isChecked():
-            self.GButton.setChecked(True)"""
+        elif self.evento.tipo == "Gara":
+            self.GButton.setChecked(True)
 
         self.get_form_entry("Titolo (opzionale)")
 
@@ -41,6 +40,7 @@ class VistaModificaEvento(QWidget):
         self.add_combobox_item("Promesse")
         self.add_combobox_item("Seniores")
         self.combo_categoria.setModel(self.combo_categoria_model)
+        self.combo_categoria.setCurrentText(self.evento.categoria)
         self.v_layout.addWidget(self.combo_categoria)
 
         self.get_form_entry("Luogo")

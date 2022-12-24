@@ -32,26 +32,31 @@ class VistaEvento(QWidget):
 
         #Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
-        v_layout.addWidget(self.get_label_info("Titolo", self.controller.get_titolo_evento()))
-        v_layout.addWidget(self.get_label_info("Categoria", self.controller.get_categoria_evento()))
-        v_layout.addWidget(self.get_label_info("Luogo", self.controller.get_luogo_evento()))
+        self.label_titolo = self.get_label_info("Titolo (opzionale)", self.controller.get_titolo_evento())
+        self.label_categoria = self.get_label_info("Categoria", self.controller.get_categoria_evento())
+        self.label_luogo = self.get_label_info("Luogo", self.controller.get_luogo_evento())
+
+        v_layout.addWidget(self.label_titolo)
+        v_layout.addWidget(self.label_luogo)
+        v_layout.addWidget(self.label_categoria)
+
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
-
-        #Bottone per eliminare un evento dal calendario
-        btn_elimina = QPushButton(" RIMUOVI DAL CALENDARIO ")
-        btn_elimina.clicked.connect(self.elimina_evento_click)
-        h_layout.addWidget(btn_elimina)
-
-        #Bottone per aggiungere un evento alle attivita
-        btn_attivita = QPushButton("Aggiungi alle attivita")
-        btn_attivita.clicked.connect(self.aggiungi_alle_attivita)
-        h_layout.addWidget(btn_attivita)
 
         #Bottone per modificare quantià e prezzo di un evento
         btn_modify = QPushButton("Modifica Evento")
         btn_modify.clicked.connect(self.show_modifica_evento)
         h_layout.addWidget(btn_modify)
+
+        #Bottone per eliminare un evento dal calendario
+        btn_elimina = QPushButton("Rimuovi dalla lista attività")
+        btn_elimina.clicked.connect(self.elimina_evento_click)
+        h_layout.addWidget(btn_elimina)
+
+        #Bottone per aggiungere un evento alle attivita
+        btn_attivita = QPushButton("Aggiungi al carrello (attività)")
+        btn_attivita.clicked.connect(self.aggiungi_alle_attivita)
+        h_layout.addWidget(btn_attivita)
 
         v_layout.addLayout(h_layout)
 
@@ -69,7 +74,6 @@ class VistaEvento(QWidget):
     #Metodo che si occupa di eliminare l'evento
     def elimina_evento_click(self):
         reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare l'evento dal calendario?", QMessageBox.Yes, QMessageBox.No)
-
         if reply == QMessageBox.Yes:
             self.elimina_evento(self.controller.get_id_evento())
             self.elimina_callback()
@@ -88,12 +92,10 @@ class VistaEvento(QWidget):
         self.vista_aggiungi_quantita.show()
         self.close()
 
-    #Metodo che si occupa di aggiornare prezzo e quantità nella view dell'evento
+    #Metodo che si occupa di aggiornare i dati modificati dell'evento
     def update_evento(self):
-
-        self.label_quantita.setText("Quantità: {}".format(self.controller.get_quantita_disp()))
-
-
-
+        self.label_titolo.setText("Titolo (opzionale): {}".format(self.controller.get_titolo_evento()))
+        self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_evento()))
+        self.label_luogo.setText("Luogo: {}".format(self.controller.get_luogo_evento()))
 
 

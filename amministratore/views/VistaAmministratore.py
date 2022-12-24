@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
 from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
+from amministratore.views.VistaModificaAmministratore import VistaModificaAmministratore
+
 """
 La classe VistaAmministratore si occupa di mostrare a schermo le informazioni relative all' amministratore.
 """
@@ -10,6 +12,7 @@ class VistaAmministratore(QWidget):
         self.controller = ControlloreAmministratore(amministratore)
         self.elimina_amministratore = elimina_amministratore
         self.elimina_callback = elimina_callback
+        self.amministratore = amministratore
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         v_layout = QVBoxLayout()
 
@@ -35,6 +38,11 @@ class VistaAmministratore(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
+        # Bottone per modificare i dati di un amministratore
+        btn_modify = QPushButton("Modifica")
+        btn_modify.clicked.connect(self.show_modifica_amministratore)
+        v_layout.addWidget(btn_modify)
+
         # Bottone per eliminare un amministratore
         btn_elimina = QPushButton("Elimina")
         btn_elimina.clicked.connect(self.elimina_amministratore_click)
@@ -51,10 +59,13 @@ class VistaAmministratore(QWidget):
         current_label.setFont(current_font)
         return current_label
 
+    # Metodo che si occupa di aprire la VistaModificaEvento
+    def show_modifica_amministratore(self):
+        self.vista_modifica_amministratore = VistaModificaAmministratore(self.amministratore)
+        self.vista_modifica_amministratore.show()
+
     # Metodo che si occupa di eliminare l'amministratore
     def elimina_amministratore_click(self):
         self.elimina_amministratore(self.controller.get_id_amministratore())
         self.elimina_callback()
         self.close()
-
-
