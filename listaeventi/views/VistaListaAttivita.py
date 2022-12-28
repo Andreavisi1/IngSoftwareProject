@@ -17,9 +17,11 @@ class VistaListaAttivita(QWidget):
 
         self.controller = ControlloreAttivita()
         self.controllerstats = ControlloreStats()
+
         self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
 
         self.main_layout = QHBoxLayout()
+
         self.v_layout = QVBoxLayout()
 
         self.table_widget = QTableWidget()

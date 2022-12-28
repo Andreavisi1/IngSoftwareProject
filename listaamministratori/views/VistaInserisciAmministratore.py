@@ -1,6 +1,5 @@
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QComboBox, QSpinBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QComboBox, QSpinBox
 from amministratore.model.Amministratore import Amministratore
 from PyQt5 import QtGui
 
