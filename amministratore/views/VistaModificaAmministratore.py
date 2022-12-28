@@ -8,11 +8,12 @@ La classe VistaModificaAmministratore apre una finestra a schermo in cui il pres
 
 
 class VistaModificaAmministratore(QWidget):
-    def __init__(self, amministratore, parent=None):
+    def __init__(self, amministratore, update, parent=None):
 
         super(VistaModificaAmministratore, self).__init__(parent)
         self.amministratore = amministratore
         self.info = {}
+        self.update = update
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         self.setWindowTitle('Modifica Dati Amministratore')
         self.v_layout = QVBoxLayout()
@@ -74,7 +75,6 @@ class VistaModificaAmministratore(QWidget):
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Età":
             current_text_edit = QSpinBox()
-            print(self.amministratore.eta)
             current_text_edit.setValue(int(self.amministratore.eta))
             current_text_edit.setRange(0, 113)
         self.v_layout.addWidget(current_text_edit)
@@ -92,6 +92,7 @@ class VistaModificaAmministratore(QWidget):
 
         nuovonome = self.info["Nome"].text()
         nuovocognome = self.info["Cognome"].text()
+        nuovoid = nuovonome + nuovocognome
         nuovoruolo = self.combo_ruolo.currentText()
         nuovocf = self.info["Codice Fiscale"].text()
         nuovoindirizzo = self.info["Indirizzo"].text()
@@ -104,6 +105,7 @@ class VistaModificaAmministratore(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste',
                                  QMessageBox.Ok, QMessageBox.Ok)
         else:
+            self.amministratore.id = nuovoid
             self.amministratore.nome = nuovonome
             self.amministratore.cognome = nuovocognome
             self.amministratore.ruolo = nuovoruolo

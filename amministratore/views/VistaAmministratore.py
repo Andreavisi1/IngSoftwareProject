@@ -17,24 +17,32 @@ class VistaAmministratore(QWidget):
         v_layout = QVBoxLayout()
 
         #Impostazioni generali per titolo finestra
-        label_nome = QLabel(self.controller.get_nome_amministratore() + " " + self.controller.get_cognome_amministratore())
-        font_nome = label_nome.font()
+        self.label_nome = QLabel(self.controller.get_nome_amministratore() + " " + self.controller.get_cognome_amministratore())
+        font_nome = self.label_nome.font()
         font_nome.setPointSize(30)
-        label_nome.setFont(font_nome)
-        v_layout.addWidget(label_nome)
+        self.label_nome.setFont(font_nome)
+        v_layout.addWidget(self.label_nome)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         # Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
-        v_layout.addWidget(self.get_label_info("Ruolo", self.controller.get_ruolo_amministratore()))
-        v_layout.addWidget(self.get_label_info("Codice Fiscale", self.controller.get_cf_amministratore()))
-        v_layout.addWidget(self.get_label_info("Indirizzo", self.controller.get_indirizzo_amministratore()))
-        v_layout.addWidget(self.get_label_info("Email", self.controller.get_email_amministratore()))
-        v_layout.addWidget(self.get_label_info("Telefono", self.controller.get_telefono_amministratore()))
-        v_layout.addWidget(self.get_label_info("Età", self.controller.get_eta_amministratore()))
-        v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
-        v_layout.addWidget(self.get_label_info("Username", self.controller.get_id_amministratore()))
-        v_layout.addWidget(self.get_label_info("Password", self.controller.get_password_amministratore()))
+        self.label_ruolo = self.get_label_info("Ruolo", self.controller.get_ruolo_amministratore())
+        self.label_cf = self.get_label_info("Codice Fiscale", self.controller.get_cf_amministratore())
+        self.label_indirizzo = self.get_label_info("Indirizzo", self.controller.get_indirizzo_amministratore())
+        self.label_email = self.get_label_info("Email", self.controller.get_email_amministratore())
+        self.label_telefono = self.get_label_info("Telefono", self.controller.get_telefono_amministratore())
+        self.label_eta = self.get_label_info("Età", self.controller.get_eta_amministratore())
+        self.label_username = self.get_label_info("Username", self.controller.get_id_amministratore())
+        self.label_password = self.get_label_info("Password", self.controller.get_password_amministratore())
+
+        v_layout.addWidget(self.label_ruolo)
+        v_layout.addWidget(self.label_cf)
+        v_layout.addWidget(self.label_indirizzo)
+        v_layout.addWidget(self.label_email)
+        v_layout.addWidget(self.label_telefono)
+        v_layout.addWidget(self.label_eta)
+        v_layout.addWidget(self.label_username)
+        v_layout.addWidget(self.label_password)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -59,9 +67,9 @@ class VistaAmministratore(QWidget):
         current_label.setFont(current_font)
         return current_label
 
-    # Metodo che si occupa di aprire la VistaModificaEvento
+    # Metodo che si occupa di aprire la VistaModificaAmministratore
     def show_modifica_amministratore(self):
-        self.vista_modifica_amministratore = VistaModificaAmministratore(self.amministratore)
+        self.vista_modifica_amministratore = VistaModificaAmministratore(self.amministratore, self.update_amministratore)
         self.vista_modifica_amministratore.show()
 
     # Metodo che si occupa di eliminare l'amministratore
@@ -69,3 +77,15 @@ class VistaAmministratore(QWidget):
         self.elimina_amministratore(self.controller.get_id_amministratore())
         self.elimina_callback()
         self.close()
+
+#Metodo che si occupa di aggiornare i dati modificati dell'amministratore
+    def update_amministratore(self):
+        self.label_nome.setText("{}".format(self.controller.get_nome_amministratore() + " " + self.controller.get_cognome_amministratore()))
+        self.label_ruolo.setText("Ruolo: {}".format(self.controller.get_ruolo_amministratore()))
+        self.label_cf.setText("Codice Fiscale: {}".format(self.controller.get_cf_amministratore()))
+        self.label_email.setText("Email: {}".format(self.controller.get_email_amministratore()))
+        self.label_telefono.setText("Telefono: {}".format(self.controller.get_telefono_amministratore()))
+        self.label_eta.setText("Età: {}".format(self.controller.get_eta_amministratore()))
+        self.label_username.setText("Username: {}".format(self.controller.get_id_amministratore()))
+        self.label_password.setText("Password: {}".format(self.controller.get_password_amministratore()))
+

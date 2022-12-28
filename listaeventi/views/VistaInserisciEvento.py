@@ -56,7 +56,7 @@ class VistaInserisciEvento(QWidget):
         self.setLayout(self.v_layout)
         self.setWindowTitle("Nuovo Evento")
 
-    #Metodo per titolare i parametri da inserire
+#Metodo per titolare i parametri da inserire
     def get_form_entry(self, tipo):
         self.v_layout.addWidget(QLabel(tipo))
         current_text_edit = QLineEdit(self)
@@ -82,7 +82,7 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit.selectedDate()
 
-    #Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+# Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
         item = QStandardItem()
         item.setText(tipo)
@@ -95,7 +95,7 @@ class VistaInserisciEvento(QWidget):
         elif self.GButton.isChecked():
             return "Gara"
 
-    # Metodo che genera un nuovo evento sfruttando le informazioni inserite dall'utente
+# Metodo che genera un nuovo evento sfruttando le informazioni inserite dall'utente
     def add_evento(self):
         tipo = self.rb_on_selected()
         titolo = self.info["Titolo (opzionale)"].text()

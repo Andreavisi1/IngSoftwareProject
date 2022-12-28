@@ -23,12 +23,12 @@ class VistaEvento(QWidget):
         h_layout = QHBoxLayout()
 
         #Vengono recuperate le informazioni da mostrare a schermo
-        label_nome = QLabel(self.controller.get_tipo_evento() + " " + self.controller.get_data_evento())
+        self.label_nome = QLabel(self.controller.get_tipo_evento() + " " + self.controller.get_data_evento())
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
-        font_nome = label_nome.font()
+        font_nome = self.label_nome.font()
         font_nome.setPointSize(30)
-        label_nome.setFont(font_nome)
-        v_layout.addWidget(label_nome)
+        self.label_nome.setFont(font_nome)
+        v_layout.addWidget(self.label_nome)
 
         #Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
@@ -94,6 +94,7 @@ class VistaEvento(QWidget):
 
     #Metodo che si occupa di aggiornare i dati modificati dell'evento
     def update_evento(self):
+        self.label_nome.setText("{}".format(self.controller.get_tipo_evento() + " " + self.controller.get_data_evento()))
         self.label_titolo.setText("Titolo (opzionale): {}".format(self.controller.get_titolo_evento()))
         self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_evento()))
         self.label_luogo.setText("Luogo: {}".format(self.controller.get_luogo_evento()))

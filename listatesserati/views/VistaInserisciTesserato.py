@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QSpinBox, QDateEdit, QCalendarWidget
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit
 
 from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
