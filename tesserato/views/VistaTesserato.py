@@ -41,9 +41,6 @@ class VistaTesserato(QWidget):
         self.label_username = self.get_label_info("Username", self.controller.get_id_tesserato())
         self.label_password = self.get_label_info("Password", self.controller.get_password_tesserato())
 
-      #  self.label_gare_partecipate = self.get_label_info("Gare partecipate", self.controller.get_gare_partecipate_tesserato())
-
-
         v_layout.addWidget(self.label_id)
         v_layout.addWidget(self.label_cf)
         v_layout.addWidget(self.label_email)
@@ -52,7 +49,16 @@ class VistaTesserato(QWidget):
         v_layout.addWidget(self.label_eta)
         v_layout.addWidget(self.label_username)
         v_layout.addWidget(self.label_password)
-     #   v_layout.addWidget(self.label_gare_partecipate)
+
+        v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
+        self.label_categoria = self.get_label_info("Categoria", self.controller.get_categoria_tesserato())
+        self.label_gare_partecipate = self.get_label_info("Gare partecipate", self.controller.get_gare_partecipate_tesserato())
+        self.label_gare_vinte = self.get_label_info("Gare vinte", self.controller.get_gare_vinte_tesserato())
+
+        v_layout.addWidget(self.label_categoria)
+        v_layout.addWidget(self.label_gare_partecipate)
+        v_layout.addWidget(self.label_gare_vinte)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -108,6 +114,7 @@ class VistaTesserato(QWidget):
         self.label_eta.setText("Età: {}".format(self.controller.get_eta_tesserato()))
         self.label_username.setText("Username: {}".format(self.controller.get_id_tesserato()))
         self.label_password.setText("Password: {}".format(self.controller.get_password_tesserato()))
+        self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_tesserato()))
         self.label_inizio_certificato.setText("Certificato medico sportivo valido da: {}".format(self.controller.get_inizio_certificato_tesserato()))
         self.label_scadenza_certificato.setText("Certificato medico sportivo valido fino a: {}".format(self.controller.get_scadenza_certificato_tesserato()))
 

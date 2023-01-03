@@ -32,11 +32,17 @@ class ControlloreTesserato:
     def get_password_tesserato(self):
         return self.model.password
 
+    def get_categoria_tesserato(self):
+        return self.model.categoria
+
     def get_inizio_certificato_tesserato(self):
         return self.model.inizio_certificato
 
     def get_scadenza_certificato_tesserato(self):
         return self.model.scadenza_certificato
 
-  #  def get_gare_partecipate_tesserato(self):
-   #     return self.model.gare_partecipate
+    def get_gare_partecipate_tesserato(self):
+        return self.model.gare_partecipate
+
+    def get_gare_vinte_tesserato(self):
+        return self.model.gare_vinte

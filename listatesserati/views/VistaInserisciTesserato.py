@@ -1,6 +1,8 @@
 from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
+    QSpinBox, QDateEdit, QComboBox
 
 from tesserato.model.Tesserato import Tesserato
 from PyQt5 import QtGui
@@ -28,6 +30,20 @@ class VistaInserisciTesserato(QWidget):
         self.get_form_entry("Luogo di nascita")
         self.get_spin_box("Età")
         self.get_form_entry("Password")
+
+        self.v_layout.addWidget(QLabel("Categoria"))
+        self.combo_categoria = QComboBox()
+        self.combo_categoria_model = QStandardItemModel(self.combo_categoria)
+        self.add_combobox_item("Piccoli amici")
+        self.add_combobox_item("Pulcini")
+        self.add_combobox_item("Esordienti")
+        self.add_combobox_item("Allievi")
+        self.add_combobox_item("Juniores")
+        self.add_combobox_item("Promesse")
+        self.add_combobox_item("Seniores")
+        self.combo_categoria.setModel(self.combo_categoria_model)
+        self.v_layout.addWidget(self.combo_categoria)
+
         self.get_spin_box("Inizio validità certificato")
         self.get_spin_box("Scadenza validità certificato")
 
@@ -65,6 +81,13 @@ class VistaInserisciTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
+        # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+    def add_combobox_item(self, tipo):
+        item = QStandardItem()
+        item.setText(tipo)
+        item.setEditable(False)
+        self.combo_categoria_model.appendRow(item)
+
     #Metodo che genera un nuovo tesserato sfruttando le informazioni inserite dall'utente
     def add_tesserato(self):
         nome = self.info["Nome"].text()
@@ -75,12 +98,13 @@ class VistaInserisciTesserato(QWidget):
         luogo_nascita = self.info["Luogo di nascita"].text()
         eta = self.info["Età"].text()
         password = self.info["Password"].text()
+        categoria = self.combo_categoria.currentText()
         inizio_certificato = self.info["Inizio validità certificato"].text()
         scadenza_certificato = self.info["Scadenza validità certificato"].text()
-        if nome == "" or cognome == "" or cf == "" or email == "" or telefono == "" or luogo_nascita == "" or eta == "" or password == "":
+        if nome == "" or cognome == "" or cf == "" or email == "" or telefono == "" or luogo_nascita == "" or eta == "" or password == "" or categoria == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()
-            self.controller.aggiungi_tesserato(Tesserato(prova.replace(" ", ""), nome, cognome, cf, email, telefono, luogo_nascita, eta, password, inizio_certificato, scadenza_certificato))
+            self.controller.aggiungi_tesserato(Tesserato(prova.replace(" ", ""), nome, cognome, cf, email, telefono, luogo_nascita, eta, password, categoria, inizio_certificato, scadenza_certificato))
             self.callback()
             self.close()
