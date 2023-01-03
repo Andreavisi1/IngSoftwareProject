@@ -3,7 +3,7 @@ Gestisce i dati e le operazioni relative al tesserato
 """
 
 class Tesserato:
-       def __init__(self, id, nome, cognome, cf, email, telefono, luogo_nascita, eta, password, inizio_certificato, scadenza_certificato):
+       def __init__(self, id, nome, cognome, cf, email, telefono, luogo_nascita, eta, password, inizio_certificato, scadenza_certificato,): #gare_partecipate
         super(Tesserato, self).__init__()
         self.id = id
         self.nome = nome
@@ -16,3 +16,4 @@ class Tesserato:
         self.password = password
         self.inizio_certificato = inizio_certificato
         self.scadenza_certificato = scadenza_certificato
+    #    self.gare_partecipate = gare_partecipate

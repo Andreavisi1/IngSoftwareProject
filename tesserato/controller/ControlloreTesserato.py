@@ -37,3 +37,6 @@ class ControlloreTesserato:
 
     def get_scadenza_certificato_tesserato(self):
         return self.model.scadenza_certificato
+
+  #  def get_gare_partecipate_tesserato(self):
+   #     return self.model.gare_partecipate

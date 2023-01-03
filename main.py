@@ -1,6 +1,5 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-
 from login.views.VistaLogin import VistaLogin
 
 

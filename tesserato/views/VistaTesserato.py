@@ -41,6 +41,9 @@ class VistaTesserato(QWidget):
         self.label_username = self.get_label_info("Username", self.controller.get_id_tesserato())
         self.label_password = self.get_label_info("Password", self.controller.get_password_tesserato())
 
+      #  self.label_gare_partecipate = self.get_label_info("Gare partecipate", self.controller.get_gare_partecipate_tesserato())
+
+
         v_layout.addWidget(self.label_id)
         v_layout.addWidget(self.label_cf)
         v_layout.addWidget(self.label_email)
@@ -49,6 +52,7 @@ class VistaTesserato(QWidget):
         v_layout.addWidget(self.label_eta)
         v_layout.addWidget(self.label_username)
         v_layout.addWidget(self.label_password)
+     #   v_layout.addWidget(self.label_gare_partecipate)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -57,6 +61,7 @@ class VistaTesserato(QWidget):
 
         v_layout.addWidget(self.label_inizio_certificato)
         v_layout.addWidget(self.label_scadenza_certificato)
+
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -105,3 +110,5 @@ class VistaTesserato(QWidget):
         self.label_password.setText("Password: {}".format(self.controller.get_password_tesserato()))
         self.label_inizio_certificato.setText("Certificato medico sportivo valido da: {}".format(self.controller.get_inizio_certificato_tesserato()))
         self.label_scadenza_certificato.setText("Certificato medico sportivo valido fino a: {}".format(self.controller.get_scadenza_certificato_tesserato()))
+
+   #     self.label_gare_partecipate.setText("Gare partecipate: {}".format(self.controller.get_gare_partecipate_tesserato()))

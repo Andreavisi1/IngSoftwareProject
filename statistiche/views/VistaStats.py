@@ -114,13 +114,13 @@ class VistaStats(QWidget):
     #genera il titolo della pagina in base alla data passata dalla view precedente
     def set_title(self, datascelta):
 
-        if datascelta == datetime.date.today():
-            return "Vendite Giornaliere"
-
         if datascelta == datetime.date.today() - datetime.timedelta(weeks = 1):
-            return "Vendite Settimanali"
+            return "Statistiche Settimanali"
 
-        return "Vendite Mensili"
+        if datascelta == datetime.date.today() - datetime.timedelta(days = 30):
+            return "Statistiche Mensili"
+
+        return "Statistiche Annue"
 
     #crea tabella contenente tutti gli eventi venduti registrati e la popola con i dati contenuti nell' array
     def populate_table(self, datascelta):
