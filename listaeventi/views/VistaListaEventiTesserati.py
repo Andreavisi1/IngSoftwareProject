@@ -3,18 +3,19 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushB
 from PyQt5 import QtCore
 
 from attivita.controller.ControlloreAttivita import ControlloreAttivita
+from evento.views.VistaEventoTesserati import VistaEventoTesserati
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
 from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
 from evento.views.VistaEvento import VistaEvento
 from PyQt5 import QtGui
 
 """
-La VistaListaEventi si occupa di mostrare a schermo la lista degli eventi
+La VistaListaEventiTesserati si occupa di mostrare a schermo la lista degli eventi, ma senza le funzionalità specifiche degli amministratori
 """
 
-class VistaListaEventi(QWidget):
+class VistaListaEventiTesserati(QWidget):
     def __init__(self, parent=None):
-        super(VistaListaEventi, self).__init__(parent)
+        super(VistaListaEventiTesserati, self).__init__(parent)
         self.setFixedSize(1000, 300)
         self.attivita = ControlloreAttivita()
         self.controller = ControlloreListaEventi()
@@ -40,13 +41,8 @@ class VistaListaEventi(QWidget):
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
-        #Bottone per creare un nuovo evento
-        new_button = QPushButton("Nuovo")
-        new_button.clicked.connect(self.show_new_evento)
-        buttons_layout.addWidget(new_button)
-        buttons_layout.addStretch()
         self.main_layout.addLayout(buttons_layout)
-        self.main_layout.addWidget(new_button)
+
 
         self.setLayout(self.main_layout)
         self.setWindowTitle("Lista Attività")
@@ -56,7 +52,7 @@ class VistaListaEventi(QWidget):
         try:
             sourceindex = self.table_widget.selectedIndexes()[0].row()
             evento_selezionato = self.controller.get_evento_by_index(sourceindex)
-            self.vista_evento = VistaEvento(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui, self.attivita)
+            self.vista_evento = VistaEventoTesserati(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui, self.attivita)
             self.vista_evento.show()
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)

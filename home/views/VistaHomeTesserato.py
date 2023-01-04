@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLab
 from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
-from listaeventi.views.VistaListaEventi import VistaListaEventi
+from listaeventi.views.VistaListaEventiTesserati import VistaListaEventiTesserati
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
@@ -54,9 +54,9 @@ class VistaHomeTesserato(QWidget):
         label_logo.setAlignment(Qt.AlignCenter)
         return label_logo
 
-    #Metodo che si occupa di aprire la VistaListaEventi
+    #Metodo che si occupa di aprire la VistaListaEventiTesserati
     def go_lista_eventi(self):
-        self.vista_lista_eventi = VistaListaEventi()
+        self.vista_lista_eventi = VistaListaEventiTesserati()
         self.vista_lista_eventi.show()
 
     #Metodo che si occupa di aprire la VistaListaCarrello
