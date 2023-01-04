@@ -1,12 +1,12 @@
 from datetime import datetime
 
+from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QSpinBox, QDateEdit, QComboBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
 from PyQt5 import QtGui
 
 """
-La classe VistaModificaTesserato apre una finestra a schermo in cui il presidente può modificare i dati di un tesserato
+La classe VistaModificaTesserato apre una finestra a schermo in cui il presidente o un amministratore possono modificare i dati di un tesserato
 """
 
 class VistaModificaTesserato(QWidget):
@@ -84,9 +84,13 @@ class VistaModificaTesserato(QWidget):
             current_text_edit = QSpinBox()
             current_text_edit.setValue(int(self.tesserato.eta))
             current_text_edit.setRange(0, 113)
-        if tipo == "Inizio validità certificato" or tipo == "Scadenza validità certificato":
+        if tipo == "Inizio validità certificato":
             current_text_edit = QDateEdit()
-            current_text_edit.setDate(datetime.now().date())
+            current_text_edit.setDate(QDate.fromString(self.tesserato.inizio_certificato, "dd/MM/yy"))
+            current_text_edit.setCalendarPopup(True)
+        if tipo == "Scadenza validità certificato":
+            current_text_edit = QDateEdit()
+            current_text_edit.setDate(QDate.fromString(self.tesserato.scadenza_certificato, "dd/MM/yy"))
             current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit

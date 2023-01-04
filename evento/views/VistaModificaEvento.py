@@ -83,13 +83,12 @@ class VistaModificaEvento(QWidget):
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Data":
             current_text_edit = QDateEdit()
-            qdate = QDate
-            current_text_edit.setDate(qdate.fromString(self.evento.data))
+            current_text_edit.setDate(QDate.fromString(self.evento.data, "dd/MM/yy"))
             current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-        # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+# Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
         item = QStandardItem()
         item.setText(tipo)
@@ -102,9 +101,8 @@ class VistaModificaEvento(QWidget):
         elif self.GButton.isChecked():
             return "Gara"
 
-    #Metodo per modificare i parametri di prezzo e quantità del evento
+#Metodo per modificare i parametri di prezzo e quantità del evento
     def modifica_evento(self):
-
         nuovotipo = self.rb_on_selected()
         nuovotitolo = self.info["Titolo (opzionale)"].text()
         nuovacategoria = self.combo_categoria.currentText()
