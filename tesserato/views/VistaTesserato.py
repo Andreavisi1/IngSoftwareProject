@@ -82,7 +82,6 @@ class VistaTesserato(QWidget):
         v_layout.addWidget(self.label_inizio_certificato)
         v_layout.addWidget(self.label_scadenza_certificato)
 
-
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         #Bottone per modificare i dati di un tesserato
@@ -139,7 +138,7 @@ class VistaTesserato(QWidget):
         self.label_username.setText("Username: {}".format(self.controller.get_id_tesserato()))
         self.label_password.setText("Password: {}".format(self.controller.get_password_tesserato()))
         self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_tesserato()))
+        self.label_gare_partecipate.setText("Gare partecipate: {}".format(self.controller.get_gare_partecipate_tesserato()))
+        self.label_gare_vinte.setText("Gare vinte: {}".format(self.controller.get_gare_vinte_tesserato()))
         self.label_inizio_certificato.setText("Certificato medico sportivo valido da: {}".format(self.controller.get_inizio_certificato_tesserato()))
         self.label_scadenza_certificato.setText("Certificato medico sportivo valido fino a: {}".format(self.controller.get_scadenza_certificato_tesserato()))
-
-   #     self.label_gare_partecipate.setText("Gare partecipate: {}".format(self.controller.get_gare_partecipate_tesserato()))
