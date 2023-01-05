@@ -21,7 +21,6 @@ class VistaStats(QWidget):
 
         self.chartview = QChartView()
 
-
         self.controllerstats = ControlloreStats()
         self.setWindowIcon(QtGui.QIcon('logos/logo.png'))
 

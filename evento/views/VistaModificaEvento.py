@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
@@ -111,7 +109,8 @@ class VistaModificaEvento(QWidget):
 
         if nuovotipo == "" or nuovacategoria == "" or nuovoluogo == "" or nuovadata == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-
+        elif nuovadata < QDate.currentDate().toString():
+            QMessageBox.critical(self, 'Errore', 'Il passato non può essere modificato, ma solo accettato... Per favore, inserire una data valida', QMessageBox.Ok, QMessageBox.Ok)
         else:
             self.evento.tipo = nuovotipo
             self.evento.titolo = nuovotitolo

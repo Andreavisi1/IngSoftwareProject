@@ -120,6 +120,8 @@ class VistaModificaTesserato(QWidget):
 
         if nuovonome == "" or nuovocognome == "" or nuovocf == "" or nuovaemail == "" or nuovotelefono == "" or nuovoluogonascita == "" or nuovaeta == "" or nuovapassword == "" or nuovacategoria == "" or nuovoiniziocertificato == "" or nuovascadenzacertificato == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
+        elif nuovoiniziocertificato > nuovascadenzacertificato:
+            QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
             self.tesserato.id = nuovoid
             self.tesserato.nome = nuovonome
