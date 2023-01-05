@@ -50,7 +50,7 @@ class VistaInserisciAmministratore(QWidget):
     def get_form_entry(self, tipo):
         self.v_layout.addWidget(QLabel(tipo))
         current_text_edit = QLineEdit(self)
-        if tipo == "Telefono" or tipo == "Età":
+        if tipo == "Telefono":
             current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
         if tipo == "Password":
             current_text_edit.setEchoMode(QLineEdit.Password)
@@ -71,6 +71,7 @@ class VistaInserisciAmministratore(QWidget):
         if tipo == "Età":
             current_text_edit = QSpinBox()
             current_text_edit.setRange(0, 113)
+            current_text_edit.setValue(30)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
