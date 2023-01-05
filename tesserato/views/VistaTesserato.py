@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
+from tesserato.views.VistaModificaDatiSportiviTesserato import VistaModificaDatiSportiviTesserato
 from tesserato.views.VistaModificaTesserato import VistaModificaTesserato
 
 """
@@ -22,14 +23,22 @@ class VistaTesserato(QWidget):
 
         #Vengono recuperate le informazioni da mostrare a schermo
         self.label_nome = QLabel(self.controller.get_nome_tesserato() + " " + self.controller.get_cognome_tesserato())
+        self.label_da = QLabel("Dati anagrafici")
 
         #Impostazioni per il font
         font_nome = self.label_nome.font()
         font_nome.setPointSize(30)
+        font_nome.setBold(True)
         self.label_nome.setFont(font_nome)
+        font_dati = self.label_da.font()
+        font_dati.setPointSize(20)
+        font_dati.setUnderline(True)
+        self.label_da.setFont(font_dati)
         v_layout.addWidget(self.label_nome)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
+        v_layout.addWidget(self.label_da)
 
         #Aggiunge tramite metodo get_label_info il titolo di una informazione e l'informazione stessa tramite controller
         self.label_id = self.get_label_info("Codice ID", self.controller.get_id_tesserato())
@@ -52,6 +61,11 @@ class VistaTesserato(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
+        # Impostazioni per il font
+        self.label_ds = QLabel("Dati sportivi")
+        self.label_ds.setFont(font_dati)
+        v_layout.addWidget(self.label_ds)
+
         self.label_categoria = self.get_label_info("Categoria", self.controller.get_categoria_tesserato())
         self.label_gare_partecipate = self.get_label_info("Gare partecipate", self.controller.get_gare_partecipate_tesserato())
         self.label_gare_vinte = self.get_label_info("Gare vinte", self.controller.get_gare_vinte_tesserato())
@@ -72,8 +86,13 @@ class VistaTesserato(QWidget):
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         #Bottone per modificare i dati di un tesserato
-        btn_modify = QPushButton("Modifica")
-        btn_modify.clicked.connect(self.show_modifica_tesserato)
+        btn_modify = QPushButton("Modifica dati anagrafici")
+        btn_modify.clicked.connect(self.show_modifica_da_tesserato)
+        v_layout.addWidget(btn_modify)
+
+        # Bottone per modificare i dati di un tesserato
+        btn_modify = QPushButton("Modifica dati sportivi")
+        btn_modify.clicked.connect(self.show_modifica_ds_tesserato)
         v_layout.addWidget(btn_modify)
 
         #Bottone per eliminare un tesserato
@@ -93,9 +112,14 @@ class VistaTesserato(QWidget):
         return current_label
 
 #Metodo che si occupa di aprire la VistaModificaTesserato
-    def show_modifica_tesserato(self):
+    def show_modifica_da_tesserato(self):
         self.vista_modifica_tesserato = VistaModificaTesserato(self.tesserato, self.update_tesserato)
         self.vista_modifica_tesserato.show()
+
+# Metodo che si occupa di aprire la VistaModificaTesserato
+    def show_modifica_ds_tesserato(self):
+        self.vista_modifica_ds_tesserato = VistaModificaDatiSportiviTesserato(self.tesserato, self.update_tesserato)
+        self.vista_modifica_ds_tesserato.show()
 
 #Metodo che si occupa di eliminare il tesserato
     def elimina_tesserato_click(self):

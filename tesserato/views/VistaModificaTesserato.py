@@ -29,23 +29,6 @@ class VistaModificaTesserato(QWidget):
         self.get_spin_box("Età")
         self.get_form_entry("Password")
 
-        self.v_layout.addWidget(QLabel("Categoria"))
-        self.combo_categoria = QComboBox()
-        self.combo_categoria_model = QStandardItemModel(self.combo_categoria)
-        self.add_combobox_item("Piccoli amici")
-        self.add_combobox_item("Pulcini")
-        self.add_combobox_item("Esordienti")
-        self.add_combobox_item("Allievi")
-        self.add_combobox_item("Juniores")
-        self.add_combobox_item("Promesse")
-        self.add_combobox_item("Seniores")
-        self.combo_categoria.setModel(self.combo_categoria_model)
-        self.combo_categoria.setCurrentText(self.tesserato.categoria)
-        self.v_layout.addWidget(self.combo_categoria)
-
-        self.get_spin_box("Inizio validità certificato")
-        self.get_spin_box("Scadenza validità certificato")
-
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         #Bottone per confermare i cambiamenti
@@ -84,23 +67,8 @@ class VistaModificaTesserato(QWidget):
             current_text_edit = QSpinBox()
             current_text_edit.setValue(int(self.tesserato.eta))
             current_text_edit.setRange(0, 113)
-        if tipo == "Inizio validità certificato":
-            current_text_edit = QDateEdit()
-            current_text_edit.setDate(QDate.fromString(self.tesserato.inizio_certificato, "dd/MM/yy"))
-            current_text_edit.setCalendarPopup(True)
-        if tipo == "Scadenza validità certificato":
-            current_text_edit = QDateEdit()
-            current_text_edit.setDate(QDate.fromString(self.tesserato.scadenza_certificato, "dd/MM/yy"))
-            current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
-
-# Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
-    def add_combobox_item(self, tipo):
-        item = QStandardItem()
-        item.setText(tipo)
-        item.setEditable(False)
-        self.combo_categoria_model.appendRow(item)
 
     #Metodo per modificare i parametri di prezzo e quantità del evento
     def modifica_tesserato(self):
@@ -114,14 +82,9 @@ class VistaModificaTesserato(QWidget):
         nuovoluogonascita = self.info["Luogo di nascita"].text()
         nuovaeta = self.info["Età"].text()
         nuovapassword = self.info["Password"].text()
-        nuovacategoria = self.combo_categoria.currentText()
-        nuovoiniziocertificato = self.info["Inizio validità certificato"].text()
-        nuovascadenzacertificato = self.info["Scadenza validità certificato"].text()
 
-        if nuovonome == "" or nuovocognome == "" or nuovocf == "" or nuovaemail == "" or nuovotelefono == "" or nuovoluogonascita == "" or nuovaeta == "" or nuovapassword == "" or nuovacategoria == "" or nuovoiniziocertificato == "" or nuovascadenzacertificato == "":
+        if nuovonome == "" or nuovocognome == "" or nuovocf == "" or nuovaemail == "" or nuovotelefono == "" or nuovoluogonascita == "" or nuovaeta == "" or nuovapassword == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif nuovoiniziocertificato > nuovascadenzacertificato:
-            QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
             self.tesserato.id = nuovoid
             self.tesserato.nome = nuovonome
@@ -132,8 +95,5 @@ class VistaModificaTesserato(QWidget):
             self.tesserato.luogo_nascita = nuovoluogonascita
             self.tesserato.eta = nuovaeta
             self.tesserato.password = nuovapassword
-            self.tesserato.categoria = nuovacategoria
-            self.tesserato.inizio_certificato = nuovoiniziocertificato
-            self.tesserato.scadenza_certificato = nuovascadenzacertificato
             self.update()
             self.close()
