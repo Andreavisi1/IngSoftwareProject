@@ -8,9 +8,6 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
-from statistichetesserati.views.VistaStatsTesserati import VistaStatsTesserati
-#from statistiche.views.VistaSceltaStats import VistaSceltaStats
-
 
 """
 La classe VistaHomePresidente si occupa di mostrare a schermo al presidente la home dove poter selezionare

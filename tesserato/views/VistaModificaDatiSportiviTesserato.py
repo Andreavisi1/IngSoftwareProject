@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
@@ -110,7 +112,7 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         elif int(nuovegarevinte) > int(nuovegarepartecipate):
             QMessageBox.critical(self, 'Errore', 'Questo ragazzo è un campione, ma non può vincere più gare di quante ne abbia fatte', QMessageBox.Ok, QMessageBox.Ok)
-        elif nuovoiniziocertificato > nuovascadenzacertificato:
+        elif QDate.fromString(nuovoiniziocertificato, "dd/MM/yy") > QDate.fromString(nuovascadenzacertificato, "dd/MM/yy"):
             QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
 
