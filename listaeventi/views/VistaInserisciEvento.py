@@ -76,13 +76,6 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    def get_calendar(self, tipo):
-        global current_text_edit
-        self.v_layout.addWidget(QLabel(tipo))
-        current_text_edit = QCalendarWidget(gridVisible=True)
-        self.v_layout.addWidget(current_text_edit)
-        self.info[tipo] = current_text_edit.selectedDate()
-
 # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
         item = QStandardItem()
@@ -104,6 +97,8 @@ class VistaInserisciEvento(QWidget):
         luogo = self.info["Luogo"].text()
         data = self.info["Data"].text()
         today = datetime.now().date()
+        print(QDate.fromString(data, "dd/MM/yy"))
+        print(QDate.fromString(str(today), "yyyy-MM-dd"))
 
         if tipo == "" or categoria == "" or luogo == "" or data == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
