@@ -6,6 +6,8 @@ from listaamministratori.views.VistaListaAmministratori import VistaListaAmminis
 from listaeventi.views.VistaListaEventi import VistaListaEventi
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
+
+from statistiche.views.VistaSceltaStats import VistaSceltaStats
 from statistichetesserati.views.VistaStatsTesserati import VistaStatsTesserati
 #from statistiche.views.VistaSceltaStats import VistaSceltaStats
 
@@ -81,6 +83,6 @@ class VistaHomePresidente(QWidget):
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):
-        self.vista_statistiche = VistaStatsTesserati()
+        self.vista_statistiche = VistaSceltaStats()
         self.vista_statistiche.show()
 

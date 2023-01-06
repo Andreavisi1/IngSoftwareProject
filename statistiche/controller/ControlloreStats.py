@@ -11,8 +11,8 @@ class ControlloreStats():
     def save_data(self):
         self.model.save_data()
 
-    def aggiungi_stat(self, acquisto):
-        self.model.aggiungi_stat(acquisto)
+    def aggiungi_stat(self, tesserato):
+        self.model.aggiungi_stat(tesserato)
 
     def get_lista_delle_stats(self):
         return self.model.get_lista_delle_stats()

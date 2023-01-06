@@ -20,6 +20,10 @@ class ControlloreListaAmministratori():
     def get_amministratore_by_index(self, index):
         return self.model.get_amministratore_by_index(index)
 
+    def get_amministratore_by_username(self, username):
+        return self.model.get_amministratore_by_username(username)
+
+
     def elimina_amministratore_by_id(self, id):
         self.model.rimuovi_amministratore_by_id(id)
 

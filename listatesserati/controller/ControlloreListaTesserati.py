@@ -18,6 +18,9 @@ class ControlloreListaTesserati():
     def get_tesserato_by_index(self, index):
         return self.model.get_tesserato_by_index(index)
 
+    def get_tesserato_by_username(self, username):
+        return self.model.get_tesserato_by_username(username)
+
     def rimuovi_tesserato_by_id(self, id):
         self.model.rimuovi_tesserato_by_id(id)
 

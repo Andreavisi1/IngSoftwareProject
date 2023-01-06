@@ -1,13 +1,12 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMessageBox
 from attivita.views.VistaListaAttivita import VistaListaAttivita
-from listatesserati.views.VistaListaTesserati import VistaListaTesserati
-from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
+from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from listaeventi.views.VistaListaEventiTesserati import VistaListaEventiTesserati
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from statistiche.views.VistaSceltaStats import VistaSceltaStats
-from tesserato.views.VistaTesserato import VistaTesserato
+from tesserato.views.VistaDatiPersonaliTesserato import VistaDatiPersonaliTesserato
 
 """
 La classe VistaHomeTesserato si occupa di mostrare a schermo al tesserato la home dove poter selezionare
@@ -16,8 +15,11 @@ la funzione da svolgere con il software.
 
 class VistaHomeTesserato(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, username, parent=None):
         super(VistaHomeTesserato, self).__init__(parent)
+        self.username = username
+
+        self.controller = ControlloreListaTesserati()
 
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
@@ -28,7 +30,7 @@ class VistaHomeTesserato(QWidget):
 
         grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.show_personal_info), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 1)
-        grid_layout.addWidget(self.get_generic_button("Statistiche Personali", self.go_statistiche), 1, 2)
+        grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 2)
 
 
         self.setLayout(grid_layout)
@@ -69,13 +71,8 @@ class VistaHomeTesserato(QWidget):
         self.vista_statistiche = VistaSceltaStats()
         self.vista_statistiche.show()
 
-
        # Metodo che mostra a schermo le informazioni del tesserato selezionato
     def show_personal_info(self):
-        try:
-            sourceindex = self.list_view.selectedIndexes()[0].row()
-            tesserato_selezionato = self.controller.get_tesserato_by_index(sourceindex)
-            self.vista_tesserato = VistaTesserato(tesserato_selezionato, self.controller.rimuovi_tesserato_by_id, self.update_ui)
-            self.vista_tesserato.show()
-        except IndexError:
-            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un tesserato', QMessageBox.Ok, QMessageBox.Ok)
+        tesserato_selezionato = self.controller.get_tesserato_by_username(self.username)
+        self.vista_tesserato = VistaDatiPersonaliTesserato(tesserato_selezionato)
+        self.vista_tesserato.show()

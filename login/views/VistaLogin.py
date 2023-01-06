@@ -64,14 +64,14 @@ class VistaLogin(QWidget):
         lista_tess = ListaTesserati()
 
         if lista_amm.verifica_id_amministratore(self.lineEdit_username.text(), self.lineEdit_password.text()):
-            self.dialog = VistaHomeAmministratore()
+            self.dialog = VistaHomeAmministratore(self.lineEdit_username.text())
             msg.setText('Accesso alla pagina degli amministratori')
             msg.exec_()
             self.dialog.show()
             self.close()
 
         elif lista_tess.verifica_id_tesserato(self.lineEdit_username.text(), self.lineEdit_password.text()):
-            self.dialog = VistaHomeTesserato()
+            self.dialog = VistaHomeTesserato(self.lineEdit_username.text())
             msg.setText('Accesso alla pagina dei tesserati')
             msg.exec_()
             self.dialog.show()

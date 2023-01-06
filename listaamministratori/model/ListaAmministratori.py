@@ -29,6 +29,13 @@ class ListaAmministratori():
     def get_amministratore_by_index(self, index):
         return self.lista_amministratori[index]
 
+
+    # Metodo che ritorna l'amministratore dato lo username
+    def get_amministratore_by_username(self, username):
+        for amministratore in self.get_lista_amministratori():
+            if amministratore.id == username:
+                return amministratore
+
     #Metodo che ritorna la lista_amministratori
     def get_lista_amministratori(self):
         return self.lista_amministratori

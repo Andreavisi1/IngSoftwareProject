@@ -3,7 +3,9 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLab
 
 from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
 from amministratore.views.VistaAmministratore import VistaAmministratore
+from amministratore.views.VistaDatiPersonaliAmministratore import VistaDatiPersonaliAmministratore
 from attivita.views.VistaListaAttivita import VistaListaAttivita
+from listaamministratori.controller.ControlloreListaAmministratori import ControlloreListaAmministratori
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaeventi.views.VistaListaEventi import VistaListaEventi
 from PyQt5 import QtGui
@@ -18,8 +20,11 @@ la funzione da svolgere con il software.
 
 class VistaHomeAmministratore(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, username,parent=None):
         super(VistaHomeAmministratore, self).__init__(parent)
+        self.username = username
+
+        self.controller = ControlloreListaAmministratori()
 
         #Impostazione generale della vista con loghi e bottoni
         grid_layout = QGridLayout()
@@ -29,7 +34,7 @@ class VistaHomeAmministratore(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 2)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 3)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_personal_data), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.show_personal_info), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 3)
@@ -73,9 +78,6 @@ class VistaHomeAmministratore(QWidget):
         self.vistaattivita = VistaListaAttivita()
         self.vistaattivita.show()
 
-
-
-
     def verifica_id_amministratore(self, id):
         for amministratore in self.lista_amministratori:
             if amministratore.id == id:
@@ -83,28 +85,13 @@ class VistaHomeAmministratore(QWidget):
         return False
 
 
-    def go_personal_data(self):
-        controller = ControlloreAmministratore(self)
-        sourceindex = controller.get_id_amministratore()
-        amministratore_selezionato = controller.get_amministratore_by_index(sourceindex)
-
-        self.vistadatipersonali = VistaAmministratore(amministratore_selezionato)
-        self.vistadatipersonali.show()
-
-
-
-
-
-
-
-
+    def show_personal_info(self):
+        amministratore_selezionato = self.controller.get_amministratore_by_username(self.username)
+        self.vista_amministratore = VistaDatiPersonaliAmministratore(amministratore_selezionato)
+        self.vista_amministratore.show()
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):
         self.vista_statistiche = VistaSceltaStats()
         self.vista_statistiche.show()
-
-
-
-
 

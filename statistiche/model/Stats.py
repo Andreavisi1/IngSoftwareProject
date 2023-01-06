@@ -17,8 +17,8 @@ class Stats():
         with open('statistiche/data/stats_salvate.pickle', 'wb') as handle:
             pickle.dump(self.stats, handle, pickle.HIGHEST_PROTOCOL)
 
-    def aggiungi_stat(self, acquisto):
-        self.stats.append(acquisto)
+    def aggiungi_stat(self, tesserato):
+        self.stats.append(tesserato)
 
     def get_lista_delle_stats(self):
         return self.stats
