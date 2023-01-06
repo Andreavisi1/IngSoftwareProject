@@ -103,12 +103,12 @@ class VistaInserisciEvento(QWidget):
         categoria = self.combo_categoria.currentText()
         luogo = self.info["Luogo"].text()
         data = self.info["Data"].text()
+        today = datetime.now().date()
 
         if tipo == "" or categoria == "" or luogo == "" or data == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif data < QDate.currentDate().toString():
+        elif QDate.fromString(data, "dd/MM/yy") < QDate.fromString(str(today), "yyyy/MM/dd"):
             QMessageBox.critical(self, 'Errore', 'Il passato non può essere modificato, ma solo accettato... Per favore, inserire una data valida', QMessageBox.Ok, QMessageBox.Ok)
-
         else:
             self.controller.aggiungi_evento(Evento((tipo + data).lower(), tipo, titolo, categoria, luogo, data))
             self.controller.save_data()
