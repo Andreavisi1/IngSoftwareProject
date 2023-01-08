@@ -84,7 +84,6 @@ class VistaHomeAmministratore(QWidget):
                 return amministratore.id
         return False
 
-
     def show_personal_info(self):
         amministratore_selezionato = self.controller.get_amministratore_by_username(self.username)
         self.vista_amministratore = VistaDatiPersonaliAmministratore(amministratore_selezionato)

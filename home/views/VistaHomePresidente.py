@@ -1,5 +1,7 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
+
+from amministratore.views.VistaDatiPersonaliPresidente import VistaDatiPersonaliPresidente
 from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
@@ -28,7 +30,7 @@ class VistaHomePresidente(QWidget):
         grid_layout.addWidget(self.get_icon('logos/home logos/calendar.png'), 0, 3)
         grid_layout.addWidget(self.get_icon('logos/home logos/analytics.png'), 0, 4)
 
-        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.go_attivita), 1, 0)
+        grid_layout.addWidget(self.get_generic_button("Sezione Dati Personali", self.show_personal_info), 1, 0)
         grid_layout.addWidget(self.get_generic_button("Gestione Tesserati", self.go_lista_tesserati), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Gestione Amministratori", self.go_lista_amministratori), 1, 2)
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 3)
@@ -77,6 +79,10 @@ class VistaHomePresidente(QWidget):
     def go_lista_amministratori(self):
         self.vista_lista_amministratori = VistaListaAmministratori()
         self.vista_lista_amministratori.show()
+
+    def show_personal_info(self):
+        self.vista_presidente= VistaDatiPersonaliPresidente()
+        self.vista_presidente.show()
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):

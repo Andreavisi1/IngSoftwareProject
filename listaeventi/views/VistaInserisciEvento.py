@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QComboBox, QRadioButton, QCalendarWidget, QDateEdit
+    QComboBox, QRadioButton, QDateEdit
 from datetime import datetime
 from evento.model.Evento import Evento
 from PyQt5 import QtGui
@@ -28,7 +28,6 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(self.AButton)
         self.GButton = QRadioButton("Gara")
         self.v_layout.addWidget(self.GButton)
-
 
         self.get_form_entry("Titolo (opzionale)")
 
@@ -97,12 +96,12 @@ class VistaInserisciEvento(QWidget):
         luogo = self.info["Luogo"].text()
         data = self.info["Data"].text()
         today = datetime.now().date()
-        print(QDate.fromString(data, "dd/MM/yy"))
+        print(QDate.fromString(data, "dd/MM/yyyy"))
         print(QDate.fromString(str(today), "yyyy-MM-dd"))
 
         if tipo == "" or categoria == "" or luogo == "" or data == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif QDate.fromString(data, "dd/MM/yy") < QDate.fromString(str(today), "yyyy/MM/dd"):
+        elif QDate.fromString(data, "dd/MM/yyyy") < QDate.fromString(str(today), "yyyy-MM-dd"):
             QMessageBox.critical(self, 'Errore', 'Il passato non può essere modificato, ma solo accettato... Per favore, inserire una data valida', QMessageBox.Ok, QMessageBox.Ok)
         else:
             self.controller.aggiungi_evento(Evento((tipo + data).lower(), tipo, titolo, categoria, luogo, data))

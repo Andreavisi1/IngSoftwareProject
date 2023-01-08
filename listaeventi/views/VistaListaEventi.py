@@ -1,3 +1,4 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QStandardItemModel, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, QTableWidgetItem
 from PyQt5 import QtCore
@@ -28,6 +29,9 @@ class VistaListaEventi(QWidget):
         self.update_ui()
 
         self.table_total.setMaximumHeight(self.table_total.sizeHintForRow(0))
+
+# Metodo Qt che ordina in maniera decrescente gli allenamenti e le gare in base alla date
+        self.table_widget.sortItems(2, Qt.DescendingOrder)
 
         self.v_layout.addWidget(self.table_widget)
         self.v_layout.addWidget(self.table_total)

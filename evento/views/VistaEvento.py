@@ -40,7 +40,6 @@ class VistaEvento(QWidget):
         v_layout.addWidget(self.label_luogo)
         v_layout.addWidget(self.label_categoria)
 
-
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         #Bottone per modificare quantià e prezzo di un evento
@@ -52,11 +51,6 @@ class VistaEvento(QWidget):
         btn_elimina = QPushButton("Rimuovi dalla lista attività")
         btn_elimina.clicked.connect(self.elimina_evento_click)
         h_layout.addWidget(btn_elimina)
-
-        #Bottone per aggiungere un evento alle attivita
-        btn_attivita = QPushButton("Aggiungi al carrello (attività)")
-        btn_attivita.clicked.connect(self.aggiungi_alle_attivita)
-        h_layout.addWidget(btn_attivita)
 
         v_layout.addLayout(h_layout)
 
@@ -86,17 +80,9 @@ class VistaEvento(QWidget):
         self.vista_modifica_evento = VistaModificaEvento(self.evento, self.update_evento)
         self.vista_modifica_evento.show()
 
-    #Metodo che si occupa di aprire la VistaAggiungiQuantità
-    def aggiungi_alle_attivita(self):
-        self.vista_aggiungi_quantita = VistaAggiungiQuantita(self.evento, self.attivita)
-        self.vista_aggiungi_quantita.show()
-        self.close()
-
     #Metodo che si occupa di aggiornare i dati modificati dell'evento
     def update_evento(self):
         self.label_nome.setText("{}".format(self.controller.get_tipo_evento() + " " + self.controller.get_data_evento()))
         self.label_titolo.setText("Titolo (opzionale): {}".format(self.controller.get_titolo_evento()))
         self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_evento()))
         self.label_luogo.setText("Luogo: {}".format(self.controller.get_luogo_evento()))
-
-
