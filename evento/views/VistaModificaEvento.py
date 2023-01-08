@@ -112,8 +112,6 @@ class VistaModificaEvento(QWidget):
 
         if nuovotipo == "" or nuovacategoria == "" or nuovoluogo == "" or nuovadata == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif QDate.fromString(nuovadata, "dd/MM/yy") < QDate.fromString(str(today), "yyyy/MM/dd"):
-            QMessageBox.critical(self, 'Errore', 'Il passato non può essere modificato, ma solo accettato... Per favore, inserire una data valida', QMessageBox.Ok, QMessageBox.Ok)
         else:
             self.evento.tipo = nuovotipo
             self.evento.titolo = nuovotitolo

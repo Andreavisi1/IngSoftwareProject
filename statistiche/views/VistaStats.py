@@ -1,6 +1,7 @@
 import datetime
 
 from PyQt5.QtChart import QChartView, QPieSeries, QChart
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTableWidgetItem, QTableWidget, QListView, QMessageBox
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
@@ -41,6 +42,7 @@ class VistaStats(QWidget):
         self.table_partecipate.setMaximumHeight(self.table_partecipate.sizeHintForRow(0))
         self.table_vinte.setMaximumHeight(self.table_vinte.sizeHintForRow(0))
         self.table_widget.setMaximumHeight(200)
+
 
 
         self.v_layout.addWidget(self.chartview)
@@ -160,10 +162,12 @@ class VistaStats(QWidget):
             self.inserisci_elemento_in_tabella(tesserato.categoria, row, 1)
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
             self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3)
+            # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
+            self.table_widget.sortItems(3, Qt.DescendingOrder)
 
-            """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
-            row = row + 1
-            prezzofinalecarrello += float(acquistototale)"""
+        """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
+        row = row + 1
+        prezzofinalecarrello += float(acquistototale)"""
 
         self.table_partecipate_model = QStandardItemModel(self.table_partecipate)
         self.table_vinte_model = QStandardItemModel(self.table_vinte)

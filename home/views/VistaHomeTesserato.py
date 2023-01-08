@@ -58,13 +58,9 @@ class VistaHomeTesserato(QWidget):
 
     #Metodo che si occupa di aprire la VistaListaEventiTesserati
     def go_lista_eventi(self):
-        self.vista_lista_eventi = VistaListaEventiTesserati()
+        tesserato_selezionato = self.controller.get_tesserato_by_username(self.username)
+        self.vista_lista_eventi = VistaListaEventiTesserati(tesserato_selezionato)
         self.vista_lista_eventi.show()
-
-    #Metodo che si occupa di aprire la VistaListaCarrello
-    def go_attivita(self):
-        self.vistaattivita = VistaListaAttivita()
-        self.vistaattivita.show()
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):

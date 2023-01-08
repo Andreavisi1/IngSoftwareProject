@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
-from tesserato.views.VistaModificaDatiSportiviTesserato import VistaModificaDatiSportiviTesserato
 from tesserato.views.VistaModificaTesserato import VistaModificaTesserato
 
 """

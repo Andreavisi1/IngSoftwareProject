@@ -1,12 +1,12 @@
 from PyQt5.QtGui import QStandardItemModel, QFont
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, \
+    QTableWidgetItem, QLabel
 from PyQt5 import QtCore
 
 from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from evento.views.VistaEventoTesserati import VistaEventoTesserati
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
 from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
-from evento.views.VistaEvento import VistaEvento
 from PyQt5 import QtGui
 
 """
@@ -14,15 +14,19 @@ La VistaListaEventiTesserati si occupa di mostrare a schermo la lista degli even
 """
 
 class VistaListaEventiTesserati(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, tesserato, parent=None):
         super(VistaListaEventiTesserati, self).__init__(parent)
         self.setFixedSize(1000, 300)
         self.attivita = ControlloreAttivita()
         self.controller = ControlloreListaEventi()
+        self.tesserato = tesserato
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
         self.main_layout = QHBoxLayout()
         self.v_layout = QVBoxLayout()
+
+        self.label_intro = QLabel("Lista delle attività per la categoria " + self.tesserato.categoria + ":")
+        self.v_layout.addWidget(self.label_intro)
 
         self.table_widget = QTableWidget()
         self.table_total = QListView()
@@ -69,12 +73,13 @@ class VistaListaEventiTesserati(QWidget):
 
         row = 0
         for evento in self.controller.get_lista_degli_eventi():
-            self.table_widget.insertRow(row)
-            self.inserisci_elemento_in_tabella(evento.titolo, row, 0)
-            self.inserisci_elemento_in_tabella(evento.tipo, row, 1)
-            self.inserisci_elemento_in_tabella(evento.data, row, 2)
-            self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
-            self.inserisci_elemento_in_tabella(evento.luogo, row, 4)
+            if evento.categoria == self.tesserato.categoria:
+                self.table_widget.insertRow(row)
+                self.inserisci_elemento_in_tabella(evento.titolo, row, 0)
+                self.inserisci_elemento_in_tabella(evento.tipo, row, 1)
+                self.inserisci_elemento_in_tabella(evento.data, row, 2)
+                self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
+                self.inserisci_elemento_in_tabella(evento.luogo, row, 4)
         self.table_total_model = QStandardItemModel(self.table_total)
         self.table_total.setModel(self.table_total_model)
 
