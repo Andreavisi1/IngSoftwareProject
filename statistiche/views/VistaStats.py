@@ -161,9 +161,9 @@ class VistaStats(QWidget):
             self.inserisci_elemento_in_tabella(tesserato.id, row, 0)
             self.inserisci_elemento_in_tabella(tesserato.categoria, row, 1)
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
-            self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3)
-            # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
-            self.table_widget.sortItems(3, Qt.DescendingOrder)
+            self.inserisci_elemento_in_tabella(int(tesserato.gare_vinte), row, 3)
+# Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
+            self.table_widget.sortItems(4, Qt.DescendingOrder)
 
         """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
         row = row + 1

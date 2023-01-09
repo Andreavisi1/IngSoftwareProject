@@ -95,9 +95,6 @@ class VistaInserisciEvento(QWidget):
         categoria = self.combo_categoria.currentText()
         luogo = self.info["Luogo"].text()
         data = self.info["Data"].text()
-        today = datetime.now().date()
-        print(QDate.fromString(data, "dd/MM/yyyy"))
-        print(QDate.fromString(str(today), "yyyy-MM-dd"))
 
         if tipo == "" or categoria == "" or luogo == "" or data == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
