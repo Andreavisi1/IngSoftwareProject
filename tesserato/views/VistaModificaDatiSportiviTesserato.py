@@ -76,11 +76,13 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Inizio validità certificato":
             current_text_edit = QDateEdit()
-            current_text_edit.setDate(QDate.fromString(self.tesserato.inizio_certificato, "dd/MM/yy"))
+            current_text_edit.setDisplayFormat("dd/MM/yyyy")
+            current_text_edit.setDate(QDate.fromString(self.tesserato.inizio_certificato, "dd/MM/yyyy"))
             current_text_edit.setCalendarPopup(True)
         if tipo == "Scadenza validità certificato":
             current_text_edit = QDateEdit()
-            current_text_edit.setDate(QDate.fromString(self.tesserato.scadenza_certificato, "dd/MM/yy"))
+            current_text_edit.setDisplayFormat("dd/MM/yyyy")
+            current_text_edit.setDate(QDate.fromString(self.tesserato.scadenza_certificato, "dd/MM/yyyy"))
             current_text_edit.setCalendarPopup(True)
         if tipo == "Numero di gare partecipate":
             current_text_edit = QSpinBox()
@@ -112,7 +114,7 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         elif int(nuovegarevinte) > int(nuovegarepartecipate):
             QMessageBox.critical(self, 'Errore', 'Questo ragazzo è un campione, ma non può vincere più gare di quante ne abbia fatte', QMessageBox.Ok, QMessageBox.Ok)
-        elif QDate.fromString(nuovoiniziocertificato, "dd/MM/yy") > QDate.fromString(nuovascadenzacertificato, "dd/MM/yy"):
+        elif QDate.fromString(nuovoiniziocertificato, "dd/MM/yyyy") > QDate.fromString(nuovascadenzacertificato, "dd/MM/yyyy"):
             QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
 

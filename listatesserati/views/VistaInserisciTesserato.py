@@ -76,6 +76,7 @@ class VistaInserisciTesserato(QWidget):
             current_text_edit.setValue(18)
         if tipo == "Inizio validità certificato" or tipo == "Scadenza validità certificato":
             current_text_edit = QDateEdit()
+            current_text_edit.setDisplayFormat("dd/MM/yyyy")
             current_text_edit.setDate(datetime.now().date())
             current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)

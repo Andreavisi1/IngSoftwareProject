@@ -68,22 +68,13 @@ class VistaModificaEvento(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    def get_calendar(self, tipo):
-        global current_text_edit
-        self.v_layout.addWidget(QLabel(tipo))
-        current_text_edit = QCalendarWidget(gridVisible=True)
-        date = QDate()
-        date.fromString(self.evento.data, "dd/MM/yyyy")
-        current_text_edit.setSelectedDate(date)
-        self.v_layout.addWidget(current_text_edit)
-        self.info[tipo] = current_text_edit.selectedDate()
-
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Data":
             current_text_edit = QDateEdit()
-            current_text_edit.setDate(QDate.fromString(self.evento.data, "dd/MM/yy"))
+            current_text_edit.setDisplayFormat("dd/MM/yyyy")
+            current_text_edit.setDate(QDate.fromString(self.evento.data, "dd/MM/yyyy"))
             current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit

@@ -70,6 +70,7 @@ class VistaInserisciEvento(QWidget):
         self.v_layout.addWidget(QLabel(tipo))
         if tipo == "Data":
             current_text_edit = QDateEdit()
+            current_text_edit.setDisplayFormat("dd/MM/yyyy")
             current_text_edit.setDate(datetime.now().date())
             current_text_edit.setCalendarPopup(True)
         self.v_layout.addWidget(current_text_edit)
