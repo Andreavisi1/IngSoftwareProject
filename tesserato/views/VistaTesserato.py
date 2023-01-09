@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
 from PyQt5 import QtGui
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
 from tesserato.views.VistaModificaDatiSportiviTesserato import VistaModificaDatiSportiviTesserato
@@ -122,9 +122,14 @@ class VistaTesserato(QWidget):
 
 #Metodo che si occupa di eliminare il tesserato
     def elimina_tesserato_click(self):
-        self.elimina_tesserato(self.controller.get_id_tesserato())
-        self.elimina_callback()
-        self.close()
+        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare il tesserato dalla lista?", QMessageBox.Yes, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.elimina_tesserato(self.controller.get_id_tesserato())
+            self.elimina_callback()
+            self.close()
+        else:
+            return
+
 
 #Metodo che si occupa di aggiornare i dati modificati del tesserato
     def update_tesserato(self):

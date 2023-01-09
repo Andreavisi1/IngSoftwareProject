@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
 from PyQt5 import QtGui
 from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
 from amministratore.views.VistaModificaAmministratore import VistaModificaAmministratore
@@ -74,9 +74,14 @@ class VistaAmministratore(QWidget):
 
     # Metodo che si occupa di eliminare l'amministratore
     def elimina_amministratore_click(self):
-        self.elimina_amministratore(self.controller.get_id_amministratore())
-        self.elimina_callback()
-        self.close()
+        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare l'amministratore dalla lista?", QMessageBox.Yes, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.elimina_amministratore(self.controller.get_id_amministratore())
+            self.elimina_callback()
+            self.close()
+        else:
+            return
+
 
 #Metodo che si occupa di aggiornare i dati modificati dell'amministratore
     def update_amministratore(self):
