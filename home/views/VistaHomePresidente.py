@@ -9,7 +9,7 @@ from listaeventi.views.VistaListaEventi import VistaListaEventi
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 
-from statistiche.views.VistaSceltaStats import VistaSceltaStats
+from statistiche.views.VistaSceltaStats import VistaStats
 
 """
 La classe VistaHomePresidente si occupa di mostrare a schermo al presidente la home dove poter selezionare
@@ -86,6 +86,6 @@ class VistaHomePresidente(QWidget):
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):
-        self.vista_statistiche = VistaSceltaStats()
+        self.vista_statistiche = VistaStats()
         self.vista_statistiche.show()
 

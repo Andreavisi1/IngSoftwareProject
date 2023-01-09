@@ -12,9 +12,9 @@ from math import ceil
 
 
 class VistaStats(QWidget):
-    def __init__(self, datascelta):
+    def __init__(self):
         super(VistaStats, self).__init__()
-        self.datascelta = datascelta
+       # self.datascelta = datascelta
 
 #genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
@@ -52,7 +52,7 @@ class VistaStats(QWidget):
 
         self.setLayout(self.v_layout)
         self.setFixedSize(625, 700)
-        self.setWindowTitle(self.set_title(datascelta))
+        self.setWindowTitle(self.set_title())
         self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
 
     #popola array con le informazioni dal file pickle e raggruppa gli eventi per categoria
@@ -131,15 +131,9 @@ class VistaStats(QWidget):
         self.chartview = QChartView(chart)
 
     #genera il titolo della pagina in base alla data passata dalla view precedente
-    def set_title(self, datascelta):
+    def set_title(self):
 
-        if datascelta == datetime.date.today() - datetime.timedelta(weeks = 1):
-            return "Statistiche Settimanali"
-
-        if datascelta == datetime.date.today() - datetime.timedelta(days = 30):
-            return "Statistiche Mensili"
-
-        return "Statistiche Annue"
+        return "Statistiche globali tesserati"
 
     #crea tabella contenente tutti gli eventi venduti registrati e la popola con i dati contenuti nell' array
     def populate_table(self):
@@ -163,7 +157,8 @@ class VistaStats(QWidget):
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
             self.inserisci_elemento_in_tabella(int(tesserato.gare_vinte), row, 3)
 # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
-            self.table_widget.sortItems(4, Qt.DescendingOrder)
+    #        self.table_widget.sortItems(3, Qt.DescendingOrder)
+    #        self.table_widget.sortItems(1, Qt.DescendingOrder)
 
         """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
         row = row + 1
