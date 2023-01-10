@@ -111,12 +111,17 @@ class VistaStats(QWidget):
                 slice.setBrush(QtGui.QColor("#FF5631"))
                 slice = series.append(self.categoria[1], int(self.quantita_categoria[1]))
                 slice.setBrush(QtGui.QColor("#31B1FF"))
-                slice = series.append(self.categoria[2], int(self.quantita_categoria[1]))
+                slice = series.append(self.categoria[2], int(self.quantita_categoria[2]))
                 slice.setBrush(QtGui.QColor("#31FF4D"))
-                slice = series.append(self.categoria[3], int(self.quantita_categoria[1]))
+                slice = series.append(self.categoria[3], int(self.quantita_categoria[3]))
                 slice.setBrush(QtGui.QColor("#DA31FF"))
-                slice = series.append(self.categoria[4], int(self.quantita_categoria[1]))
+                slice = series.append(self.categoria[4], int(self.quantita_categoria[4]))
                 slice.setBrush(QtGui.QColor("#FFEC31"))
+                slice = series.append(self.categoria[5], int(self.quantita_categoria[5]))
+                slice.setBrush(QtGui.QColor("#0000EE"))
+                slice = series.append(self.categoria[6], int(self.quantita_categoria[6]))
+                slice.setBrush(QtGui.QColor("#3D9140"))
+
 
             except IndexError:
                 pass
@@ -155,9 +160,11 @@ class VistaStats(QWidget):
             self.inserisci_elemento_in_tabella(tesserato.id, row, 0)
             self.inserisci_elemento_in_tabella(tesserato.categoria, row, 1)
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
-            self.inserisci_elemento_in_tabella(int(tesserato.gare_vinte), row, 3)
+            self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3)
+
+            print(type(tesserato.gare_vinte))
 # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
-    #        self.table_widget.sortItems(3, Qt.DescendingOrder)
+            self.table_widget.sortItems(3, Qt.DescendingOrder)
     #        self.table_widget.sortItems(1, Qt.DescendingOrder)
 
         """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)

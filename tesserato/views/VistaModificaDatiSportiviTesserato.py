@@ -107,12 +107,12 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         nuovacategoria = self.combo_categoria.currentText()
         nuovoiniziocertificato = self.info["Inizio validità certificato"].text()
         nuovascadenzacertificato = self.info["Scadenza validità certificato"].text()
-        nuovegarepartecipate = self.info["Numero di gare partecipate"].text()
-        nuovegarevinte = self.info["Numero di gare vinte"].text()
+        nuovegarepartecipate = int(self.info["Numero di gare partecipate"].text())
+        nuovegarevinte = int(self.info["Numero di gare vinte"].text())
 
         if nuovacategoria == "" or nuovoiniziocertificato == "" or nuovascadenzacertificato == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif int(nuovegarevinte) > int(nuovegarepartecipate):
+        elif nuovegarevinte > nuovegarepartecipate:
             QMessageBox.critical(self, 'Errore', 'Questo ragazzo è un campione, ma non può vincere più gare di quante ne abbia fatte', QMessageBox.Ok, QMessageBox.Ok)
         elif QDate.fromString(nuovoiniziocertificato, "dd/MM/yyyy") > QDate.fromString(nuovascadenzacertificato, "dd/MM/yyyy"):
             QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
@@ -125,3 +125,6 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             self.tesserato.gare_vinte = nuovegarevinte
             self.update()
             self.close()
+
+            print(self.tesserato.gare_vinte)
+            print(type(self.tesserato.gare_vinte))
