@@ -86,11 +86,13 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             current_text_edit.setCalendarPopup(True)
         if tipo == "Numero di gare partecipate":
             current_text_edit = QSpinBox()
-            current_text_edit.setValue(int(self.tesserato.gare_partecipate))
+            self.value = int(self.tesserato.gare_partecipate)
+            current_text_edit.setMinimum(self.value)
             current_text_edit.setRange(0, 10000000)
         if tipo == "Numero di gare vinte":
             current_text_edit = QSpinBox()
-            current_text_edit.setValue(int(self.tesserato.gare_vinte))
+            self.value = int(self.tesserato.gare_vinte)
+            current_text_edit.setMinimum(self.value)
             current_text_edit.setRange(0, 10000000)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
@@ -126,5 +128,3 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             self.update()
             self.close()
 
-            print(self.tesserato.gare_vinte)
-            print(type(self.tesserato.gare_vinte))

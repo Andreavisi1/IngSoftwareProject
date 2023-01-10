@@ -19,7 +19,7 @@ class VistaStats(QWidget):
 #genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
         self.quantita_categoria = []
-        self.eventi = []
+        #self.eventi = []
 
         self.tesserati = []
         self.gare_partecipate_tot = 0
@@ -140,11 +140,12 @@ class VistaStats(QWidget):
 
         return "Statistiche globali tesserati"
 
+
+
     #crea tabella contenente tutti gli eventi venduti registrati e la popola con i dati contenuti nell' array
     def populate_table(self):
 
         self.build_table()
-
         self.table_widget.setRowCount(0)
         self.table_widget.setColumnCount(4)
         self.create_table(0, "Id Tesserato")
@@ -154,18 +155,19 @@ class VistaStats(QWidget):
 
         prezzofinalecarrello = 0
         row = 0
+        #self.sortItemsAscending(self.tesserati)
+
         for tesserato in self.tesserati:
 
             self.table_widget.insertRow(row)
             self.inserisci_elemento_in_tabella(tesserato.id, row, 0)
             self.inserisci_elemento_in_tabella(tesserato.categoria, row, 1)
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
-            self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3)
+            self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3,)
 
-            print(type(tesserato.gare_vinte))
 # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
-            self.table_widget.sortItems(3, Qt.DescendingOrder)
-    #        self.table_widget.sortItems(1, Qt.DescendingOrder)
+            self.table_widget.sortItems(1, Qt.AscendingOrder)
+
 
         """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
         row = row + 1
@@ -195,6 +197,11 @@ class VistaStats(QWidget):
 
         self.table_vinte_model.appendRow(item_v)
         self.table_vinte.setModel(self.table_vinte_model)
+
+
+   # def sortItemsAscending(self, tesserati):
+    #    self.tesserati.sort()
+
 
     #genera gli header della tabella contenenti gli eventi
     def create_table(self, index, label):

@@ -80,7 +80,9 @@ class VistaListaTesserati(QWidget):
             font.setPointSize(18)
             item.setFont(font)
             self.listview_model.appendRow(item)
+        self.listview_model.sort(0, )
         self.list_view.setModel(self.listview_model)
+
 
     # salva i dati sul file pickle alla chiusura della view
     def closeEvent(self, event):
