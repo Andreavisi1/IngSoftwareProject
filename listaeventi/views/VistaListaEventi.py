@@ -3,7 +3,6 @@ from PyQt5.QtGui import QStandardItemModel, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, QTableWidgetItem
 from PyQt5 import QtCore
 
-from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
 from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
 from evento.views.VistaEvento import VistaEvento
@@ -17,7 +16,6 @@ class VistaListaEventi(QWidget):
     def __init__(self, parent=None):
         super(VistaListaEventi, self).__init__(parent)
         self.setFixedSize(1000, 300)
-        self.attivita = ControlloreAttivita()
         self.controller = ControlloreListaEventi()
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
@@ -60,7 +58,7 @@ class VistaListaEventi(QWidget):
         try:
             sourceindex = self.table_widget.selectedIndexes()[0].row()
             evento_selezionato = self.controller.get_evento_by_index(sourceindex)
-            self.vista_evento = VistaEvento(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui, self.attivita)
+            self.vista_evento = VistaEvento(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui)
             self.vista_evento.show()
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)

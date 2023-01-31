@@ -1,10 +1,7 @@
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 
-from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
-from amministratore.views.VistaAmministratore import VistaAmministratore
 from amministratore.views.VistaDatiPersonaliAmministratore import VistaDatiPersonaliAmministratore
-from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listaamministratori.controller.ControlloreListaAmministratori import ControlloreListaAmministratori
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaeventi.views.VistaListaEventi import VistaListaEventi
@@ -16,7 +13,6 @@ from statistiche.views.VistaSceltaStats import VistaSceltaStats
 La classe VistaHomeAmministratore si occupa di mostrare a schermo all'amministratore la home dove poter selezionare
 la funzione da svolgere con il software.
 """
-
 
 class VistaHomeAmministratore(QWidget):
 
@@ -72,11 +68,6 @@ class VistaHomeAmministratore(QWidget):
     def go_lista_tesserati(self):
         self.vista_lista_tesserati = VistaListaTesserati()
         self.vista_lista_tesserati.show()
-
-    # Metodo che si occupa di aprire la VistaListaAttività
-    def go_attivita(self):
-        self.vistaattivita = VistaListaAttivita()
-        self.vistaattivita.show()
 
     def verifica_id_amministratore(self, id):
         for amministratore in self.lista_amministratori:

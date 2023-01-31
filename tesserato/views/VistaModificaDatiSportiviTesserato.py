@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
@@ -48,29 +46,7 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         btn_conferma.clicked.connect(self.modifica_tesserato)
         self.setLayout(self.v_layout)
 
-    #Metodo per titolare i parametri da inserire
-    def get_form_entry(self, tipo):
-        self.v_layout.addWidget(QLabel(tipo))
-        current_text_edit = QLineEdit(self)
-        if tipo == "Nome":
-            current_text_edit.setText(self.tesserato.nome)
-        if tipo == "Cognome":
-            current_text_edit.setText(self.tesserato.cognome)
-        if tipo == "Codice Fiscale":
-            current_text_edit.setText(self.tesserato.cf)
-        if tipo == "Email":
-            current_text_edit.setText(self.tesserato.email)
-        if tipo == "Telefono":
-            current_text_edit.setText(self.tesserato.telefono)
-            current_text_edit.setValidator(QtGui.QIntValidator(0, 1000000000))
-        if tipo == "Luogo di nascita":
-            current_text_edit.setText(self.tesserato.luogo_nascita)
-        if tipo == "Password":
-            current_text_edit.setText(self.tesserato.password)
-        self.v_layout.addWidget(current_text_edit)
-        self.info[tipo] = current_text_edit
-
-# Metodo che crea uno spinbox per poter inserire correttamente l'età e i dati del certificato
+# Metodo che crea uno spinbox per poter modificare correttamente l'età e i dati del certificato
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))
@@ -86,14 +62,10 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             current_text_edit.setCalendarPopup(True)
         if tipo == "Numero di gare partecipate":
             current_text_edit = QSpinBox()
-            self.value = int(self.tesserato.gare_partecipate)
-            current_text_edit.setMinimum(self.value)
-            current_text_edit.setRange(0, 10000000)
+            current_text_edit.setValue(int(self.tesserato.gare_partecipate))
         if tipo == "Numero di gare vinte":
             current_text_edit = QSpinBox()
-            self.value = int(self.tesserato.gare_vinte)
-            current_text_edit.setMinimum(self.value)
-            current_text_edit.setRange(0, 10000000)
+            current_text_edit.setValue(int(self.tesserato.gare_vinte))
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
@@ -128,3 +100,5 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             self.update()
             self.close()
 
+            print(self.tesserato.gare_vinte)
+            print(type(self.tesserato.gare_vinte))

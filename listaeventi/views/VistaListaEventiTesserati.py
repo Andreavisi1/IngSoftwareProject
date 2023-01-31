@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushB
     QTableWidgetItem, QLabel
 from PyQt5 import QtCore
 
-from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from evento.views.VistaEventoTesserati import VistaEventoTesserati
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
 from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
@@ -17,7 +16,6 @@ class VistaListaEventiTesserati(QWidget):
     def __init__(self, tesserato, parent=None):
         super(VistaListaEventiTesserati, self).__init__(parent)
         self.setFixedSize(1000, 300)
-        self.attivita = ControlloreAttivita()
         self.controller = ControlloreListaEventi()
         self.tesserato = tesserato
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))

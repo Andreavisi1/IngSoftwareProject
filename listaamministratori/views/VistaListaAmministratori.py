@@ -4,6 +4,7 @@ from amministratore.views.VistaAmministratore import VistaAmministratore
 from listaamministratori.controller.ControlloreListaAmministratori import ControlloreListaAmministratori
 from listaamministratori.views.VistaInserisciAmministratore import VistaInserisciAmministratore
 from PyQt5 import QtGui
+
 """
 La VistaListaAmministratori si occupa di mostrare a schermo la lista degli amministratori
 """

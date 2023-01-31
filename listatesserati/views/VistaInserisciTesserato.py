@@ -104,7 +104,7 @@ class VistaInserisciTesserato(QWidget):
         scadenza_certificato = self.info["Scadenza validità certificato"].text()
         if nome == "" or cognome == "" or cf == "" or email == "" or telefono == "" or luogo_nascita == "" or eta == "" or password == "" or categoria == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
-        elif QDate.fromString(inizio_certificato, "dd/MM/yy") > QDate.fromString(scadenza_certificato, "dd/MM/yy"):
+        elif QDate.fromString(inizio_certificato, "dd/MM/yyyy") > QDate.fromString(scadenza_certificato, "dd/MM/yyyy"):
             QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
             prova = (nome+cognome).lower()

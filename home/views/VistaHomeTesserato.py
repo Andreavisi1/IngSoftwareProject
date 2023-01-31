@@ -1,6 +1,5 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMessageBox
-from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from listaeventi.views.VistaListaEventiTesserati import VistaListaEventiTesserati
 from PyQt5 import QtGui

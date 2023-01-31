@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy
 from PyQt5 import QtGui
 from amministratore.views.VistaModificaAmministratore import VistaModificaAmministratore
 
@@ -21,19 +22,25 @@ class VistaDatiPersonaliPresidente(QWidget):
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         self.label_1 = QLabel("''Mi chiami il presidente''")
+        self.label_1.setAlignment(Qt.AlignCenter)
         self.label_2 = QLabel("''È lei il presidente''")
+        self.label_2.setAlignment(Qt.AlignCenter)
         self.label_3 = QLabel("''Bene, allora so già tutto''")
+        self.label_3.setAlignment(Qt.AlignCenter)
 
         v_layout.addWidget(self.label_1)
         v_layout.addWidget(self.label_2)
         v_layout.addWidget(self.label_3)
 
-
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
+        font_nome.setPointSize(20)
         self.label_ruolo = QLabel("Ruolo: Presidente della società")
+        self.label_ruolo.setFont(font_nome)
         self.label_username = QLabel("Username: pres")
+        self.label_username.setFont(font_nome)
         self.label_password = QLabel("Password: pres")
+        self.label_password.setFont(font_nome)
 
         v_layout.addWidget(self.label_ruolo)
         v_layout.addWidget(self.label_username)

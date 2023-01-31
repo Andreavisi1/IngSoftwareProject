@@ -2,7 +2,6 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 
 from amministratore.views.VistaDatiPersonaliPresidente import VistaDatiPersonaliPresidente
-from attivita.views.VistaListaAttivita import VistaListaAttivita
 from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaamministratori.views.VistaListaAmministratori import VistaListaAmministratori
 from listaeventi.views.VistaListaEventi import VistaListaEventi
@@ -69,11 +68,6 @@ class VistaHomePresidente(QWidget):
     def go_lista_tesserati(self):
         self.vista_lista_tesserati = VistaListaTesserati()
         self.vista_lista_tesserati.show()
-
-    #Metodo che si occupa di aprire la VistaListaAttivita
-    def go_attivita(self):
-        self.vistaattivita = VistaListaAttivita()
-        self.vistaattivita.show()
 
     #Metodo che si occupa di aprire la VistaListaAmministratori
     def go_lista_amministratori(self):

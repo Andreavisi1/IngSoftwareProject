@@ -1,8 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QGridLayout, \
     QHBoxLayout, QMessageBox
 from evento.controller.ControlloreEvento import ControlloreEvento
-from evento.views.VistaAggiungiQuantita import VistaAggiungiQuantita
-from evento.views.VistaModificaEvento import VistaModificaEvento
 from PyQt5 import QtGui
 
 """
@@ -11,13 +9,12 @@ La classe VistaEventoTesserati estende la classe QWidget
 """
 
 class VistaEventoTesserati(QWidget):
-    def __init__(self, evento, elimina_evento, elimina_callback, attivita, parent=None):
+    def __init__(self, evento, elimina_evento, elimina_callback, parent=None):
         super(VistaEventoTesserati, self).__init__(parent)
         self.controller = ControlloreEvento(evento)
         self.elimina_evento = elimina_evento
         self.elimina_callback = elimina_callback
         self.evento = evento
-        self.attivita = attivita
 
         v_layout = QVBoxLayout()
         h_layout = QHBoxLayout()

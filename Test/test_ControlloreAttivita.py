@@ -3,7 +3,6 @@ from unittest import TestCase
 from attivita.controller.ControlloreAttivita import ControlloreAttivita
 from evento.model.Evento import Evento
 
-
 class TestControlloreAttivita(TestCase):
     def test_aggiungi_alle_attivita(self):
         self.controller = ControlloreAttivita()
