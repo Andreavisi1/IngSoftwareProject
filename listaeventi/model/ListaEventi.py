@@ -38,15 +38,6 @@ class ListaEventi():
         with open('listaeventi/data/lista_eventi_salvata2.pickle', 'wb') as handle:
             pickle.dump(self.lista_eventi, handle, pickle.HIGHEST_PROTOCOL)
 
-    #Metodo che fa ritornare la quantità di un singolo evento dal calendario
-    def ritorna_quantita(self, id, quantita):
-
-        for evento in self.lista_eventi:
-            if evento.id == id:
-                evento.quantita_attivita += quantita
-                evento.quantita_attivita = 0
-
-        self.save_data()
 
 
 

@@ -23,6 +23,3 @@ class ControlloreListaEventi():
 
     def save_data(self):
         self.model.save_data()
-
-    def ritorna_quantita(self, id, quantita):
-        self.model.ritorna_quantita(id, quantita)

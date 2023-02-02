@@ -16,7 +16,6 @@ class VistaStats(QWidget):
 #genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
         self.quantita_categoria = []
-        self.eventi = []
 
         self.tesserati = []
         self.gare_partecipate_tot = 0
@@ -78,8 +77,7 @@ class VistaStats(QWidget):
             QMessageBox.critical(self, 'Errore', 'Nessuna statistica da visualizzare', QMessageBox.Ok, QMessageBox.Ok)
         else:
             try:
-                print(self.categoria[0])
-                print(self.quantita_categoria[0])
+
                 slice = series.append(self.categoria[0], int(self.quantita_categoria[0]))
                 slice.setBrush(QtGui.QColor("#FF5631"))
                 slice = series.append(self.categoria[1], int(self.quantita_categoria[1]))
