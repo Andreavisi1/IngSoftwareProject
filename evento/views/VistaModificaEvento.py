@@ -1,10 +1,8 @@
-from datetime import datetime
-
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, \
-    QRadioButton, QComboBox, QCalendarWidget, QDateEdit
-from PyQt5 import QtGui, QtCore
+    QRadioButton, QComboBox, QDateEdit
+from PyQt5 import QtGui
 
 """
 La classe VistaModificaEvento apre una finestra a schermo dove l'utente può cambiare i valori di prezzo e quantità
@@ -99,7 +97,6 @@ class VistaModificaEvento(QWidget):
         nuovacategoria = self.combo_categoria.currentText()
         nuovoluogo = self.info["Luogo"].text()
         nuovadata = self.info["Data"].text()
-        today = datetime.now().date()
 
         if nuovotipo == "" or nuovacategoria == "" or nuovoluogo == "" or nuovadata == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)

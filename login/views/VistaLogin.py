@@ -1,6 +1,3 @@
-import os
-import pickle
-
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QLineEdit, QMessageBox, QPushButton, QVBoxLayout
 from PyQt5 import QtCore, QtGui

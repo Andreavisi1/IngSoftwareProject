@@ -50,7 +50,7 @@ class VistaStats(QWidget):
         self.setWindowTitle(self.set_title())
         self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
 
-    #popola array con le informazioni dal file pickle e raggruppa gli eventi per categoria
+    # Popola array con le informazioni dal file pickle
     def build_pie(self):
         for tesserato in self.controllertesserati.get_lista_dei_tesserati():
             j = 0
@@ -62,16 +62,6 @@ class VistaStats(QWidget):
                 self.categoria.append(tesserato.categoria)
                 self.quantita_categoria.append(tesserato.gare_vinte)
 
-        """for evento in self.controllerstats.get_lista_delle_stats():
-            j = 0
-            for i in range(len(self.categoria)):
-                if self.categoria[i] == evento.categoria:
-                    self.quantita_categoria[i] += evento.quantita_attivita
-                    j = 1
-            if j == 0:
-                self.categoria.append(evento.categoria)
-                self.quantita_categoria.append(evento.quantita_attivita)"""
-
     #popola array con le informazioni dal file pickle
     def build_table(self):
         for tesserato in self.controllertesserati.get_lista_dei_tesserati():
@@ -79,24 +69,12 @@ class VistaStats(QWidget):
             self.gare_vinte_tot += int(tesserato.gare_vinte)
             self.tesserati.append(tesserato)
 
-
-        """for evento in self.controllerstats.get_lista_delle_stats():
-            if evento.data_acquisto >= datascelta:
-                j = 0
-                for product in self.eventi:
-                    if product.id == evento.id:
-                        product.quantita_attivita += evento.quantita_attivita
-                        j = 1
-                if j == 0:
-                    self.eventi.append(evento)"""
-
-    #genera il grafico a torta e lo popola utilizzando i dati dell' array
+    # Genera il grafico a torta e lo popola utilizzando i dati dell' array
     def create_pie(self):
         series = QPieSeries()
-
         self.build_pie()
 
-        if self.quantita_categoria == []:
+        if not self.quantita_categoria:
             QMessageBox.critical(self, 'Errore', 'Nessuna statistica da visualizzare', QMessageBox.Ok, QMessageBox.Ok)
         else:
             try:
@@ -116,26 +94,21 @@ class VistaStats(QWidget):
                 slice.setBrush(QtGui.QColor("#0000EE"))
                 slice = series.append(self.categoria[6], int(self.quantita_categoria[6]))
                 slice.setBrush(QtGui.QColor("#3D9140"))
-
-
             except IndexError:
                 pass
-
         chart = QChart()
         font = QFont()
         font.setPointSize(18)
         chart.addSeries(series)
         chart.setTitleFont(font)
         chart.setTitle("Gare vinte per categoria")
-
         self.chartview = QChartView(chart)
 
     #genera il titolo della pagina in base alla data passata dalla view precedente
     def set_title(self):
-
         return "Statistiche globali tesserati"
 
-    #crea tabella contenente tutti gli eventi venduti registrati e la popola con i dati contenuti nell' array
+    # Crea tabella contenente tutti i tesserati registrati e la popola con i dati contenuti nell' array
     def populate_table(self):
 
         self.build_table()
@@ -147,7 +120,6 @@ class VistaStats(QWidget):
         self.create_table(2, "Gare Partecipate")
         self.create_table(3, "Gare Vinte")
 
-        prezzofinalecarrello = 0
         row = 0
         for tesserato in self.tesserati:
 
@@ -160,11 +132,6 @@ class VistaStats(QWidget):
             print(type(tesserato.gare_vinte))
 # Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
             self.table_widget.sortItems(3, Qt.DescendingOrder)
-    #        self.table_widget.sortItems(1, Qt.DescendingOrder)
-
-        """acquistototale = float(evento.quantita_attivita) * float(evento.prezzo)
-        row = row + 1
-        prezzofinalecarrello += float(acquistototale)"""
 
         self.table_partecipate_model = QStandardItemModel(self.table_partecipate)
         self.table_vinte_model = QStandardItemModel(self.table_vinte)

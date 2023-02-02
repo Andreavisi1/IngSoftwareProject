@@ -54,7 +54,7 @@ class VistaListaEventiTesserati(QWidget):
         try:
             sourceindex = self.table_widget.selectedIndexes()[0].row()
             evento_selezionato = self.controller.get_evento_by_index(sourceindex)
-            self.vista_evento = VistaEventoTesserati(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui, self.attivita)
+            self.vista_evento = VistaEventoTesserati(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui)
             self.vista_evento.show()
         except IndexError:
             QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QGridLayout, \
-    QHBoxLayout, QMessageBox
+    QHBoxLayout
 from evento.controller.ControlloreEvento import ControlloreEvento
 from PyQt5 import QtGui
 
@@ -52,23 +52,4 @@ class VistaEventoTesserati(QWidget):
         current_font.setPointSize(17)
         current_label.setFont(current_font)
         return current_label
-
-    #Metodo che si occupa di eliminare l'evento
-    def elimina_evento_click(self):
-        reply = QMessageBox.question(self, "Conferma", "Sei sicuro di voler eliminare l'evento dal calendario?", QMessageBox.Yes, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            self.elimina_evento(self.controller.get_id_evento())
-            self.elimina_callback()
-            self.close()
-        else:
-            return
-
-
-    #Metodo che si occupa di aggiornare i dati modificati dell'evento
-    def update_evento(self):
-        self.label_nome.setText("{}".format(self.controller.get_tipo_evento() + " " + self.controller.get_data_evento()))
-        self.label_titolo.setText("Titolo (opzionale): {}".format(self.controller.get_titolo_evento()))
-        self.label_categoria.setText("Categoria: {}".format(self.controller.get_categoria_evento()))
-        self.label_luogo.setText("Luogo: {}".format(self.controller.get_luogo_evento()))
-
 

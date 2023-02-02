@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
 from PyQt5 import QtGui
 
 """
@@ -69,14 +69,14 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-# Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+    # Metodo che crea un menù a tendina
     def add_combobox_item(self, tipo):
         item = QStandardItem()
         item.setText(tipo)
         item.setEditable(False)
         self.combo_categoria_model.appendRow(item)
 
-    #Metodo per modificare i parametri di prezzo e quantità del evento
+    # Metodo per modificare i dati di un tesserato
     def modifica_tesserato(self):
         nuovacategoria = self.combo_categoria.currentText()
         nuovoiniziocertificato = self.info["Inizio validità certificato"].text()
@@ -87,11 +87,11 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         if nuovacategoria == "" or nuovoiniziocertificato == "" or nuovascadenzacertificato == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         elif nuovegarevinte > nuovegarepartecipate:
-            QMessageBox.critical(self, 'Errore', 'Questo ragazzo è un campione, ma non può vincere più gare di quante ne abbia fatte', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Questo ragazzo è un campione, ma non può vincere più gare di quante ne abbia fatte',
+                                 QMessageBox.Ok, QMessageBox.Ok)
         elif QDate.fromString(nuovoiniziocertificato, "dd/MM/yyyy") > QDate.fromString(nuovascadenzacertificato, "dd/MM/yyyy"):
             QMessageBox.critical(self, 'Errore', 'Il certificato è scaduto ancor prima di iniziare?', QMessageBox.Ok, QMessageBox.Ok)
         else:
-
             self.tesserato.categoria = nuovacategoria
             self.tesserato.inizio_certificato = nuovoiniziocertificato
             self.tesserato.scadenza_certificato = nuovascadenzacertificato
@@ -99,6 +99,3 @@ class VistaModificaDatiSportiviTesserato(QWidget):
             self.tesserato.gare_vinte = nuovegarevinte
             self.update()
             self.close()
-
-            print(self.tesserato.gare_vinte)
-            print(type(self.tesserato.gare_vinte))

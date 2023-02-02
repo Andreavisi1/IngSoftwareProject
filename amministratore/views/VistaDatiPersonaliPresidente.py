@@ -1,7 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy
 from PyQt5 import QtGui
-from amministratore.views.VistaModificaAmministratore import VistaModificaAmministratore
 
 """
 La classe VistaDatiPersonaliPresidente si occupa di mostrare a schermo le informazioni relative al presidente.
@@ -59,19 +58,4 @@ class VistaDatiPersonaliPresidente(QWidget):
         current_label.setFont(current_font)
         return current_label
 
-    # Metodo che si occupa di aprire la VistaModificaAmministratore
-    def show_modifica_amministratore(self):
-        self.vista_modifica_amministratore = VistaModificaAmministratore(self.amministratore, self.update_amministratore)
-        self.vista_modifica_amministratore.show()
-
-#Metodo che si occupa di aggiornare i dati modificati dell'amministratore
-    def update_amministratore(self):
-        self.label_nome.setText("{}".format(self.controller.get_nome_amministratore() + " " + self.controller.get_cognome_amministratore()))
-        self.label_ruolo.setText("Ruolo: {}".format(self.controller.get_ruolo_amministratore()))
-        self.label_cf.setText("Codice Fiscale: {}".format(self.controller.get_cf_amministratore()))
-        self.label_email.setText("Email: {}".format(self.controller.get_email_amministratore()))
-        self.label_telefono.setText("Telefono: {}".format(self.controller.get_telefono_amministratore()))
-        self.label_eta.setText("Età: {}".format(self.controller.get_eta_amministratore()))
-        self.label_username.setText("Username: {}".format(self.controller.get_id_amministratore()))
-        self.label_password.setText("Password: {}".format(self.controller.get_password_amministratore()))
 
