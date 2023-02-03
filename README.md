@@ -1,24 +1,25 @@
-# Progetto di Ingegneria del Software
-Gestione di un Negozio di Elettronica
+# Progetto Ingegneria del Software - Visi, Traian
+Gestione amministrativa a 3 livelli di una Società Sportiva
 
-Per il corretto utilizzo del software installare manualmente le librerie:
+Il sistema sfrutta librerie Python da installare manualmente quali:
+
 - PyQt5
 - PyQtChart
 - PyQtChart-Qt5
 
-Guida per installare le librerie:
-- Da Interpreter Settings premere il tasto + e digitare le librerie
-- Installare le librerie
+Primo livello di accesso: PRESIDENTE
+Nella schermata iniziale di login, inserire le credenziali di default:
+username: pres
+password: pres
 
-#ACCESSO AL PROGRAMMA PER IL DIRETTORE:
-- digitare come username "admin" e come password "admin"
+Secondo livello di accesso: AMMINISTRATORE
+Il presidente può inserire nuovi amministratori, i quali potranno accedere al sistema inserendo come username il loro nome + cognome, tutto piccolo e attaccato, e scegliendo la propria password in fase di registrazione (credenziali modificabili in seguito).
+Esempio di accesso di un amministratore:
+username:
+password:
 
-
-
-#ACCESSO AL PROGRAMMA PER I DIPENDENTI:
-- il direttore deve registrare i dipendenti dal suo accesso assegnando loro una password
-- l'username del dipendente è composto da nome e cognome del dipendente tutto piccolo e attaccato
-- 
-Esempio:
-- username: francescostucchi
-- password: easteregg
+Terzo livello di accesso: TESSERATO
+Il presidente gli amministratori possono inserire nuovi tesserati, i quali anch'essi potranno accedere al sistema inserendo come username il loro nome + cognome, tutto piccolo e attaccato, e scegliendo la propria password in fase di registrazione (credenziali modificabili in seguito). 
+Esempio di accesso di un tesserato:
+username:
+password:
