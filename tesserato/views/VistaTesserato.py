@@ -9,7 +9,6 @@ La classe VistaTesserato apre una finestra a schermo che si occupa di mostrare a
 La classe VistaTesserato estende la classe QWidget
 """
 
-
 class VistaTesserato(QWidget):
     def __init__(self, tesserato, elimina_tesserato, elimina_callback, parent=None):
         super(VistaTesserato, self).__init__(parent)
@@ -115,7 +114,7 @@ class VistaTesserato(QWidget):
         self.vista_modifica_tesserato = VistaModificaTesserato(self.tesserato, self.update_tesserato)
         self.vista_modifica_tesserato.show()
 
-# Metodo che si occupa di aprire la VistaModificaTesserato
+# Metodo che si occupa di aprire la VistaModificaDatiSportiviTesserato
     def show_modifica_ds_tesserato(self):
         self.vista_modifica_ds_tesserato = VistaModificaDatiSportiviTesserato(self.tesserato, self.update_tesserato)
         self.vista_modifica_ds_tesserato.show()
@@ -129,7 +128,6 @@ class VistaTesserato(QWidget):
             self.close()
         else:
             return
-
 
 #Metodo che si occupa di aggiornare i dati modificati del tesserato
     def update_tesserato(self):

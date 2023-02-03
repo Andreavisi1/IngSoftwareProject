@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QGridLayout, \
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, \
     QHBoxLayout, QMessageBox
 from evento.controller.ControlloreEvento import ControlloreEvento
 from evento.views.VistaModificaEvento import VistaModificaEvento

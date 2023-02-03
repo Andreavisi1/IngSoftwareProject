@@ -44,7 +44,7 @@ class ListaTesserati():
         with open('listatesserati/data/lista_tesserati_salvata.pickle', 'wb') as handle:
             pickle.dump(self.lista_tesserati, handle, pickle.HIGHEST_PROTOCOL)
 
-    #Metodo che serve per verificare se id e password che vengono passati alla funzione siano identici
+    #Metodo che serve per verificare se id e password che vengono passati alla funzione siano corretti
     def verifica_id_tesserato(self, id,password):
         for tesserato in self.lista_tesserati:
             if tesserato.id == id and tesserato.password == password:

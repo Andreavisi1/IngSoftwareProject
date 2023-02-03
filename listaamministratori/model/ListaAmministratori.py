@@ -2,7 +2,7 @@ import os
 import pickle
 
 """
-La classe ListaClienti gestisce i dati e le operazioni relative alla lista amministratori
+La classe ListaAmministratori gestisce i dati e le operazioni relative alla lista amministratori
 """
 
 class ListaAmministratori():
@@ -17,7 +17,7 @@ class ListaAmministratori():
     def aggiungi_amministratore(self, amministratore):
         self.lista_amministratori.append(amministratore)
 
-    #Metodo che rimuove l'amministratori dalla lista un volta effettuato il controllo sull'id
+    #Metodo che rimuove l'amministratore dalla lista un volta effettuato il controllo sull'id
     def rimuovi_amministratore_by_id(self, id):
         def is_selected_amministratore(amministratore):
             if amministratore.id == id:
@@ -28,7 +28,6 @@ class ListaAmministratori():
     #Metodo che ritorna l'amministratore dato l'indice
     def get_amministratore_by_index(self, index):
         return self.lista_amministratori[index]
-
 
     # Metodo che ritorna l'amministratore dato lo username
     def get_amministratore_by_username(self, username):

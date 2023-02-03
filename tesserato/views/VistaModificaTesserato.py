@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem
 from PyQt5 import QtGui
 
 """
-La classe VistaModificaTesserato apre una finestra a schermo in cui il presidente o un amministratore possono modificare i dati di un tesserato
+La classe VistaModificaTesserato apre una finestra a schermo in cui si possono modificare i dati di un tesserato
 """
 
 class VistaModificaTesserato(QWidget):
@@ -59,7 +59,7 @@ class VistaModificaTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-# Metodo che crea uno spinbox per poter inserire correttamente l'età e i dati del certificato
+    # Metodo che crea uno spinbox per poter inserire correttamente l'età e i dati del certificato
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))

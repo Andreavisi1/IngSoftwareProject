@@ -82,7 +82,7 @@ class VistaInserisciTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-        # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
+    # Metodo che crea un menù a tendina dove selezionare la tipologia dell'evento da inserire
     def add_combobox_item(self, tipo):
         item = QStandardItem()
         item.setText(tipo)

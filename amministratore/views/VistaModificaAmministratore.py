@@ -3,9 +3,8 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem
 from PyQt5 import QtGui
 
 """
-La classe VistaModificaAmministratore apre una finestra a schermo in cui il presidente può modificare i dati di un amministratore
+La classe VistaModificaAmministratore apre una finestra a schermo in cui si possono modificare i dati di un amministratore
 """
-
 
 class VistaModificaAmministratore(QWidget):
     def __init__(self, amministratore, update, parent=None):
@@ -87,7 +86,7 @@ class VistaModificaAmministratore(QWidget):
         item.setEditable(False)
         self.combo_ruolo_model.appendRow(item)
 
-    # Metodo per modificare i parametri di prezzo e quantità del evento
+    # Metodo per modificare i dati dell'amministratore
     def modifica_amministratore(self):
 
         nuovonome = self.info["Nome"].text()

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem
 from PyQt5 import QtGui
 
 """
-La classe VistaModificaEvento apre una finestra a schermo dove l'utente può cambiare i valori di prezzo e quantità
+La classe VistaModificaEvento apre una finestra a schermo dove l'utente può cambiare i dati di un evento
 """
 
 class VistaModificaEvento(QWidget):
@@ -90,7 +90,7 @@ class VistaModificaEvento(QWidget):
         elif self.GButton.isChecked():
             return "Gara"
 
-#Metodo per modificare i parametri di prezzo e quantità del evento
+#Metodo per modificare i dati dell' evento
     def modifica_evento(self):
         nuovotipo = self.rb_on_selected()
         nuovotitolo = self.info["Titolo (opzionale)"].text()

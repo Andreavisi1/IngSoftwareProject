@@ -4,8 +4,6 @@ from listaamministratori.model.ListaAmministratori import ListaAmministratori
 Gestisce e attua i comandi relativi alla lista degli amministratori
 """
 
-
-
 class ControlloreListaAmministratori():
     def __init__(self):
         super(ControlloreListaAmministratori, self).__init__()
@@ -22,7 +20,6 @@ class ControlloreListaAmministratori():
 
     def get_amministratore_by_username(self, username):
         return self.model.get_amministratore_by_username(username)
-
 
     def elimina_amministratore_by_id(self, id):
         self.model.rimuovi_amministratore_by_id(id)

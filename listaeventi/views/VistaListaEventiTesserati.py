@@ -45,7 +45,6 @@ class VistaListaEventiTesserati(QWidget):
 
         self.main_layout.addLayout(buttons_layout)
 
-
         self.setLayout(self.main_layout)
         self.setWindowTitle("Lista Attività")
 
@@ -91,7 +90,7 @@ class VistaListaEventiTesserati(QWidget):
         self.table_widget.setHorizontalHeaderItem(index, item)
         self.table_widget.setColumnWidth(index, 200)
 
-# sulla chiusura della view salva i dati del attivita
+# sulla chiusura della view salva i dati dell'evento
     def closeEvent(self, event):
         self.controller.save_data()
 
@@ -101,11 +100,6 @@ class VistaListaEventiTesserati(QWidget):
         item.setText(str(elemento))
         item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
         self.table_widget.setItem(row, index, item)
-
-    #Metodo aprire la vista di inserimento del nuovo evento
-    def show_new_evento(self):
-        self.vista_inserisci_evento = VistaInserisciEvento(self.controller, self.update_ui)
-        self.vista_inserisci_evento.show()
 
     #Metodo per collegare l'indice selezionato all'elenco fittizio all'indice dell'elenco reale
     def toSourceIndex(self, index):

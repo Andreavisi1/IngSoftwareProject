@@ -7,7 +7,7 @@ from listatesserati.views.VistaListaTesserati import VistaListaTesserati
 from listaeventi.views.VistaListaEventi import VistaListaEventi
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from statistiche.views.VistaSceltaStats import VistaSceltaStats
+from statistiche.views.VistaStats import VistaStats
 
 """
 La classe VistaHomeAmministratore si occupa di mostrare a schermo all'amministratore la home dove poter selezionare
@@ -69,12 +69,6 @@ class VistaHomeAmministratore(QWidget):
         self.vista_lista_tesserati = VistaListaTesserati()
         self.vista_lista_tesserati.show()
 
-    def verifica_id_amministratore(self, id):
-        for amministratore in self.lista_amministratori:
-            if amministratore.id == id:
-                return amministratore.id
-        return False
-
     def show_personal_info(self):
         amministratore_selezionato = self.controller.get_amministratore_by_username(self.username)
         self.vista_amministratore = VistaDatiPersonaliAmministratore(amministratore_selezionato)
@@ -82,6 +76,6 @@ class VistaHomeAmministratore(QWidget):
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):
-        self.vista_statistiche = VistaSceltaStats()
+        self.vista_statistiche = VistaStats()
         self.vista_statistiche.show()
 

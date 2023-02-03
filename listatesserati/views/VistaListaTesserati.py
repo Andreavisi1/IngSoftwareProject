@@ -5,6 +5,7 @@ from tesserato.views.VistaTesserato import VistaTesserato
 from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from listatesserati.views.VistaInserisciTesserato import VistaInserisciTesserato
 from PyQt5 import QtGui
+
 """
 La VistaListaTesserati si occupa di mostrare a schermo la lista dei tesserati
 """
@@ -51,7 +52,7 @@ class VistaListaTesserati(QWidget):
         main_layout.addLayout(buttons_layout)
 
         self.setLayout(main_layout)
-        self.resize(600,300)
+        self.resize(600, 300)
         self.setWindowTitle("Lista Tesserati")
 
     #Metodo che mostra a schermo le informazioni del tesserato selezionato
@@ -82,7 +83,6 @@ class VistaListaTesserati(QWidget):
             self.listview_model.appendRow(item)
         self.listview_model.sort(0, )
         self.list_view.setModel(self.listview_model)
-
 
     # salva i dati sul file pickle alla chiusura della view
     def closeEvent(self, event):

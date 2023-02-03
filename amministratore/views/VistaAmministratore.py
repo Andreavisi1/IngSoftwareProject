@@ -83,7 +83,7 @@ class VistaAmministratore(QWidget):
             return
 
 
-#Metodo che si occupa di aggiornare i dati modificati dell'amministratore
+    #Metodo che si occupa di aggiornare i dati modificati dell'amministratore
     def update_amministratore(self):
         self.label_nome.setText("{}".format(self.controller.get_nome_amministratore() + " " + self.controller.get_cognome_amministratore()))
         self.label_ruolo.setText("Ruolo: {}".format(self.controller.get_ruolo_amministratore()))

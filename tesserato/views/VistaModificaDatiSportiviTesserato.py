@@ -46,7 +46,7 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         btn_conferma.clicked.connect(self.modifica_tesserato)
         self.setLayout(self.v_layout)
 
-# Metodo che crea uno spinbox per poter modificare correttamente l'età e i dati del certificato
+# Metodo che crea uno spinbox per poter modificare correttamente i dati riguardanti le gare e la validità del certificato
     def get_spin_box(self, tipo):
         global current_text_edit
         self.v_layout.addWidget(QLabel(tipo))

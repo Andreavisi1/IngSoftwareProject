@@ -1,10 +1,10 @@
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QMessageBox
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QLabel
 from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from listaeventi.views.VistaListaEventiTesserati import VistaListaEventiTesserati
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from statistiche.views.VistaSceltaStats import VistaSceltaStats
+from statistiche.views.VistaStats import VistaStats
 from tesserato.views.VistaDatiPersonaliTesserato import VistaDatiPersonaliTesserato
 
 """
@@ -63,10 +63,10 @@ class VistaHomeTesserato(QWidget):
 
     #Metodo che si occupa di aprire la VistaSceltaStats
     def go_statistiche(self):
-        self.vista_statistiche = VistaSceltaStats()
+        self.vista_statistiche = VistaStats()
         self.vista_statistiche.show()
 
-       # Metodo che mostra a schermo le informazioni del tesserato selezionato
+    # Metodo che mostra a schermo le informazioni del tesserato selezionato
     def show_personal_info(self):
         tesserato_selezionato = self.controller.get_tesserato_by_username(self.username)
         self.vista_tesserato = VistaDatiPersonaliTesserato(tesserato_selezionato)

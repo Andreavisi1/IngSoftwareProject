@@ -1,4 +1,3 @@
-from PyQt5.QtCore import Qt, QDate
 from PyQt5.QtGui import QStandardItemModel, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, QTableWidgetItem
 from PyQt5 import QtCore
@@ -27,9 +26,6 @@ class VistaListaEventi(QWidget):
         self.update_ui()
 
         self.table_total.setMaximumHeight(self.table_total.sizeHintForRow(0))
-
-# Metodo Qt che ordina in maniera decrescente gli allenamenti e le gare in base alla data
-        self.table_widget.sortItems(2, Qt.DescendingOrder)
 
         self.v_layout.addWidget(self.table_widget)
         self.v_layout.addWidget(self.table_total)
@@ -94,7 +90,7 @@ class VistaListaEventi(QWidget):
         self.table_widget.setHorizontalHeaderItem(index, item)
         self.table_widget.setColumnWidth(index, 200)
 
-# sulla chiusura della view salva i dati del attivita
+# sulla chiusura della view salva i dati dell'evento
     def closeEvent(self, event):
         self.controller.save_data()
 
@@ -105,7 +101,7 @@ class VistaListaEventi(QWidget):
         item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
         self.table_widget.setItem(row, index, item)
 
-    #Metodo aprire la vista di inserimento del nuovo evento
+    #Metodo per aprire la vista di inserimento del nuovo evento
     def show_new_evento(self):
         self.vista_inserisci_evento = VistaInserisciEvento(self.controller, self.update_ui)
         self.vista_inserisci_evento.show()
@@ -113,5 +109,3 @@ class VistaListaEventi(QWidget):
     #Metodo per collegare l'indice selezionato all'elenco fittizio all'indice dell'elenco reale
     def toSourceIndex(self, index):
         return self.filter_proxy_model.mapToSource(index).row()
-
-

@@ -1,5 +1,4 @@
 from PyQt5.QtChart import QChartView, QPieSeries, QChart
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTableWidgetItem, QTableWidget, QListView, QMessageBox
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
@@ -7,11 +6,9 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
 from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from statistiche.controller.ControlloreStats import ControlloreStats
 
-
 class VistaStats(QWidget):
     def __init__(self):
         super(VistaStats, self).__init__()
-       # self.datascelta = datascelta
 
 #genera array vuoti da popolare con le informazioni del file pickle
         self.categoria = []
@@ -126,10 +123,6 @@ class VistaStats(QWidget):
             self.inserisci_elemento_in_tabella(tesserato.categoria, row, 1)
             self.inserisci_elemento_in_tabella(tesserato.gare_partecipate, row, 2)
             self.inserisci_elemento_in_tabella(tesserato.gare_vinte, row, 3)
-
-            print(type(tesserato.gare_vinte))
-# Metodo Qt che ordina in maniera decrescente i tesserati in base al numero di gare vinte
-            self.table_widget.sortItems(3, Qt.DescendingOrder)
 
         self.table_partecipate_model = QStandardItemModel(self.table_partecipate)
         self.table_vinte_model = QStandardItemModel(self.table_vinte)

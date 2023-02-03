@@ -9,7 +9,6 @@ from PyQt5 import QtGui
 La VistaListaAmministratori si occupa di mostrare a schermo la lista degli amministratori
 """
 
-
 class VistaListaAmministratori(QWidget):
     def __init__(self, parent=None):
         super(VistaListaAmministratori, self).__init__(parent)
