@@ -17,3 +17,4 @@ class TestControlloreListaEventi(TestCase):
         self.test_aggiungi_alle_attivita()
         self.assertTrue(self.controller.get_evento_by_index(0))
 
+
