@@ -1,11 +1,8 @@
 from PyQt5.QtGui import QStandardItemModel, QFont
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, \
-    QTableWidgetItem, QLabel
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QTableWidget, QTableWidgetItem, QLabel
 from PyQt5 import QtCore
 
-from evento.views.VistaEventoTesserati import VistaEventoTesserati
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
-from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
 from PyQt5 import QtGui
 
 """
@@ -38,25 +35,10 @@ class VistaListaEventiTesserati(QWidget):
 
         buttons_layout = QVBoxLayout()
 
-        #Bottone per aprire un evento
-        open_button = QPushButton("Apri")
-        open_button.clicked.connect(self.show_selected_info)
-        buttons_layout.addWidget(open_button)
-
         self.main_layout.addLayout(buttons_layout)
 
         self.setLayout(self.main_layout)
         self.setWindowTitle("Lista Attività")
-
-    #Metodo che mostra a schermo le informazioni dell'evento selezionato
-    def show_selected_info(self):
-        try:
-            sourceindex = self.table_widget.selectedIndexes()[0].row()
-            evento_selezionato = self.controller.get_evento_by_index(sourceindex)
-            self.vista_evento = VistaEventoTesserati(evento_selezionato, self.controller.elimina_evento_by_id, self.update_ui)
-            self.vista_evento.show()
-        except IndexError:
-            QMessageBox.critical(self, 'Errore', 'Per favore, seleziona un evento', QMessageBox.Ok, QMessageBox.Ok)
 
 # crea/aggiorna l' intera view
     def update_ui(self):
@@ -77,6 +59,7 @@ class VistaListaEventiTesserati(QWidget):
                 self.inserisci_elemento_in_tabella(evento.data, row, 2)
                 self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
                 self.inserisci_elemento_in_tabella(evento.luogo, row, 4)
+                row = row + 1
         self.table_total_model = QStandardItemModel(self.table_total)
         self.table_total.setModel(self.table_total_model)
 
@@ -100,9 +83,3 @@ class VistaListaEventiTesserati(QWidget):
         item.setText(str(elemento))
         item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
         self.table_widget.setItem(row, index, item)
-
-    #Metodo per collegare l'indice selezionato all'elenco fittizio all'indice dell'elenco reale
-    def toSourceIndex(self, index):
-        return self.filter_proxy_model.mapToSource(index).row()
-
-

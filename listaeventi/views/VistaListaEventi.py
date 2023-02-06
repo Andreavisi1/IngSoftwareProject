@@ -77,6 +77,7 @@ class VistaListaEventi(QWidget):
             self.inserisci_elemento_in_tabella(evento.data, row, 2)
             self.inserisci_elemento_in_tabella(evento.categoria, row, 3)
             self.inserisci_elemento_in_tabella(evento.luogo, row, 4)
+            row = row + 1
         self.table_total_model = QStandardItemModel(self.table_total)
         self.table_total.setModel(self.table_total_model)
 

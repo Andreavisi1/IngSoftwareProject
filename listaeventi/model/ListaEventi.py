@@ -37,9 +37,3 @@ class ListaEventi():
     def save_data(self):
         with open('listaeventi/data/lista_eventi_salvata2.pickle', 'wb') as handle:
             pickle.dump(self.lista_eventi, handle, pickle.HIGHEST_PROTOCOL)
-
-
-
-
-
-

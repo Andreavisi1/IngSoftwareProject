@@ -1,4 +1,3 @@
-from PyQt5.QtCore import QSortFilterProxyModel, Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QLineEdit, QMessageBox
 from tesserato.views.VistaTesserato import VistaTesserato
@@ -21,19 +20,6 @@ class VistaListaTesserati(QWidget):
 
         self.list_view = QListView()
         self.update_ui()
-
-        #Crea un elenco fittizio sopra l'elenco reale per poter usare la barra di ricerca
-        self.filter_proxy_model = QSortFilterProxyModel()
-        self.filter_proxy_model.setSourceModel(self.listview_model)
-        self.filter_proxy_model.setFilterCaseSensitivity(Qt.CaseInsensitive)
-        self.filter_proxy_model.setFilterKeyColumn(0)
-
-        search_field = QLineEdit()
-        search_field.setStyleSheet('font-size: 15px; height: 30px;')
-        search_field.textChanged.connect(self.filter_proxy_model.setFilterRegExp)
-        v_layout.addWidget(search_field)
-
-        self.list_view.setModel(self.filter_proxy_model)
 
         v_layout.addWidget(self.list_view)
         main_layout.addLayout(v_layout)
@@ -81,13 +67,8 @@ class VistaListaTesserati(QWidget):
             font.setPointSize(18)
             item.setFont(font)
             self.listview_model.appendRow(item)
-        self.listview_model.sort(0, )
         self.list_view.setModel(self.listview_model)
 
     # salva i dati sul file pickle alla chiusura della view
     def closeEvent(self, event):
         self.controller.save_data()
-
-    #Metodo per collegare l'indice selezionato all'elenco fittizio all'indice dell'elenco reale
-    def toSourceIndex(self, index):
-        return self.filter_proxy_model.mapToSource(index).row()
