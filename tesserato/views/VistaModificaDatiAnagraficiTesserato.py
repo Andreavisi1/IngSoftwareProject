@@ -1,7 +1,7 @@
-
-
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox
 from PyQt5 import QtGui
+
+from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 
 """
 La classe VistaModificaDatiAnagraficiTesserato apre una finestra a schermo in cui un tesserato può modificare i propri dati anagrafici
@@ -13,6 +13,9 @@ class VistaModificaDatiAnagraficiTesserato(QWidget):
         self.tesserato = tesserato
         self.info = {}
         self.update = update
+
+        self.controller = ControlloreListaTesserati()
+
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         self.setWindowTitle('Modifica Dati Anagrafici Tesserato')
         self.v_layout = QVBoxLayout()
@@ -62,7 +65,7 @@ class VistaModificaDatiAnagraficiTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    #Metodo per modificare i parametri di prezzo e quantità del evento
+    #Metodo per modificare i parametri di un tesserato
     def modifica_tesserato(self):
         nuovocf = self.info["Codice Fiscale"].text()
         nuovaemail = self.info["Email"].text()

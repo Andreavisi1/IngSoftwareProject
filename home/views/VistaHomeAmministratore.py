@@ -79,3 +79,7 @@ class VistaHomeAmministratore(QWidget):
         self.vista_statistiche = VistaStats()
         self.vista_statistiche.show()
 
+    #salva i dati sul file pickle alla chiusura della view
+    def closeEvent(self, event):
+        self.controller.save_data()
+

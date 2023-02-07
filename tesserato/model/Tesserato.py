@@ -1,6 +1,8 @@
 """
 Gestisce i dati e le operazioni relative al tesserato
 """
+import pickle
+
 
 class Tesserato:
        def __init__(self, id, nome, cognome, cf, email, telefono, luogo_nascita, eta, password, categoria, inizio_certificato, scadenza_certificato, gare_partecipate=0, gare_vinte=0):
@@ -19,4 +21,5 @@ class Tesserato:
         self.gare_vinte = gare_vinte
         self.inizio_certificato = inizio_certificato
         self.scadenza_certificato = scadenza_certificato
+
 

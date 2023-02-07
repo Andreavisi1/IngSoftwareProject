@@ -69,6 +69,6 @@ class VistaListaTesserati(QWidget):
             self.listview_model.appendRow(item)
         self.list_view.setModel(self.listview_model)
 
-    # salva i dati sul file pickle alla chiusura della view
+    #salva i dati sul file pickle alla chiusura della view
     def closeEvent(self, event):
         self.controller.save_data()

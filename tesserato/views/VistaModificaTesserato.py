@@ -66,9 +66,8 @@ class VistaModificaTesserato(QWidget):
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 
-    #Metodo per modificare i parametri di prezzo e quantità del evento
+    #Metodo per modificare i parametri di un tesserato
     def modifica_tesserato(self):
-
         nuovonome = self.info["Nome"].text()
         nuovocognome = self.info["Cognome"].text()
         nuovoid = nuovonome.lower() + nuovocognome.lower()

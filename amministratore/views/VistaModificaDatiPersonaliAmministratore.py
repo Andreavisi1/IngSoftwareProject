@@ -2,6 +2,8 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QComboBox, QSpinBox
 from PyQt5 import QtGui
 
+from listaamministratori.controller.ControlloreListaAmministratori import ControlloreListaAmministratori
+
 """
 La classe VistaModificaDatiPersonaliAmministratore apre una finestra a schermo in cui un amministratore puo modificare i propri dati personali
 """
@@ -13,6 +15,9 @@ class VistaModificaDatiPersonaliAmministratore(QWidget):
         self.amministratore = amministratore
         self.info = {}
         self.update = update
+
+        self.controller = ControlloreListaAmministratori()
+
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
         self.setWindowTitle('Modifica Dati Amministratore')
         self.v_layout = QVBoxLayout()
@@ -103,3 +108,7 @@ class VistaModificaDatiPersonaliAmministratore(QWidget):
             self.amministratore.password = nuovapassword
             self.update()
             self.close()
+
+    #salva i dati sul file pickle alla chiusura della view
+    def closeEvent(self, event):
+        self.controller.save_data()

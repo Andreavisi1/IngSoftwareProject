@@ -31,7 +31,6 @@ class VistaHomeTesserato(QWidget):
         grid_layout.addWidget(self.get_generic_button("Calendario Attività", self.go_lista_eventi), 1, 1)
         grid_layout.addWidget(self.get_generic_button("Statistiche", self.go_statistiche), 1, 2)
 
-
         self.setLayout(grid_layout)
         self.setFixedSize(600, 200)
         self.setWindowTitle("A. S. D. Filottrano - Sezione Tesserato")
@@ -71,3 +70,7 @@ class VistaHomeTesserato(QWidget):
         tesserato_selezionato = self.controller.get_tesserato_by_username(self.username)
         self.vista_tesserato = VistaDatiPersonaliTesserato(tesserato_selezionato)
         self.vista_tesserato.show()
+
+    #salva i dati sul file pickle alla chiusura della view
+    def closeEvent(self, event):
+        self.controller.save_data()

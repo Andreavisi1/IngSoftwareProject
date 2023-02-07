@@ -1,5 +1,9 @@
+import pickle
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
+
+from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
 from tesserato.views.VistaModificaDatiAnagraficiTesserato import VistaModificaDatiAnagraficiTesserato
 
@@ -12,6 +16,7 @@ class VistaDatiPersonaliTesserato(QWidget):
     def __init__(self, tesserato, parent=None):
         super(VistaDatiPersonaliTesserato, self).__init__(parent)
         self.controller = ControlloreTesserato(tesserato)
+
         self.tesserato = tesserato
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
 
@@ -92,6 +97,11 @@ class VistaDatiPersonaliTesserato(QWidget):
         self.setLayout(v_layout)
         self.setWindowTitle(self.controller.get_nome_tesserato() + " " + self.controller.get_cognome_tesserato())
 
+
+
+
+
+
 #Metodo che prende come parametri il testo di una informazione e il valore assegnato come sopra tramite il controller
     def get_label_info(self, testo, valore):
         current_label = QLabel("{}: {}".format(testo, valore))
@@ -100,7 +110,7 @@ class VistaDatiPersonaliTesserato(QWidget):
         current_label.setFont(current_font)
         return current_label
 
-#Metodo che si occupa di aprire la VistaModificaTesserato
+#Metodo che si occupa di aprire la VistaModificaDatiAnagraficiTesserato
     def show_modifica_da_tesserato(self):
         self.vista_modifica_tesserato = VistaModificaDatiAnagraficiTesserato(self.tesserato, self.update_tesserato)
         self.vista_modifica_tesserato.show()
