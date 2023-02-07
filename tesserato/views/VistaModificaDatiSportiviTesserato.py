@@ -63,9 +63,11 @@ class VistaModificaDatiSportiviTesserato(QWidget):
         if tipo == "Numero di gare partecipate":
             current_text_edit = QSpinBox()
             current_text_edit.setValue(int(self.tesserato.gare_partecipate))
+            current_text_edit.setRange(0, 1000)
         if tipo == "Numero di gare vinte":
             current_text_edit = QSpinBox()
             current_text_edit.setValue(int(self.tesserato.gare_vinte))
+            current_text_edit.setRange(0, 1000)
         self.v_layout.addWidget(current_text_edit)
         self.info[tipo] = current_text_edit
 

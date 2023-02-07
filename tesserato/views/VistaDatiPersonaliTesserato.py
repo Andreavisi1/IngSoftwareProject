@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
-from tesserato.views.VistaModificaTesserato import VistaModificaTesserato
+from tesserato.views.VistaModificaDatiAnagraficiTesserato import VistaModificaDatiAnagraficiTesserato
 
 """
 La classe VistaDatiPersonaliTesserato apre una finestra a schermo che si occupa di mostrare all'utente le informazioni del tesserato.
@@ -80,6 +80,10 @@ class VistaDatiPersonaliTesserato(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
+
+        print(tesserato.luogo_nascita)
+
+
         #Bottone per modificare i dati di un tesserato
         btn_modify = QPushButton("Modifica dati anagrafici")
         btn_modify.clicked.connect(self.show_modifica_da_tesserato)
@@ -98,7 +102,7 @@ class VistaDatiPersonaliTesserato(QWidget):
 
 #Metodo che si occupa di aprire la VistaModificaTesserato
     def show_modifica_da_tesserato(self):
-        self.vista_modifica_tesserato = VistaModificaTesserato(self.tesserato, self.update_tesserato)
+        self.vista_modifica_tesserato = VistaModificaDatiAnagraficiTesserato(self.tesserato, self.update_tesserato)
         self.vista_modifica_tesserato.show()
 
 #Metodo che si occupa di aggiornare i dati modificati del tesserato

@@ -1,23 +1,23 @@
+
+
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QSpacerItem, QSizePolicy, QPushButton, QMessageBox, QSpinBox, QDateEdit, QComboBox
 from PyQt5 import QtGui
 
 """
-La classe VistaModificaTesserato apre una finestra a schermo in cui si possono modificare i dati di un tesserato
+La classe VistaModificaDatiAnagraficiTesserato apre una finestra a schermo in cui un tesserato può modificare i propri dati anagrafici
 """
 
-class VistaModificaTesserato(QWidget):
+class VistaModificaDatiAnagraficiTesserato(QWidget):
     def __init__(self, tesserato, update, parent=None):
-        super(VistaModificaTesserato, self).__init__(parent)
+        super(VistaModificaDatiAnagraficiTesserato, self).__init__(parent)
         self.tesserato = tesserato
         self.info = {}
         self.update = update
         self.setWindowIcon(QtGui.QIcon('logos/logo A.S.D.F..png'))
-        self.setWindowTitle('Modifica Dati Tesserato')
+        self.setWindowTitle('Modifica Dati Anagrafici Tesserato')
         self.v_layout = QVBoxLayout()
         self.resize(300, 200)
 
-        self.get_form_entry("Nome")
-        self.get_form_entry("Cognome")
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Email")
         self.get_form_entry("Telefono")
@@ -37,10 +37,6 @@ class VistaModificaTesserato(QWidget):
     def get_form_entry(self, tipo):
         self.v_layout.addWidget(QLabel(tipo))
         current_text_edit = QLineEdit(self)
-        if tipo == "Nome":
-            current_text_edit.setText(self.tesserato.nome)
-        if tipo == "Cognome":
-            current_text_edit.setText(self.tesserato.cognome)
         if tipo == "Codice Fiscale":
             current_text_edit.setText(self.tesserato.cf)
         if tipo == "Email":
@@ -68,10 +64,6 @@ class VistaModificaTesserato(QWidget):
 
     #Metodo per modificare i parametri di prezzo e quantità del evento
     def modifica_tesserato(self):
-
-        nuovonome = self.info["Nome"].text()
-        nuovocognome = self.info["Cognome"].text()
-        nuovoid = nuovonome.lower() + nuovocognome.lower()
         nuovocf = self.info["Codice Fiscale"].text()
         nuovaemail = self.info["Email"].text()
         nuovotelefono = self.info["Telefono"].text()
@@ -79,12 +71,9 @@ class VistaModificaTesserato(QWidget):
         nuovaeta = self.info["Età"].text()
         nuovapassword = self.info["Password"].text()
 
-        if nuovonome == "" or nuovocognome == "" or nuovocf == "" or nuovaemail == "" or nuovotelefono == "" or nuovoluogonascita == "" or nuovaeta == "" or nuovapassword == "":
+        if nuovocf == "" or nuovaemail == "" or nuovotelefono == "" or nuovoluogonascita == "" or nuovaeta == "" or nuovapassword == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
-            self.tesserato.nome = nuovonome
-            self.tesserato.cognome = nuovocognome
-            self.tesserato.id = nuovoid
             self.tesserato.cf = nuovocf
             self.tesserato.email = nuovaemail
             self.tesserato.telefono = nuovotelefono

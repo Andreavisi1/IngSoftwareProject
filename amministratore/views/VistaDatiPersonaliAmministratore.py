@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePoli
 from PyQt5 import QtGui
 from amministratore.controller.ControlloreAmministratore import ControlloreAmministratore
 from amministratore.views.VistaModificaAmministratore import VistaModificaAmministratore
+from amministratore.views.VistaModificaDatiPersonaliAmministratore import VistaModificaDatiPersonaliAmministratore
 
 """
 La classe VistaDatiPersonaliAmministratore si occupa di mostrare a schermo le informazioni relative all' amministratore.
@@ -62,7 +63,7 @@ class VistaDatiPersonaliAmministratore(QWidget):
 
     # Metodo che si occupa di aprire la VistaModificaAmministratore
     def show_modifica_amministratore(self):
-        self.vista_modifica_amministratore = VistaModificaAmministratore(self.amministratore, self.update_amministratore)
+        self.vista_modifica_amministratore = VistaModificaDatiPersonaliAmministratore(self.amministratore, self.update_amministratore)
         self.vista_modifica_amministratore.show()
 
     #Metodo che si occupa di aggiornare i dati modificati dell'amministratore

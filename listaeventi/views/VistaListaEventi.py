@@ -106,7 +106,3 @@ class VistaListaEventi(QWidget):
     def show_new_evento(self):
         self.vista_inserisci_evento = VistaInserisciEvento(self.controller, self.update_ui)
         self.vista_inserisci_evento.show()
-
-    #Metodo per collegare l'indice selezionato all'elenco fittizio all'indice dell'elenco reale
-    def toSourceIndex(self, index):
-        return self.filter_proxy_model.mapToSource(index).row()

@@ -1,3 +1,5 @@
+from builtins import super
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
 from PyQt5 import QtGui
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato

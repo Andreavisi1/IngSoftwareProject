@@ -29,7 +29,7 @@ class ListaTesserati():
     def get_tesserato_by_index(self, index):
         return self.lista_tesserati[index]
 
-    # Metodo che ritorna il tesserato dato lo username
+    #Metodo che ritorna il tesserato dato lo username
     def get_tesserato_by_username(self, username):
         for tesserato in self.get_lista_tesserati():
             if tesserato.id == username:
