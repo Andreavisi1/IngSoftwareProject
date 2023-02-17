@@ -1,9 +1,6 @@
-import pickle
-
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 from PyQt5 import QtGui
 
-from listatesserati.controller.ControlloreListaTesserati import ControlloreListaTesserati
 from tesserato.controller.ControlloreTesserato import ControlloreTesserato
 from tesserato.views.VistaModificaDatiAnagraficiTesserato import VistaModificaDatiAnagraficiTesserato
 
@@ -85,10 +82,6 @@ class VistaDatiPersonaliTesserato(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-
-        print(tesserato.luogo_nascita)
-
-
         #Bottone per modificare i dati di un tesserato
         btn_modify = QPushButton("Modifica dati anagrafici")
         btn_modify.clicked.connect(self.show_modifica_da_tesserato)
@@ -96,10 +89,6 @@ class VistaDatiPersonaliTesserato(QWidget):
 
         self.setLayout(v_layout)
         self.setWindowTitle(self.controller.get_nome_tesserato() + " " + self.controller.get_cognome_tesserato())
-
-
-
-
 
 
 #Metodo che prende come parametri il testo di una informazione e il valore assegnato come sopra tramite il controller
