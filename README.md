@@ -7,6 +7,8 @@ Il sistema sfrutta librerie Python da installare manualmente quali:
 - PyQtChart
 - PyQtChart-Qt5
 
+Per visualizzare le modifiche nelle liste occorre chiudere la pagina della lista e poi riaprirla
+
 ---Primo livello di accesso: PRESIDENTE---
 Nella schermata iniziale di login, inserire le credenziali di default:
 username: pres
@@ -15,11 +17,11 @@ password: pres
 ---Secondo livello di accesso: AMMINISTRATORE---
 Il presidente può inserire nuovi amministratori, i quali potranno accedere al sistema inserendo come username il loro nome + cognome, tutto piccolo e attaccato, e scegliendo la propria password in fase di registrazione (credenziali modificabili in seguito).
 Esempio di accesso di un amministratore:
-username:
-password:
+username: alfredodalcaldo 
+password: montebianco00
 
 ---Terzo livello di accesso: TESSERATO---
 Il presidente gli amministratori possono inserire nuovi tesserati, i quali anch'essi potranno accedere al sistema inserendo come username il loro nome + cognome, tutto piccolo e attaccato, e scegliendo la propria password in fase di registrazione (credenziali modificabili in seguito). 
 Esempio di accesso di un tesserato:
-username:
-password:
+username: giuseppeverdi
+password: Rigoletto88
