@@ -91,7 +91,7 @@ class VistaModificaAmministratore(QWidget):
 
         nuovonome = self.info["Nome"].text()
         nuovocognome = self.info["Cognome"].text()
-        nuovoid = nuovonome + nuovocognome
+        nuovoid = nuovonome.lower() + nuovocognome.lower()
         nuovoruolo = self.combo_ruolo.currentText()
         nuovocf = self.info["Codice Fiscale"].text()
         nuovoindirizzo = self.info["Indirizzo"].text()

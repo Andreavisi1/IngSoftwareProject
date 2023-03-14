@@ -8,7 +8,7 @@ class TestControlloreListaAmministratori(TestCase):
     def test_aggiungi_amministratore(self):
         self.controller = ControlloreListaAmministratori()
         self.amministratore = Amministratore("giuseppeverdi", "Giuseppe", "Verdi", "Dirigente", "VRDGPP13R10G337A", "Via Roma 14",
-                                             "giuseppeverdi@outlook.it", "3458256745", "77", "Nabucco88")
+                                             "giuseppeverdi@outlook.it", "3458256745", "77", "Rigoletto88")
         self.controller.aggiungi_amministratore(self.amministratore)
 
     def test_get_lista_degli_amministratori(self):
