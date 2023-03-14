@@ -1,7 +1,6 @@
 from PyQt5.QtGui import QStandardItemModel, QFont
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton, QMessageBox, QTableWidget, QTableWidgetItem
 from PyQt5 import QtCore
-
 from listaeventi.controller.ControlloreListaEventi import ControlloreListaEventi
 from listaeventi.views.VistaInserisciEvento import VistaInserisciEvento
 from evento.views.VistaEvento import VistaEvento
